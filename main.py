@@ -21,20 +21,26 @@
 #
 #
 # print('Конец!')
-hour = int(input('Который час?  ')) # 0-23
-if hour > 23 :
-    hour = 23
-if hour < 0 :
-    hour = 0
+# hour = int(input('Который час?  ')) # 0-23
+# if hour > 23 :
+#     hour = 23
+# if hour < 0 :
+#     hour = 0
+#
+# if 7 <= hour < 12 :
+#     print ('Доброе утро!')
+# elif 12 <= hour < 18 :
+#     print('Добрый день!')
+# elif hour >= 18 and hour < 22 :
+#     print('Добрый вечер!')
+# elif hour >= 22 or hour == 0 :
+#     print('Доброй ночи!')
+# else :
+#     print('Доброго времени суток!')
+# print('Конец!')
 
-if 7 <= hour < 12 :
-    print ('Доброе утро!')
-elif 12 <= hour < 18 :
-    print('Добрый день!')
-elif hour >= 18 and hour < 22 :
-    print('Добрый вечер!')
-elif hour >= 22 or hour == 0 :
-    print('Доброй ночи!')
-else :
-    print('Доброго времени суток!')
-print('Конец!')
+a = 3
+b = 5
+print('a= ' , a, ' b = ' , b)
+a , b = b , a # swap
+print('a= ' , a, ' b = ' , b)
