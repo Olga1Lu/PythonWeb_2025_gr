@@ -7,11 +7,28 @@
 # \ просто экранирование следующих за этим знаком символов (ASCII)
 # \u вывод символа по 4 знакоместам 16-формате (Unicode)
 
-word1 = 'пришел'
-word2 = 'увидел'
-word3 = 'победил'
-word4 = '27\xB0C'
+# word1 = 'пришел'
+# word2 = 'увидел'
+# word3 = 'победил'
+# word4 = '27\xB0C'
+#
+# print(word1, word2 , word3, sep=', ' , end=' -> ')
+# print(word4 , end='\n')
+# print('Концерт группы \"Кино\" ')  #'экранирование знаком " \ "
 
-print(word1, word2 , word3, sep=', ' , end=' -> ')
-print(word4 , end='\n')
-print('Концерт группы \"Кино\" ')  #'экранирование знаком " \ "
+# Продолжение
+name = 'Игорь'
+email1 = 'fff@kll.ru'
+age = 32
+# способ 1 (плейсхолдеры)
+print('имя: %s , E-mail: %s , Возраст: %d' % (name , email1 , age))
+# %s - string
+# % d - digit
+# %f - float
+
+
+# способ 2
+print('имя: {} , E-mail: {}} , Возраст: {}}' .format(name , email1 , age))
+
+#способ 3
+print(f'имя: {name} , E-mail: {email1} , Возраст: {age}')
