@@ -20,15 +20,16 @@
 name = 'Игорь'
 email1 = 'fff@kll.ru'
 age = 32
+w = 85.63
 # способ 1 (плейсхолдеры)
-print('имя: %s , E-mail: %s , Возраст: %d' % (name , email1 , age))
+#print('имя: %s , E-mail: %s , Возраст: %d' % (name , email1 , age))
 # %s - string
 # % d - digit
 # %f - float
 
 
 # способ 2
-print('имя: {} , E-mail: {}} , Возраст: {}}' .format(name , email1 , age))
+#print('имя: {} , E-mail: {}} , Возраст: {}}' .format(name , email1 , age))
 
 #способ 3
-print(f'имя: {name} , E-mail: {email1} , Возраст: {age}')
+print(f'Имя: {name} , E-mail: {email1} , Возраст{{}}: {age}, Вес: {w: .3f}')
