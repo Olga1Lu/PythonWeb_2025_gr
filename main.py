@@ -4,8 +4,8 @@ total_suc = 0
 # total_ensuc = 0
 min_v = float('inf')
 max_v = float ('-inf')
-num =
-# while (num := int(input('Введите рост: '))) != -1 :
+
+while (num := int(input('Введите рост: '))) != -1 :
     if 150 <= num <= 180:
         total_suc += 1
         if num < min_v :
