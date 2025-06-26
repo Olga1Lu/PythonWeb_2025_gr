@@ -1,29 +1,20 @@
-# ключевое слово in
+# min , max, average , summ , production
+N = 5
+total = 0
+min_val = float('inf')  # плюс бесконечность
+max_val = float('-inf')  # минус бесконечность
+for _ in range (N) :
+    num = int (input('введите целое число: '))
+    if num < min_val:
+        min_val = num
+    if num > max_val:
+        max_val = num
+    total += num
+    aver = total / N
+    prod *=num
 
-# word = 'поток'
-# if 'ток' in word
-#     print('Есть')
-
-# цикл for
-# for <переменная> in <итерируемый объект>> :
-#     команды
-
-# word = 'поток'
-
-# for ch in word :
-#     print(ch)
-
-# итератор  range(start, stop, step)
-# for i in range (0,3,1) :
-#     print(i)
-# промежуток: старт включается, финиш - нет
-# по умолч.: старт=0б шаг=1
-
-# for _ in range (2,13,2) :  # переменная i не используется.
-#     print(i)
-
-for i in range (1,101) :
-    if i % 10 == 5 :
-        if i == 15 :
-            continue
-        print(i)
+print(f'Сумма: {total}')
+print(f'Произведение = {prod}')
+print(f'Среднее арифм.: {aver}')
+print(f'мин= {min_val}')
+print(f'мах= {max_val}')
