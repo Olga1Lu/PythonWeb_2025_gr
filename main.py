@@ -11,18 +11,19 @@
 #
 # print('строка пустая')
 
+# break
+# continue
 
 num = 3  # надо угадать его
-flag = True  # флаг
 var = ''
 
 print('Угадайте число')
 
-while flag :
+while True :
     var = int( input('Ваше значение: '))
     if var == num :
         print('угадали!')
-        flag = not flag  # флаг инвертирован
+        break  # фцикл прерван
     elif var > num :
         print('Число больше загаданного')
     else:
