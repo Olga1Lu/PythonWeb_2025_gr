@@ -35,4 +35,4 @@ while count < 5 :
     count += 1
     if count == 3 :
         continue  # прервать текущую итерацию и начать следующую
-print(f'Итерация номер: {count}')
+    print(f'Итерация номер: {count}')
