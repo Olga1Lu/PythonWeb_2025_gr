@@ -29,4 +29,5 @@
 
 for i in range (1, 10) :
     for j in range (1, 10) :
-        print(f'Элемент {i}*{j} = {i*j}')
+        print(f'Элемент {i}*{j} = {i*j}', end='\t')
+    print()
