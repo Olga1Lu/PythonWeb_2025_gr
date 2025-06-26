@@ -12,7 +12,7 @@ while counter < 5 :
 print(f'Итого уже {counter}')
 print('обратный отсчет:')
 
-while counter >= 0 :
+while counter > 0 :
     print(f'Итерация номер: {counter}')
-    counter -=  1  # инкремент (краткая завпись)
+    counter -=  1  # декремент (краткая завпись)
 print(f'Итого уже {counter}')
