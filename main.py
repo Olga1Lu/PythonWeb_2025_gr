@@ -1,33 +1,21 @@
-# min , max, average , summ , production
-# N = 5
-# total = 0
-# prod = 1
-# min_val = float('inf')  # плюс бесконечность
-# max_val = float('-inf')  # минус бесконечность
-# for _ in range (N) :
-#     num = int (input('введите целое число: '))
-#     if num < min_val:
-#         min_val = num
-#     if num > max_val:
-#         max_val = num
-#     total += num
-#     aver = total / N
-#     prod *=num
-#
-# print(f'Сумма: {total}')
-# print(f'Произведение = {prod}')
-# print(f'Среднее арифм.: {aver}')
-# print(f'мин= {min_val}')
-# print(f'мах= {max_val}')
-#  N = 5
-#  fact = 1
-#  for i in range (1,N+1):
-#      fact *= i
-# print(fact)
 
-# вложенные циклы
+total = 0
+total_suc = 0
+# total_ensuc = 0
+min_v = float('inf')
+max_v = float ('-inf')
+num =
+# while (num := int(input('Введите рост: '))) != -1 :
+    if 150 <= num <= 180:
+        total_suc += 1
+        if num < min_v :
+            min_v = num
+        if num > max_v :
+            max_v = num
 
-for i in range (1, 10) :
-    for j in range (1, 10) :
-        print(f'Элемент {i}*{j} = {i*j}', end='\t')
-    print()
+    total += 1
+print(f'Всего кандидатов: {total}')
+print(f'Успешных: {total_suc}, неуспешных: {total - total_suc}')
+print(f'Макс.рост: {max_v}')
+print(f'Мин.рост: {min_v}')
+
