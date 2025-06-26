@@ -1,29 +1,29 @@
-# Mathc Case (3.10)
-# from re import match
-#
-# print('Возможные ходы:\n\tL - влево\n\tR - вправо\n\tF - прямо')
-#
-# while True :
-#     ch = input('ваш выбор: ')
-#     match ch:
-#         case 'L' | 'l' | 'д' | 'Д' :
-#             print('Свернули влево')
-#         case 'К' | 'k' | 'к' | 'К':
-#             print('Свернули вправо')
-#         case 'F' | 'f' | 'ф' | 'Ф':
-#             print('Свернули влево')
-#         case 'F' | 'f' | 'ф' | 'Ф':
-#             print('До свидания!')
-#             break
-#         case _:
-#             print('Свернули влево')
+# ключевое слово in
 
-count = 1
+# word = 'поток'
+# if 'ток' in word
+#     print('Есть')
 
-while count <= 100 :
+# цикл for
+# for <переменная> in <итерируемый объект>> :
+#     команды
 
-    if count % 10 == 3 :
- #   match count :
-  #      case
-        print(count)
-        count += 1
+# word = 'поток'
+
+# for ch in word :
+#     print(ch)
+
+# итератор  range(start, stop, step)
+# for i in range (0,3,1) :
+#     print(i)
+# промежуток: старт включается, финиш - нет
+# по умолч.: старт=0б шаг=1
+
+# for _ in range (2,13,2) :  # переменная i не используется.
+#     print(i)
+
+for i in range (1,101) :
+    if i % 10 == 5 :
+        if i == 15 :
+            continue
+        print(i)
