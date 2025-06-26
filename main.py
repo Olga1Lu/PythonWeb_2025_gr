@@ -1,6 +1,7 @@
 # min , max, average , summ , production
 N = 5
 total = 0
+prod = 1
 min_val = float('inf')  # плюс бесконечность
 max_val = float('-inf')  # минус бесконечность
 for _ in range (N) :
