@@ -1,18 +1,26 @@
 # Циклы:
-# while
-# for
-counter = 0  # обнуляем счетчик
-# цикл из 5 итераций
-while counter < 5 :
-    print(f'Итерация номер: {counter}')
-    # counter = counter + 1 # инкремент
-    counter +=  1  # инкремент (краткая завпись)
-# др. операторы: *=  /=   -=
 
-print(f'Итого уже {counter}')
-print('обратный отсчет:')
+# word = input('Введите слово не короче 3 символов: ')
+# while len(word) <= 3 :
+#     print('Введенное слово слишком короткое')
+#     word = input('Попробуйте еще раз: ')
+# print('Спасибо!')
+#
+# word = ''
+# while len(word) <= 3 :
+#     input('Введите слово не короче 3 символов: ')
+# print('Спасибо!')
 
-while counter > 0 :
-    print(f'Итерация номер: {counter}')
-    counter -=  1  # декремент (краткая завпись)
-print(f'Итого уже {counter}')
+# цикл до ввода пустой строки
+# 1 буз моржа
+# word = input('Введите слово: ')
+#
+# while word != '' :
+#     print(f'Слово: "{word}')
+#     word = input('Введите слово: ')
+#
+# print('строка пустая')
+
+
+while (word := input('введите слово: ')) != '':
+    print(word))
