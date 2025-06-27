@@ -27,7 +27,14 @@ u = '\u2603'  # знак снеговика в 16-ричной системе
 
  #Методы строк
 #abc = 'абвгдеёжзиклмнопрстуфхцчшщъыьэюя'
-# 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isascii', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'removeprefix', 'removesuffix', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+# 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith',
+# 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha',
+# 'isascii', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric',
+# 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower',
+# 'lstrip', 'maketrans', 'partition', 'removeprefix', 'removesuffix', 'replace',
+# 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split',
+# 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper',
+# 'zfill']
 #pf = 'Язык Python'
 # print(pf.lower())
 # print(pf.upper())
@@ -37,10 +44,19 @@ u = '\u2603'  # знак снеговика в 16-ричной системе
 # print('Телевизор'.count('е')) # сколько раз фрагмент "e" входит в исх.строку
 # print('Телевизор'.index('е')) # номер символа в строке
 
-s = input('Введите слово: ')
+# s = input('Введите слово: ')
+#
+# for i in range (len(s)) :
+#     print(s[i]*(i+1), end='')
+# метод  strip
+s = 'ротор'
+print(s.strip())  #уберет пробелы с двух сторон
+print(s.lstrip()) #уберет слева
+print(s.rstrip())  #уберет справа
+print(s.strip('р'))
 
-for i in range (len(s)) :
-    print(s[i]*(i+1), end='')
+temp = int(input('Введите слово : ').strip()) # корректировка ввода
+
 
 
 
