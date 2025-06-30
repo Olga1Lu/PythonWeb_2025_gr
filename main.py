@@ -46,6 +46,24 @@
 # r, g, b = chanels
 # print((r, g, b))
 
+#Студент и средний балл
+#spis = []
+# while(fname := input('введите фамилию студента: ')) != '' :
+#     ball = float(input('его средний балл? '))
+#     spis.append((fname, ball))
+N = 3
+studs = []
+for i in range (N) :
+    stud, aver = input('Введите фамилию:'), float(input('Средний балл ? '))
+    studs.append((stud, aver))
+
+print(studs)
+
+for st in studs :
+    stud, aver = st
+    print('студент: ', stud)
+    print('Средний балл: ', aver)
+
 
 
 
