@@ -67,46 +67,23 @@ u = '\u2603'  # знак снеговика в 16-ричной системе
 #
 #
 # while not fl :
-#
-#     sign = (input('Выберите действие: зашифровать ( Ш ) или расшифровать ( Ф )? ')).lower()
-#
-#     if not (sign == 'ш' or sign == 'ф') :
-#
+#     sign = (input('Выберите действие: зашифровать ( Ш ) или расшифровать ( Ф )? ')).strip().lower()
+##    if not (sign == 'ш' or sign == 'ф') :
 #         print('Выбор неясен, повторите выбор действия.')
-#
 #         continue
-#
 #     else:
-#
 #         fl = True
-#
 # if sign == 'ф' :
-#
 #     k *= -1
-#
 # new_str = ''
-#
 # for ch in old_str :
-#
 #     if ch in alpf :
-#
 #         pos = alpf.index(ch)
-#
 #         new_pos = (pos + k) % len(alpf)
-#
 #         new_str += alpf[new_pos]
-#
 #     else :
-#
-#         print(f'Символ {ch} в слове {old_str} не является буквой')
-#
-#         fl = False
-#
-#         break
-#
-#
-# if fl :More actions
-#
+#         new_str += ch
+# if fl :
 # print(f'Задано слово: {old_str} \nПолучили слово: {new_str} ')
 
 
