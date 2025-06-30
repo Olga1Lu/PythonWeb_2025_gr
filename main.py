@@ -51,20 +51,35 @@
 # while(fname := input('введите фамилию студента: ')) != '' :
 #     ball = float(input('его средний балл? '))
 #     spis.append((fname, ball))
-N = 3
-studs = []
-for i in range (N) :
-    stud, aver = input('Введите фамилию:'), float(input('Средний балл ? '))
-    studs.append((stud, aver))
+# N = 3
+# studs = []
+# for i in range (N) :
+#     stud, aver = input('Введите фамилию:'), float(input('Средний балл ? '))
+#     studs.append((stud, aver))
+#
+# print(studs)
+#
+# for st in studs :
+#     stud, aver = st
+#     print('студент: ', stud)
+#     print('Средний балл: ', aver)
 
-print(studs)
+# Функция sorted()
+# s = {'Иванов', 'Петров', 'Сидоров'}
+# # lst = list(s)
+# # lst.sort()
+# r = False
+# lst = sorted(s, reverse=r)  #возвращает сортированный список, можно сразу применить к s
+# print(*lst, sep=', ')
 
-for st in studs :
-    stud, aver = st
-    print('студент: ', stud)
-    print('Средний балл: ', aver)
+# enumerate () - в цикле  for возвращает пару (i, v)
+fio = ['Иванов', 'Петров', 'Сидоров']
 
+# for item in enumerate(fio) :
+#     print(item)
 
+# for i, v in enumerate(fio) :
+#     print(f'{i+1}. {v}.')
 
 
 
