@@ -115,18 +115,47 @@
 
 
 #окрошка
-sup = []
+# sup = []
+#
+# while (ingr:= input ('Добавьте ингредиент: ')) != '' :
+#     sup.append(ingr)
+#
+# temp = set(sup)
+# sup = list (temp)
+#
+# sup.sort()
+# print(f'всего: {len(sup)} ингредиентов')
+#
+# for i in range (len(sup)) :
+#     print(f'\t{i+1}. {sup[i]}' )
 
-while (ingr:= input ('Добавьте ингредиент: ')) != '' :
-    sup.append(ingr)
-temp = set(sup)
-sup = list (temp)
-sup.sort()
-print(f'всего: {len(sup)} ингредиентов')
-for i in range (len(sup)) :
-    print(f'\t{i+1}. {sup[i]}' )
+# pat = []
+# book1 = ''
+# while (book := input('Введите число: ')) != '' :
+#     pat.append(book)
+#     print(f'Добавлена книга  {book}')
+# for i in range(len(pat)) :
+#     book1 = pat.pop()
+#     print(f' Взяли книгу  {book1}')
 
+# другой вариант
+# N = 5
+# lst = []
+# for i in range(N) :
+#     print(f'Кладем книгу {i+1} в стопку')
+#     lst.append(i+1)
+# print(' -------')
+# while lst:
+#     item = lst.pop()
+#     print(f'<Берем книгу {item} из стопки. ')
 
+#Создание аббревиатур
+lst = []
+while (word := input('Введите слово: ').strip()) != '' :
+    lst.append((word[0].upper))
+
+print('Получилась аббревиатура', end=':')
+print(*lst, sep=' ') # выведет перечень аргументов с разделителем пробел
 
 
 
