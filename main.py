@@ -105,14 +105,26 @@
 # lst.reverse()   #  или можно сделать lst.sort(reverse= True)
 #print(lst)
 
-a = ['a', 'b', 'c']
-b = a.copy()  # или a[:]
-b.append('d')
-print((id(a)))
-print(id(b))
-print(a)
-print(b)
+# a = ['a', 'b', 'c']
+# b = a.copy()  # или a[:]
+# b.append('d')
+# print((id(a)))
+# print(id(b))
+# print(a)
+# print(b)
 
+
+#окрошка
+sup = []
+
+while (ingr:= input ('Добавьте ингредиент: ')) != '' :
+    sup.append(ingr)
+temp = set(sup)
+sup = list (temp)
+sup.sort()
+print(f'всего: {len(sup)} ингредиентов')
+for i in range (len(sup)) :
+    print(f'\t{i+1}. {sup[i]}' )
 
 
 
