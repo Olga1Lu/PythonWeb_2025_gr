@@ -1,9 +1,5 @@
 # Коллекции
 # Множества, списки, словари, коллекции
-from email import message_from_string
-from operator import index
-
-from pyexpat.errors import messages
 
 #Создание аббревиатур
 # lst = []
@@ -77,7 +73,7 @@ from pyexpat.errors import messages
 # print(*lst, sep=', ')
 
 # enumerate () - в цикле  for возвращает пару (i, v)
-fio = ['Иванов', 'Петров', 'Сидоров']
+#fio = ['Иванов', 'Петров', 'Сидоров']
 
 # for item in enumerate(fio) :
 #     print(item)
@@ -186,25 +182,91 @@ fio = ['Иванов', 'Петров', 'Сидоров']
 #         matrix[row][col] += ind
 #         print(matrix[row][col])
 # print(matrix)
+# Другой вариант
+# N = 3
+# matrix = [[i+j for j in range(N)] for i in range (1,10,3)]
+# print(matrix)
+################################################
 
-N = 3
-matrix = [[i+j for j in range(N)] for i in range (1,10,3)]
-print(matrix)
+# словари
+# создание
+# пустой словарь
+# 1. d = {}
+# 2. d = dict()  # используется реже
+
+# предзаполненный словарь
+d = {'table': ['таблица', 'стол'],
+     'well': ['хорошо', 'колодец'],
+     'chair': 'стул',
+     'apple': 'яблоко',
+     1: 'один',
+     (55.75, 37.5): 'Москва',   # всегда ставим запятую в конце
+     }
+#обращение к элементу словаря
+# print(d['table'])
+# print(d['well'][0])
 
 
+# добавление эл-тов в словарь - это будет пара: "ключ - значение"
+#d['plum'] = 'слива'
+#print(d['plum'])  # по окончании программы предзаполненный словарь останется без изменений, эта запись не войдет
+
+#print(d['well'])
+#d['well'].append('скважина')  # добавили элемент по ключу 'well' в список
+#if type(d['well']) == list :  # проверка типа
+#print(d)
+
+# удаление эл-тов
+
+# способ 1
+#del d['well']  # если элемента нет, то будет ошибка
+#print(d)  # выод как есть
 
 
+"""
+Методы словаря
+'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem', 'setdefault', 'update', 'values']
+"""
+# второй способ удаления
+# deleted_item = d.pop('apple')  # если элемента нет, то будет ошибка
+# print('удалился элемент: ', deleted_item)
+
+# проверка наличия эл-та в словаре по ключу
+# print('Есть ли 'стул' в словаре')
+# if 'chair' in d :
+#     print('да')
+
+#перебор словаря по умолчанию
+# for key in d :
+#     print(key, '->', d[key])
+
+# print(d.keys())  #возвращает набор ключей, но это не список!
+#
+# print(list(d.keys()))
+# for key in d.keys() :
+#     print(key, '->', d[key])
+
+#print(d.values())  # возвращает набор значений
+
+# перебор всех значений
+# for value in d.values() :
+# #     print(value)
+
+# print(d.items())  # возвращает набор пар в виде кортежей "ключ : значение"
+# for k,v in d.items() :
+#     print(k, '->', v)
 
 
+# теперь проверка наличия эл-та в словаре по ключу
+# print('Есть ли стул в словаре')
+# if 'стул' in d.values() :
+#     print('да')
 
+print('Доступ к несуществующему ключу без "исключений"')
+pear = d.get('pear', 'груши нет')
+print('Где груша : ', pear)
 
-
-
-
-
-
-
-
+print(d[(55.75, 37.5)])  # ключ является кортежем
 
 
 
