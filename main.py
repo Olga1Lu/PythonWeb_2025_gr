@@ -83,15 +83,71 @@ fio = ['Иванов', 'Петров', 'Сидоров']
 
 # Продолжим методы строки: split(), join()
 
-text = 'один два три четыре'
-ip = '192.168.0.1'
-# split -  разделяет строку по какому-либо разделителю (фрагменту строки), возвращает список
-lst = ip.split('.')
-print(lst)
-txt2 = '-'.join(lst)
-print(txt2)
+# text = 'один два три четыре'
+# ip = '192.168.0.1'
+# # split -  разделяет строку по какому-либо разделителю (фрагменту строки), возвращает список
+# lst = ip.split('.')
+# print(lst)
+# txt2 = '-'.join(lst)
+# print(txt2)
+#
+# #['192', '168', '0', '1']
 
-#['192', '168', '0', '1']
+# DZ 30_06
+# 1.
+us_lst = []
+Add comment
+More actions
+
+stop_lst = ['зима', 'газ', 'свежий', 'темно']
+temp = []
+
+
+while (word:= (input('Введите фразу: ')).lower()) != '' :
+    lst = message.split()
+for ch in lst :
+    if ch not in stop_lst :
+        temp.append(ch)
+res = sorted(temp)
+
+
+for i, v in enumerate(res, 1) :
+
+    print(f'{i}. {v}')
+
+
+
+
+# for ch in spec_zn :
+
+
+
+
+@@ -112,6 +113,14 @@
+
+# print(s_word)
+
+
+
+
+
+
+#     if ch in spec_zn :
+
+
+#         new_s += ' '
+
+
+#     else:
+
+
+#         new_s += ch
+
+
+# new_s = new_s.replace(" - ", " ")
+
+
+# " ".join(new_s.split())
 
 
 
