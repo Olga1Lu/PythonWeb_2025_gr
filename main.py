@@ -227,6 +227,7 @@
 Методы словаря
 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem', 'setdefault', 'update', 'values']
 """
+from itertools import count
 from tkinter.font import names
 
 # второй способ удаления
@@ -303,9 +304,54 @@ text = """Завтра ожидается теплая погода без ос�
 
 # def <имя функции>([параметры]) :
 #   команды
-person = 'Петр'  # глобальная переменная "person"
-def greet_to_name(name) :
-    print('Hello,', name)  # локальная переменная "name"
+#  Return value - необязательно, могут быть просто действия
+# person = 'Петр'  # глобальная переменная "person"
+# def greet_to_name(name='noname') :
+#     print('Hello,', name)  # локальная переменная "name"
+#     print((count))
+#
+#
+# greet_to_name('Lusie')
+# count = 0
+#
+#
+# def increment() :
+#     global count  # разрешили функции изменять значение и манипулировать с глобальной переменной (
+#     count += 1
+#
+#
+# increment()
+# greet_to_name('Lusie')
+#
+#
+# def print_list(array=None) :
+#     if array is None :
+#         array = []
+#     for item in array :
+#         print(item)
+#
+# greet_to_name()
 
-greet_to_name('Lusie')
 
+# Чистые функции - результат зависит только от аргументов, не влияет на ход выполнения программы
+
+# Возвращение значений
+# def square(num) :
+#     return num ** 2
+#
+# t = square(5)
+# print(t)
+
+# def even_odd(num):
+#     if num % 2 == 0 :
+#         return 'Четное'
+#     return 'Нечетное'
+#
+# print((even_odd(5)))
+#
+#
+# def print_str(s=None) :
+#     if s is None:
+#         return  # полезный способ использования return
+#     print(s)
+# DZ функцию чтобы выводить число словами 56 ->  пятьдесят шесть, число мах 2-значное
