@@ -1,5 +1,6 @@
 # Коллекции
 # Множества, списки, словари, коллекции
+from pyexpat.errors import messages
 
 #Создание аббревиатур
 # lst = []
@@ -94,60 +95,47 @@ fio = ['Иванов', 'Петров', 'Сидоров']
 # #['192', '168', '0', '1']
 
 # DZ 30_06
-# 1.
-us_lst = []
-Add comment
-More actions
 
-stop_lst = ['зима', 'газ', 'свежий', 'темно']
-temp = []
+# V1.
+# stop_lst = ['зима', 'газ', 'свежий', 'темно']
+# temp = []
+#
+# while (word:= (input('Введите фразу: ')).lower()) != '' :
+#     lst = message.split()
+# for ch in lst :
+#     if ch not in stop_lst :
+#         temp.append(ch)
+# res = sorted(temp)
+#
+# for i, v in enumerate(res, 1) :
+#     print(f'{i}. {v}')
 
-
-while (word:= (input('Введите фразу: ')).lower()) != '' :
-    lst = message.split()
-for ch in lst :
-    if ch not in stop_lst :
-        temp.append(ch)
+# V2
+stop_lst = {'ну', 'типо', 'короче', 'не'}
+commas = ('.', '!',',', '?', '-')
+message = input('Введите фразу: ')
+# message = ну, я типо ? вообще не понимаю этот язык
+for z in commas :
+    message = message.replace(z, '')  # убрали все знаки препинания
+lst = message.split()
+temp = set(lst)
+temp = temp - stop_word
 res = sorted(temp)
 
-
-for i, v in enumerate(res, 1) :
+for i, v in enumerate(res, 1) :  # здесь старт отсчета идет от 1
 
     print(f'{i}. {v}')
 
 
 
 
-# for ch in spec_zn :
-
-
-
-
-@@ -112,6 +113,14 @@
-
-# print(s_word)
 
 
 
 
 
 
-#     if ch in spec_zn :
 
-
-#         new_s += ' '
-
-
-#     else:
-
-
-#         new_s += ch
-
-
-# new_s = new_s.replace(" - ", " ")
-
-
-# " ".join(new_s.split())
 
 
 
