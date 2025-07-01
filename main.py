@@ -1,5 +1,7 @@
 # Коллекции
 # Множества, списки, словари, коллекции
+from operator import index
+
 from pyexpat.errors import messages
 
 #Создание аббревиатур
@@ -111,20 +113,48 @@ fio = ['Иванов', 'Петров', 'Сидоров']
 #     print(f'{i}. {v}')
 
 # V2
-stop_word = {'ну', 'типо', 'короче', 'не'}
-commas = ('.', '!',',', '?', '-')
-message = input('Введите фразу: ')
-# message = ну, я типо ? вообще не понимаю этот язык
-for z in commas :
-    message = message.replace(z, '')  # убрали все знаки препинания
-lst = message.split()
-temp = set(lst)
-temp = temp - stop_word
-res = sorted(temp)
+############################################
+# списочные выражения (list comprehension)
+# создадим список из квадратов чисел от 1 до 9
+# 1 способ
+# squares = []
+# for i in range (10) :
+#     squares.append(i**2)
+# print(*squares, sep=', ')
+#
+# # 2 теперь исп списочные выражения :
+# squares = [i**2 for i in range(10)]
+# print(*squares, sep=', ')
 
-for i, v in enumerate(res, 1) :  # здесь старт отсчета идет от 1
+#список квадратов четных чисел
+# squares = [i**2 for i in range(10) if i % 2 == 0]
+# print(*squares, sep=', ')
 
-    print(f'{i}. {v}')
+# два цикла внутри
+# произведения  i * j
+#1 станд.способ, получится не список
+# for i in range(3) :
+#     for j in range(3):
+#         print(i*j)
+# 2 способ получится список
+#print([i*j for i in range(3) for j in range(3)])
+
+# n = '500 600 700 800'
+# approved = [500, 800]
+# print([int (i) for i in n.split() if int(i) in approved])  # сделать список целых чисел
+
+# задачи
+#каждое третье слово на экран
+text = 'Списочные выражения применяются для эффективности кода'
+#print([ch for ch in text.split() if (text.index(ch)+1) % 3])  # не получается каждое 3 слово - почему?
+
+res = [ch for ch in text.split()[2::3]]  # используем срез от text
+print(res)
+
+# если не ставить кв.скобки снаружи, то получится итератор
+# можно преобр-ть во множество
+
+
 
 
 
