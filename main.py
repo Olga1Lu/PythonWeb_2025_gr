@@ -1,5 +1,6 @@
 # Коллекции
 # Множества, списки, словари, коллекции
+from email import message_from_string
 from operator import index
 
 from pyexpat.errors import messages
@@ -145,15 +146,50 @@ fio = ['Иванов', 'Петров', 'Сидоров']
 
 # задачи
 #каждое третье слово на экран
-text = 'Списочные выражения применяются для эффективности кода'
+#text = 'Списочные выражения применяются для эффективности кода'
 #print([ch for ch in text.split() if (text.index(ch)+1) % 3])  # не получается каждое 3 слово - почему?
 
-res = [ch for ch in text.split()[2::3]]  # используем срез от text
-print(res)
+# res = [ch for ch in text.split()[2::3]]  # используем срез от text
+# print(res)
 
 # если не ставить кв.скобки снаружи, то получится итератор
 # можно преобр-ть во множество
+#############################################
+# вложенные списки
+# создание влож.списков
+# 1 способ
+# matrix = [
+#     [1, 2, 3],
+#     [4, 5, 6],
+#     [7, 8, 9],  # висячая запятая, нужна, если что-то надо добавить, лучше ставить
+# ]  # это называется таблица или матрица
+# print(matrix)
+#
+# # распечатать/обойти двухмерную таблицу
+# for row in range (len(matrix)) :
+#     for col in range(len(matrix(row))):
+#         print(matrix[row][col])
 
+# Единственный способ создания
+# N = 5
+# matrix = [[1] * N for _ in range(N)]
+# print(matrix)
+
+#Создать матрицу и наполнить ее числами от 1 до 9
+# N = 3
+# ind = 0
+# matrix = [[0] * N for _ in range(N)]  #можно без этого, а сразу создать в цикле ниже, но с указанием размерности через N
+# print(matrix)
+# for row in range (len(matrix)) :
+#     for col in range(len(matrix[row])):
+#         ind += 1
+#         matrix[row][col] += ind
+#         print(matrix[row][col])
+# print(matrix)
+
+N = 3
+matrix = [[i+j for j in range(N)] for i in range (1,10,3)]
+print(matrix)
 
 
 
