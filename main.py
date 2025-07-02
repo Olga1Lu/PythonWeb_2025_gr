@@ -227,9 +227,6 @@
 Методы словаря
 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem', 'setdefault', 'update', 'values']
 """
-from curses.ascii import controlnames
-from itertools import count
-from tkinter.font import names
 
 # второй способ удаления
 # deleted_item = d.pop('apple')  # если элемента нет, то будет ошибка
@@ -409,23 +406,85 @@ text = """Завтра ожидается теплая погода без ос�
 # num_to_word(11)
 
 # V control + функция с аннотацией
-def num_to_word(n: int)  -> str :
-    """
-    Функция, принимающая число и возвращающая ее словами
-    :param n: двухзначное число
-    :return: это число словами
-    """
-    num_to_str = {0: 'ноль', 1:'один', 2:'два', 3:'три', 4:'четыре', 5:'пять', 6:'шесть',
-            7:'семь', 8:'восемь', 9: 'девять', 11: 'одиннадцать', 12: 'двенадцать', 13: 'тринадцать',
-            14: 'четырнадцать', 15: 'пятнадцать', 16: 'шестнадцать',
-            17: 'семнадцать', 18: 'восемнадцать', 19: 'девятнадцать',
-            20: 'двадцать', 30: 'тридцать', 40: 'сорок', 50: 'пятьдесят',
-           60: 'шестьдесят', 70: 'семьдесят', 80: 'восемьдесят', 90: 'девяносто'}
-    if len(str(n)) > 2 :
-        return 'введите двухзначное число'
-    if  len(str(n)) == 1 or n in num_to_str:
-        return  num_to_str[int(n)]
-    return num_to_str[int(str(n)[0] + '0')] + ' ' + num_to_str[int(str(n)[1])]
+# def num_to_word(n: int)  -> str :
+#     """
+#     Функция, принимающая число и возвращающая ее словами
+#     :param n: двухзначное число
+#     :return: это число словами
+#     """
+#     num_to_str = {0: 'ноль', 1:'один', 2:'два', 3:'три', 4:'четыре', 5:'пять', 6:'шесть',
+#             7:'семь', 8:'восемь', 9: 'девять', 11: 'одиннадцать', 12: 'двенадцать', 13: 'тринадцать',
+#             14: 'четырнадцать', 15: 'пятнадцать', 16: 'шестнадцать',
+#             17: 'семнадцать', 18: 'восемнадцать', 19: 'девятнадцать',
+#             20: 'двадцать', 30: 'тридцать', 40: 'сорок', 50: 'пятьдесят',
+#            60: 'шестьдесят', 70: 'семьдесят', 80: 'восемьдесят', 90: 'девяносто'}
+#     if len(str(n)) > 2 :
+#         return 'введите двухзначное число'
+#     if  len(str(n)) == 1 or n in num_to_str:
+#         return  num_to_str[int(n)]
+#     return num_to_str[int(str(n)[0] + '0')] + ' ' + num_to_str[int(str(n)[1])]  #исправить
 
 
-   num_to_word(25)
+#   num_to_word(25)
+
+
+# Область видимости
+
+# Пример: испортили список
+# a = [1, 2]
+#
+# def change_array() :
+#     a[0] = 0
+#
+# change_array()
+# print(a)
+
+# shadows name 'square' from jther scope
+#square = 'Дворцовая площадь'
+
+def square_area (lenth, width) :
+    area = lenth * width
+    print(f' Площадь площади  = {area}')
+#
+# print('встретимся, где', square)
+# square_area(200, 158)
+# print('встречаемся', square, '?')
+
+
+PI = 3.14
+def circle_length(radius):
+    perimetr = 2 * PI * radius
+    print(f'Длина окружности с радиусом {radius} равна {perimetr:.2f}')
+
+# circle_length(5)
+
+
+# def print_array(array: list) -> None :
+#     for item in array :
+#         print(item)
+#
+# words = ['привет', 'мир']
+#
+# print_array(words)
+# print_array(['a', 'b', 'c'])
+
+
+# def greet(name: str) -> None:
+#     print('Привет', name)
+#     name = 'друг'
+#     print('Здравствуй', name)
+#
+#
+# greet('Петр')
+
+
+# способ определения глобальных переменных для функций - "главная функция"
+def main() :  # эту функцию пишем ниже всех функций
+     area = 'Дворцовая площадь'
+     print('встретимся, где', area)
+     square_area(200, 158)
+     print('встречаемся', area, '?')
+     circle_length(5)
+
+main()
+
