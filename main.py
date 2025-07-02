@@ -607,7 +607,7 @@ text = """Завтра ожидается теплая погода без ос�
 #
 # print((fio('Остап', 'Бендер')))
 
-#вариант 1 проверить
+#вариант 1
 # def math_op(*args, operator) :
 #     if operator != '+' and operator != '*' :
 #         return 'Операция не поддерживается !'
@@ -617,7 +617,9 @@ text = """Завтра ожидается теплая погода без ос�
 #             result += arg
 #     else:
 #         result = 1
-#         result *= arg
+#         for arg in args :
+#             result *= arg
+#
 #     return result
 
 
@@ -641,16 +643,77 @@ text = """Завтра ожидается теплая погода без ос�
 
 #print(math_op(2, 4, operator='*'))
 
-def sandwich(type_of_meal, with_onion=False, with_tomato=False) :
-    print('Булочка')
-    if with_onion :
-        print('Лук')
-    print(type_of_meal)
-    if with_tomato :
-        print('Томаты')
-    print('Булочка')
+# def sandwich(type_of_meal, with_onion=False, with_tomato=False) :
+#     print('Булочка')
+#     if with_onion :
+#         print('Лук')
+#     print(type_of_meal)
+#     if with_tomato :
+#         print('Томаты')
+#     print('Булочка')
+#
+#
+# sandwich('Котлета', with_onion=True)
+# переменное кол-во позиционных и именованных аргументов
+# def print_any(*args, **kwargs) :  # параметр с ** можно интерпретировать как словарь(ключ: значение)
+#     for i in args :
+#         print(i)
+#     for k,v in kwargs.items() :
+#         print(k, '=', v)
+
+# создание профиля человека
+# def profile(name, surname, city, *children, **additional):
+#     print(f'Имя: {name}')
+#     print(f'Фамилия: {surname}')
+#     print(f'Имя: {name}')
+#     print(f'Из города: {city}')
+#     if len(children) > 0 :
+#         print('Дети:', ','.join(children))
+#     if 'hobbie' in additional :
+#         print('Хобби:', ', ' .join(additional['hobbie']))
+#     print(additional)
 
 
-sandwich('Котлета', with_onion=True)
+# profile('Дмитрий', 'Колесов', 'Волгоград',
+#         'Мария', 'Петр', hobbie=['Филателия', 'шахматы'])
 
 
+#print(print_any('Дмитрий', 'Колесов', city='Москва', age=27))
+
+
+# Функция как объект
+# передается в другие функции: эти функции называются функции высшего порядка
+
+# печатник = print # печатник указывает на объект print и умеет все то же самое, что и print
+# печатник('Привет, мир')
+
+# Функция критерия отбора эд-тов списка
+# Критерий - длина строки(слова)
+# def is_longer_six(word) :
+#     return len(word) > 6  # True or False
+#
+# words = ['В', 'этом', 'списке', 'останутся', 'слова', 'длина', 'которых', 'больше', 'шести']
+#
+# result = list(filter(is_longer_six, words))
+# print(result)
+#
+# for word in filter(is_longer_six, words) :
+#      print(word)
+
+
+# def start_a(word) :
+#
+#     return word[0] == 'а'  # True or False
+#
+# words = ['арбуз', 'ананас', 'банан', 'ежевика', 'малина']
+#
+# result = list(filter(start_a, words))
+# print(result)
+
+def sq(num) :
+    return num**2
+
+nums = [1,2,3,4,5,6,7,8,9] # -> 123456789
+
+sqwares = map(sq, nums)
+print(list(sqwares))
