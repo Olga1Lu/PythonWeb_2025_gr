@@ -69,7 +69,7 @@
 # # lst = list(s)
 # # lst.sort()
 # r = False
-# lst = sorted(s, reverse=r)  #возвращает сортированный список, можно сразу применить к s
+# lst = sorted(s, reverse=r)  # возвращает сортированный список, можно сразу применить к s
 # print(*lst, sep=', ')
 
 # enumerate () - в цикле  for возвращает пару (i, v)
@@ -227,7 +227,7 @@
 Методы словаря
 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem', 'setdefault', 'update', 'values']
 """
-from tkinter.font import names
+
 
 # второй способ удаления
 # deleted_item = d.pop('apple')  # если элемента нет, то будет ошибка
@@ -710,10 +710,23 @@ text = """Завтра ожидается теплая погода без ос�
 # result = list(filter(start_a, words))
 # print(result)
 
-def sq(num) :
-    return num**2
+# def sq(num) :
+#     return num**2
 
+#nums = [1,2,3,4,5,6,7,8,9] # -> 123456789
+
+#sqwares = map(sq, nums)
+#print(list(sqwares))
+
+# DZ 02_07_25
 nums = [1,2,3,4,5,6,7,8,9] # -> 123456789
 
-sqwares = map(sq, nums)
-print(list(sqwares))
+def form_ch(num) :
+    return str(num)
+
+st_ch = list(map(form_ch, nums))
+a = int(''.join(st_ch))
+
+# Проверка
+print(a)
+print(type(a))
