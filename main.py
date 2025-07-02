@@ -346,12 +346,14 @@ text = """Завтра ожидается теплая погода без ос�
 #     return 'Нечетное'
 #
 # print((even_odd(5)))
-#
-#
+
+
 # def print_str(s=None) :
 #     if s is None:
 #         return  # полезный способ использования return
 #     print(s)
+
+
 # DZ функцию чтобы выводить число словами 56 ->  пятьдесят шесть, число мах 2-значное
 
 # функция, которая записывает двухзначное число словами
@@ -442,19 +444,19 @@ text = """Завтра ожидается теплая погода без ос�
 # shadows name 'square' from jther scope
 #square = 'Дворцовая площадь'
 
-def square_area (lenth, width) :
-    area = lenth * width
-    print(f' Площадь площади  = {area}')
+# def square_area (lenth, width) :
+#     area = lenth * width
+#     print(f' Площадь площади  = {area}')
 #
 # print('встретимся, где', square)
 # square_area(200, 158)
 # print('встречаемся', square, '?')
 
 
-PI = 3.14
-def circle_length(radius):
-    perimetr = 2 * PI * radius
-    print(f'Длина окружности с радиусом {radius} равна {perimetr:.2f}')
+# PI = 3.14
+# def circle_length(radius):
+#     perimetr = 2 * PI * radius
+#     print(f'Длина окружности с радиусом {radius} равна {perimetr:.2f}')
 
 # circle_length(5)
 
@@ -479,12 +481,64 @@ def circle_length(radius):
 
 
 # способ определения глобальных переменных для функций - "главная функция"
-def main() :  # эту функцию пишем ниже всех функций
-     area = 'Дворцовая площадь'
-     print('встретимся, где', area)
-     square_area(200, 158)
-     print('встречаемся', area, '?')
-     circle_length(5)
+# def main() :  # эту функцию пишем ниже всех функций
+#      area = 'Дворцовая площадь'
+#      print('встретимся, где', area)
+#      square_area(200, 158)
+#      print('встречаемся', area, '?')
+#      circle_length(5)
 
-main()
+#main()
 
+
+# return vs yield
+
+# def generate_list():  #генератор
+#     for i in range(5):
+#         yield i  # возвращает значение, но не завершает работу
+#
+#
+# array = list(generate_list())
+# print(array)
+
+
+# def print_goodbye() :
+#     print('Goodbye', end=' ')
+#
+#
+# def print_cruel() :
+#     print('cruel', end=' ')
+#
+#
+# def print_world() :
+#     print('world',end=' ')
+#
+#
+# def main():
+#     print_goodbye()
+#     print_cruel()
+#     print_world()
+
+
+#main()
+
+
+# Оператор is : a is b - когда а и в один и тот же объект (адрес совпадает)
+# здесь адреса разные
+my_refreg = ['колбаса', 'сыр', 'масло']
+# his_refreg =  ['колбаса', 'сыр', 'масло']
+his_refreg = my_refreg.copy()  # то же что и [:]
+my_refreg += ['мясо']
+print(his_refreg)
+print(my_refreg is his_refreg)
+print(my_refreg == his_refreg)
+print(id(my_refreg) == id(his_refreg))
+
+temp = None
+print(type(temp))
+print(temp is None)
+
+# d = {'a': 1}
+# print(id(d))
+# d['a'] += 1
+# print(id(d))
