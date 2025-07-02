@@ -227,6 +227,7 @@
 Методы словаря
 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem', 'setdefault', 'update', 'values']
 """
+from tkinter.font import names
 
 # второй способ удаления
 # deleted_item = d.pop('apple')  # если элемента нет, то будет ошибка
@@ -525,20 +526,48 @@ text = """Завтра ожидается теплая погода без ос�
 
 # Оператор is : a is b - когда а и в один и тот же объект (адрес совпадает)
 # здесь адреса разные
-my_refreg = ['колбаса', 'сыр', 'масло']
-# his_refreg =  ['колбаса', 'сыр', 'масло']
-his_refreg = my_refreg.copy()  # то же что и [:]
-my_refreg += ['мясо']
-print(his_refreg)
-print(my_refreg is his_refreg)
-print(my_refreg == his_refreg)
-print(id(my_refreg) == id(his_refreg))
+# my_refreg = ['колбаса', 'сыр', 'масло']
+# # his_refreg =  ['колбаса', 'сыр', 'масло']
+# his_refreg = my_refreg.copy()  # то же что и [:]
+# my_refreg += ['мясо']
+# print(his_refreg)
+# print(my_refreg is his_refreg)
+# print(my_refreg == his_refreg)
+# print(id(my_refreg) == id(his_refreg))
+#
+# temp = None
+# print(type(temp))
+# print(temp is None)
+#
+# # d = {'a': 1}
+# # print(id(d))
+# # d['a'] += 1
+# # print(id(d))
 
-temp = None
-print(type(temp))
-print(temp is None)
+# def print_array(array: list, start=None):
+#     if start is None and start > len(array) :
+#         return
+#     if start is None :
+#         start = 0
+#     else :
+#         for i in range(start, len(array)) :
+#             print(array[i])
+#
+#
+# a = [1,2,3]
+# print_array(a, 1)
 
-# d = {'a': 1}
-# print(id(d))
-# d['a'] += 1
-# print(id(d))
+# Возврат нескольких значений из функции
+# При распаковке * может быть только одна
+# def coordin() -> tuple:
+#     return 5.4, 3.2, 3.8, 7.2, 4.6  # возвращает кортеж
+#
+# x, *rest, y = coordin()  # распаковка кортежа
+# print(f'x= {x}, y={y}, rest={rest}')
+#
+# *names, surname = 'Остап Сулейман Бендер'.split()
+# print(names, surname)
+# names = 'Остап Сулейман Бендер'.split()
+# print(*names)
+
+# Функции с переменным числом входных аргументов
