@@ -416,19 +416,17 @@ text = """Завтра ожидается теплая погода без ос�
 #     :return: это число словами
 #     """
 #     num_to_str = {0: 'ноль', 1:'один', 2:'два', 3:'три', 4:'четыре', 5:'пять', 6:'шесть',
-#             7:'семь', 8:'восемь', 9: 'девять', 11: 'одиннадцать', 12: 'двенадцать', 13: 'тринадцать',
-#             14: 'четырнадцать', 15: 'пятнадцать', 16: 'шестнадцать',
-#             17: 'семнадцать', 18: 'восемнадцать', 19: 'девятнадцать',
-#             20: 'двадцать', 30: 'тридцать', 40: 'сорок', 50: 'пятьдесят',
-#            60: 'шестьдесят', 70: 'семьдесят', 80: 'восемьдесят', 90: 'девяносто'}
+#               7:'семь', 8:'восемь', 9: 'девять', 10: 'десять', 11: 'одиннадцать', 12: 'двенадцать',
+#               13: 'тринадцать', 14: 'четырнадцать', 15: 'пятнадцать', 16: 'шестнадцать',
+#               17: 'семнадцать', 18: 'восемнадцать', 19: 'девятнадцать',
+#               20: 'двадцать', 30: 'тридцать', 40: 'сорок', 50: 'пятьдесят',
+#               60: 'шестьдесят', 70: 'семьдесят', 80: 'восемьдесят', 90: 'девяносто'}
 #     if len(str(n)) > 2 :
 #         return 'введите двухзначное число'
-#     if  len(str(n)) == 1 or n in num_to_str:
+#     if  len(str(n)) == 1 and n in num_to_str:
 #         return  num_to_str[int(n)]
-#     return num_to_str[int(str(n)[0] + '0')] + ' ' + num_to_str[int(str(n)[1])]  #исправить
+#     return num_to_str[int(str(n)[0] + '0')] + ' ' + num_to_str[int(str(n)[1])]
 
-
-#   num_to_word(25)
 
 
 # Область видимости
@@ -461,7 +459,7 @@ text = """Завтра ожидается теплая погода без ос�
 
 # circle_length(5)
 
-
+# Аннотирование функций
 # def print_array(array: list) -> None :
 #     for item in array :
 #         print(item)
@@ -502,7 +500,7 @@ text = """Завтра ожидается теплая погода без ос�
 # array = list(generate_list())
 # print(array)
 
-
+#main() и ее применение
 # def print_goodbye() :
 #     print('Goodbye', end=' ')
 #
@@ -571,3 +569,88 @@ text = """Завтра ожидается теплая погода без ос�
 # print(*names)
 
 # Функции с переменным числом входных аргументов
+
+# def multy(*args) :  # перемножение чисел
+# #print(len(args))  # делает подсчет числа аргументов
+# #print(args)   #по индексу или перебором
+# #
+# #
+# # multy(1,2)
+#     #if args == 0:
+#     if not args :
+#         return 0
+#     result = 1
+#     for arg in args :
+#         result *= arg
+#     return result
+
+# первый агр-т определенный (позиционный - должен быть на первой позиции, остальные - неизвестно скоько и какие
+#def multy(*args, first) :  # перемножение чисел
+#print(len(args))  # делает подсчет числа аргументов
+#print(args)   #по индексу или перебором
+#
+#
+# multy(1,2)
+    #if args == 0:
+#     if not args :
+#         return first
+#     result = first
+#     for arg in args :
+#         result *= arg
+#     return result
+#
+# def fio(name, surname):
+#     return f'{name} {surname}'
+
+
+# print(multy(2, 3,4, first=5))
+#
+# print((fio('Остап', 'Бендер')))
+
+#вариант 1 проверить
+# def math_op(*args, operator) :
+#     if operator != '+' and operator != '*' :
+#         return 'Операция не поддерживается !'
+#     if operator == '+' :
+#         result = 0
+#         for arg in args :
+#             result += arg
+#     else:
+#         result = 1
+#         result *= arg
+#     return result
+
+
+# вариант с использованием match
+# def calc(*args, operator) :
+#     match operator :
+#         case '+' :
+#             result = 0
+#             for i in args :
+#                 result += i
+#         case '*' :
+#             result = 1
+#             for i in args:
+#                 result *= i
+#         case _:  # случай по дефолту
+#             return  -float('inf')
+#     return result
+#
+#
+# print(calc(1, 2, 4, operator='*'))
+
+#print(math_op(2, 4, operator='*'))
+
+def sandwich(type_of_meal, with_onion=False, with_tomato=False) :
+    print('Булочка')
+    if with_onion :
+        print('Лук')
+    print(type_of_meal)
+    if with_tomato :
+        print('Томаты')
+    print('Булочка')
+
+
+sandwich('Котлета', with_onion=True)
+
+
