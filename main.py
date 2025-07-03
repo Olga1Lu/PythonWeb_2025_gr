@@ -441,12 +441,89 @@
 #     print (x, factr(x))
 
 
-def factr1 (n) :
-    if n ==1 or x == 0 :
-        return 1
-    else:
-        n *= factr1(n-1)
+# def factr1 (n) :
+#     if n ==1 or x == 0 :
+#         return 1
+#     else:
+#         n *= factr1(n-1)
 
+############################
+# черепашья графика
+import turtle
+# import turtle as t # замена на короткое название для удобства вызова
+# начало координат в середине (600 х800)
+# turtle.goto(-100,-200) # переход в точку начала рисования
+# turtle.penup()  # оторвались от "земли"
+# turtle.pendown() # вернулись на "землю"
+turtle.speed(0)  # скорость от 0 до 10, 0 - самая быстрая
+
+# colors = ['red', 'purple', 'blue', 'green', 'yellow', 'orange']
+# turtle.bgcolor('black')  # общий фон
+# angle = 360 // len(colors) - 1
+#
+# for x in range(200):
+#     turtle.pencolor(colors[x % len(colors)])
+#     turtle.width(x // 100+1)
+#     turtle.forward(x)
+#     turtle.left(angle)
+
+# for i in range(4) :
+#     turtle.forward(100)  # вперед в пикселях
+#     turtle.right(90)  # поворот на угол()
+#
+# for i in range(3) :
+#     turtle.forward(100)  # вперед в пикселях
+#     turtle.right(120)
+#
+#     turtle.forward(100)  # вперед в пикселях
+# n = 5
+# for i in range(n):
+#     turtle.right(360 // n)
+#     turtle.circle(50)
+# turtle.circle(50)  #радиус
+
+N = 5
+# for _ in range(N) :
+#     for _ in range(4):
+#         turtle.forward(100)
+#         turtle.right(90)
+#     turtle.right(360//5)
+
+def qv(a):
+    for _ in range(4):
+        turtle.forward(a)
+        turtle.right(90)
+    return
+#
+def flow(n):
+    for i in range(n) :
+      turtle.circle(50)
+      turtle.right(10)
+    return
+# flow(36)
+
+
+# N = 5
+# for _ in range(N) :
+#     qv(100)
+#     turtle.right(360//5)
+
+def tree (lent):  # фрактал, используем рекурсию
+    if lent < 10 :
+        return
+    turtle.forward(lent)
+    turtle.left(30)
+    tree(lent*0.7)
+    turtle.right(60)
+    tree(lent * 0.7)
+    turtle.left(30)
+    turtle.backward(lent)
+
+
+turtle.left(90)
+tree(100)
+
+turtle.mainloop()  # откроется графическое окно
 
 
 
