@@ -813,12 +813,39 @@ text = """Завтра ожидается теплая погода без ос�
 # print(sorted(fruits, key= lambda s: (len(s), s[-1])))  # сортировка по нескольким ключам, приоритет ключей задается
 # в виде кортежа - сначала по первому усл-ю,  затем по второму
 
-goods = [
-    ['Утюг', 1500, 2],
-    ['Фен', 1000, 5],
-    ['Телевизор',  8000, 3]
-]
+# goods = [
+#     ['Утюг', 1500, 2],
+#     ['Фен', 1000, 5],
+#     ['Телевизор',  8000, 3]
+# ]
+#
+# print(sorted(goods, key=lambda s: (s[1], s[2], s[0] )))
 
-print(sorted(goods, key=lambda s: (s[1], s[2], s[0] )))
+######################
+# проверка коллекций: any(), all() удобно для анализа больших массивов, и поиска флуктуаций
+# any - любой эл-т коллекции вернет True
+# all - все эл-ты коллекции вернет True
+# print(all([1,2,3]))  # True -  все эл-ты ненулевые
+# print(all([1,2,0]))  # False - один эл-т нулевой
+#
+# print(all([]))
+
+# words2 = 'один два три'.split()
+# ls_for_analyz = list(map(lambda ch: len(ch) > 2, words2))
+# print(ls_for_analyz)
+# print(all(list(map(lambda ch: len(ch) > 3, words2))))
+# print(any(list(map(lambda ch: len(ch) > 3, words2))))
+
+########################
+# потоковый ввод sys.stdin - элементы это строки, к-рые вводит пользователь (Ctrl + D)
+import  sys
+
+data =  sys.stdin.readlines()  # потоковый ввод , окончание Ctrl+D
+data = [d.strip('\n') for d in data]  # можно все в одну строку data = [d.strip('\n') for d in sys.stdin.readlines()]
+print(data)
+
+
+
+
 
 
