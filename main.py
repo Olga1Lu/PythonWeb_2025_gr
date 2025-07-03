@@ -747,26 +747,26 @@ text = """Завтра ожидается теплая погода без ос�
 
 # Практика
 
-ENG_ABC = [chr(ch) for ch in range(ord('a'), ord('z')+1)]
-RUS_ABC = [chr(ch) for ch in range(ord('а'), ord('я')+1)] +['ё']
-# print(ENG_ABC)
-# print(RUS_ABC)
-ABC = set(ENG_ABC )^ set(RUS_ABC) ^ set(map(str.upper, ENG_ABC)) ^  set([ch.upper for ch in RUS_ABC]) #симметричная
-# разность и два способа преобразования набора символов из маленьких в большие - два последних члена выражения
-
-txt = 'Cказали что , но . сегодня'
-text = ''.join(filter(lambda x: x in  ABC ^ {' '}, txt)) # убрали все знаки препинания, т.к. их нет в ABC
-# print(text)
+# ENG_ABC = [chr(ch) for ch in range(ord('a'), ord('z')+1)]
+# RUS_ABC = [chr(ch) for ch in range(ord('а'), ord('я')+1)] +['ё']
+# # print(ENG_ABC)
+# # print(RUS_ABC)
+# ABC = set(ENG_ABC )^ set(RUS_ABC) ^ set(map(str.upper, ENG_ABC)) ^  set([ch.upper for ch in RUS_ABC]) #симметричная
+# # разность и два способа преобразования набора символов из маленьких в большие - два последних члена выражения
 #
-def remove_punct(text) :
-    return ''.join(filter(lambda x: x in  ABC ^ {' '}, text))
-
-
-def get_words(text: str) -> list:
-    return remove_punct(text).split()
-
-def long_words (text, lengh=4)-> list :
-    return list(filter(lambda word: len(word) > lengh, get_words(text)))
+# txt = 'Cказали что , но . сегодня'
+# text = ''.join(filter(lambda x: x in  ABC ^ {' '}, txt)) # убрали все знаки препинания, т.к. их нет в ABC
+# # print(text)
+# #
+# def remove_punct(text) :
+#     return ''.join(filter(lambda x: x in  ABC ^ {' '}, text))
+#
+#
+# def get_words(text: str) -> list:
+#     return remove_punct(text).split()
+#
+# def long_words (text, lengh=4)-> list :
+#     return list(filter(lambda word: len(word) > lengh, get_words(text)))
 
 # print(long_words(txt, 6))
 
@@ -785,19 +785,19 @@ def long_words (text, lengh=4)-> list :
 # print(dest_dict)
 
 # Частотный анализ
-txt = 'Я знаю, что ничего незнаю. Но другие не знают и этого. А значит, я знаю больше , чем они.'
-d = {}
-words = get_words(txt)
-print(words)
-
-for word in words:
-    if word in d:
-        d[word] += 1
-    else :
-        d[word] = 1
-
-for k,v in d.items():
-    print(k,v)
+# txt = 'Я знаю, что ничего незнаю. Но другие не знают и этого. А значит, я знаю больше , чем они.'
+# d = {}
+# words = get_words(txt)
+# print(words)
+#
+# for word in words:
+#     if word in d:
+#         d[word] += 1
+#     else :
+#         d[word] = 1
+#
+# for k,v in d.items():
+#     print(k,v)
 
 #fruits = ['ананас', 'банан', 'ежевика', 'малина', 'арбуз']
 # fruits.sort()
@@ -805,7 +805,20 @@ for k,v in d.items():
 # print(sorted(fruits, key=lambda ch: ch[1]))  # сортировка по ключу "вторая буква"
 # print(sorted(fruits, key=lambda ch: len(ch))) # сортировка по ключу "длина слова"
 
-res = {k: v for k, v in sorted(d.items(), key=lambda item: item[1], reverse=True)}
-for k,v in res.items():
-    print(k,v)
+
+################################################
+# ключ сортировки
+
+# fruits = ['ананас', 'банан', 'ежевика', 'малина', 'арбуз']
+# print(sorted(fruits, key= lambda s: (len(s), s[-1])))  # сортировка по нескольким ключам, приоритет ключей задается
+# в виде кортежа - сначала по первому усл-ю,  затем по второму
+
+goods = [
+    ['Утюг', 1500, 2],
+    ['Фен', 1000, 5],
+    ['Телевизор',  8000, 3]
+]
+
+print(sorted(goods, key=lambda s: (s[1], s[2], s[0] )))
+
 
