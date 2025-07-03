@@ -665,7 +665,6 @@ text = """Завтра ожидается теплая погода без ос�
 # def profile(name, surname, city, *children, **additional):
 #     print(f'Имя: {name}')
 #     print(f'Фамилия: {surname}')
-#     print(f'Имя: {name}')
 #     print(f'Из города: {city}')
 #     if len(children) > 0 :
 #         print('Дети:', ','.join(children))
@@ -674,7 +673,7 @@ text = """Завтра ожидается теплая погода без ос�
 #     print(additional)
 
 
-# profile('Дмитрий', 'Колесов', 'Волгоград',
+#profile('Дмитрий', 'Колесов', 'Волгоград',
 #         'Мария', 'Петр', hobbie=['Филателия', 'шахматы'])
 
 
@@ -705,15 +704,68 @@ text = """Завтра ожидается теплая погода без ос�
 #
 #     return word[0] == 'а'  # True or False
 #
-# words = ['арбуз', 'ананас', 'банан', 'ежевика', 'малина']
+#words = ['арбуз', 'ананас', 'банан', 'ежевика', 'малина']
 #
 # result = list(filter(start_a, words))
 # print(result)
 
-def sq(num) :
-    return num**2
+# def sq(num) :
+#     return num**2
 
-nums = [1,2,3,4,5,6,7,8,9] # -> 123456789
+#nums = [1,2,3,4,5,6,7,8,9] # -> 123456789
+# sqwares = map(sq, nums)
+# print(list(sqwares))
 
-sqwares = map(sq, nums)
-print(list(sqwares))
+#DZ
+# res = ', '.join(map(str, nums))
+# print(res)
+
+# в частности "ан"
+# def srt_cont(s) :
+#     return 'ан' in s
+# res = list(filter(str_cont, words))
+
+# анонимные ф-ции (однострочники, безымянные)
+# lambda - функции
+# lambda <аргументы> : <выражение>
+
+# is_l_six = lambda word: len(word) > 6
+# result = list(filter(lambda word: len(word) > 6, words))
+
+# is_first_l_a = lambda st: word[0] == 'a'
+#res = list(filter(lambda s: s[0] == 'a', word))
+
+# str_con = lambda s: 'ан' in s
+# res = list(filter(lambda s: 'ан' in s, words))
+
+# в одну строку квадраты чисел от 1 до 16
+# res = list (map(lambda y: y**2, range(3,16)))  # c lambda
+#res = [y**2 for y in range (3,16)]  # однострочник
+
+# word1 = ['В', 'этом', 'списке', 'останутся', 'слова', 'длина', 'которых', 'больше', 'шести']
+# long_words = [w for w in word1 if len(w) > 6] # однострочник
+
+# Практика
+
+ENG_ABC = [chr(ch) for ch in range(ord('a'), ord('z')+1)]
+RUS_ABC = [chr(ch) for ch in range(ord('а'), ord('я')+1)] +['ё']
+# print(ENG_ABC)
+# print(RUS_ABC)
+ABC = set(ENG_ABC )^ set(RUS_ABC) ^ set(map(str.upper, ENG_ABC)) ^  set([ch.upper for ch in RUS_ABC]) #симметричная
+# разность и два способа преобразования набора символов из маленьких в большие - два последних члена выражения
+
+txt = 'Cказали что , но . сегодня'
+text = ''.join(filter(lambda x: x in  ABC ^ {' '}, txt)) # убрали все знаки препинания, т.к. их нет в ABC
+print(text)
+
+def remove_punct(text) :
+    return ''.join(filter(lambda x: x in  ABC ^ {' '}, text))
+
+
+def get_words(text: str) -> list:
+    return remove_punct(text).split()
+
+def long_words (text, lengh=4)-> list :
+    return list(filter(lambda word: len(word) > lengh, get_words(text)))
+
+print(long_words(txt, 6))
