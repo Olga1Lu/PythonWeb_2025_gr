@@ -756,8 +756,8 @@ ABC = set(ENG_ABC )^ set(RUS_ABC) ^ set(map(str.upper, ENG_ABC)) ^  set([ch.uppe
 
 txt = 'Cказали что , но . сегодня'
 text = ''.join(filter(lambda x: x in  ABC ^ {' '}, txt)) # убрали все знаки препинания, т.к. их нет в ABC
-print(text)
-
+# print(text)
+#
 def remove_punct(text) :
     return ''.join(filter(lambda x: x in  ABC ^ {' '}, text))
 
@@ -768,4 +768,44 @@ def get_words(text: str) -> list:
 def long_words (text, lengh=4)-> list :
     return list(filter(lambda word: len(word) > lengh, get_words(text)))
 
-print(long_words(txt, 6))
+# print(long_words(txt, 6))
+
+# numb = [1,2,3,4,5]  # list(range(1,6))
+# squar = {n: n**2 for n in numb}  # создание словаряsquar = {n: n**2 for n in numb}
+# squar1 = {n: n**2 for n in range(1,11) if n % 2 == 0}
+# print(squar1)
+
+# source_dict = {
+#     'x': 1,
+#     'y': 2,
+#     'z': 3,
+# }
+#
+# dest_dict = {k: v*2 for k,v in source_dict.items()}
+# print(dest_dict)
+
+# Частотный анализ
+txt = 'Я знаю, что ничего незнаю. Но другие не знают и этого. А значит, я знаю больше , чем они.'
+d = {}
+words = get_words(txt)
+print(words)
+
+for word in words:
+    if word in d:
+        d[word] += 1
+    else :
+        d[word] = 1
+
+for k,v in d.items():
+    print(k,v)
+
+#fruits = ['ананас', 'банан', 'ежевика', 'малина', 'арбуз']
+# fruits.sort()
+# print(fruits)
+# print(sorted(fruits, key=lambda ch: ch[1]))  # сортировка по ключу "вторая буква"
+# print(sorted(fruits, key=lambda ch: len(ch))) # сортировка по ключу "длина слова"
+
+res = {k: v for k, v in sorted(d.items(), key=lambda item: item[1], reverse=True)}
+for k,v in res.items():
+    print(k,v)
+
