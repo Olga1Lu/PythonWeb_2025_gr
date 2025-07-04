@@ -684,7 +684,8 @@
 
 #thumbnail  #сделать уменьшенную копию картинку, ее помещают в спец.директорию
 
-from PIL import Image  # базовые действия с изображением
+from PIL import Image, ImageDraw
+# базовые действия с изображением
 imag = Image.open('imges/piton.jpg')
 print(imag.size)  # свойства объекта - размер
 x,y = imag.size  # на первом месте ширина, затем высота
@@ -736,3 +737,29 @@ print(f'Цветовая схема: {mode}')
 
 #################################
 # создание изображений
+
+imag = Image.new('RGB', (600,400),(0,0,255))  # создание синего квадрата
+imag.save('imges/piton2.jpg')
+draw = ImageDraw.Draw(imag)  # создали холст
+
+draw.line((0,0,600,400), fill=(255,0,0), width=5)  # линия/отрезок
+imag.save('imges/blue.jpg')
+
+draw.line((600,0,0,400), fill=(255,0,0), width=5)  # линия/отрезок
+imag.save('imges/blue.jpg')
+
+draw.rectangle((10,10, 590, 390),outline=255, width=10)
+imag.save('imges/blue.jpg')
+
+draw.ellipse((10,10, 590, 390),outline=255, width=10)
+imag.save('imges/blue.jpg')
+
+# текст
+draw.text((100,100), 'Туапр', fill=255)
+imag.save('imges/blue.jpg')
+
+# полигон
+RED = (255,0,0)
+POLY = [(50,50), (150,50), (180,120)]
+draw.polygon(POLY, outline='green', width=15)
+imag.save('imges/blue.jpg')
