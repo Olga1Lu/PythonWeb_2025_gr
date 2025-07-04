@@ -634,7 +634,7 @@ import math
 
 # datetime - берет данные из системного времени (компа..)
 
-import datetime as dt
+#import datetime as dt
 
 # print(dt.datetime.now())  # дата в м/нар. формате
 # print(dt.datetime.now().date()) # только дата
@@ -656,7 +656,18 @@ import datetime as dt
 # print(my_d_t)
 
 # матем. операции для дат
-dat1 = dt.date(2025, 6,15)
-dat2 = dt.date(2025, 7, 3)
-delta = dat2 - dat1
-print(delta)
+# dat1 = dt.date(2025, 6,15)
+# dat2 = dt.date(2025, 7, 3)
+# delta = dat2 - dat1
+# print(delta)
+
+# from pprint import pprint # красивый вывод данных
+#
+# matrix = [
+#     [1,2,3],
+#     [4,5,6],
+#     [7,8,9],
+# ]
+#
+# print(matrix)
+# pprint(matrix)
