@@ -482,24 +482,24 @@ turtle.speed(0)  # скорость от 0 до 10, 0 - самая быстра�
 #     turtle.circle(50)
 # turtle.circle(50)  #радиус
 
-N = 5
+# N = 5
 # for _ in range(N) :
 #     for _ in range(4):
 #         turtle.forward(100)
 #         turtle.right(90)
 #     turtle.right(360//5)
 
-def qv(a):
-    for _ in range(4):
-        turtle.forward(a)
-        turtle.right(90)
-    return
-#
-def flow(n):
-    for i in range(n) :
-      turtle.circle(50)
-      turtle.right(10)
-    return
+# def qv(a):
+#     for _ in range(4):
+#         turtle.forward(a)
+#         turtle.right(90)
+#     return
+# #
+# def flow(n):
+#     for i in range(n) :
+#       turtle.circle(50)
+#       turtle.right(10)
+#     return
 # flow(36)
 
 
@@ -508,22 +508,40 @@ def flow(n):
 #     qv(100)
 #     turtle.right(360//5)
 
-def tree (lent):  # фрактал, используем рекурсию
-    if lent < 10 :
-        return
-    turtle.forward(lent)
-    turtle.left(30)
-    tree(lent*0.7)
-    turtle.right(60)
-    tree(lent * 0.7)
-    turtle.left(30)
-    turtle.backward(lent)
+# def tree (lent):  # фрактал, используем рекурсию
+#     if lent < 10 :
+#         return
+#     turtle.forward(lent)
+#     turtle.left(30)
+#     tree(lent*0.7)
+#     turtle.right(60)
+#     tree(lent * 0.7)
+#     turtle.left(30)
+#     turtle.backward(lent)
+#
+#
+# turtle.left(90)
+# tree(100)
+#
+# turtle.mainloop()  # откроется графическое окно
 
+#DZ 03_07
 
-turtle.left(90)
-tree(100)
+string = [d.strip('\n') for d in sys.stdin.readlines()]
+length = len(string) # сколько строк
+rem = length % 3
 
-turtle.mainloop()  # откроется графическое окно
+if rem:
+    string = strings[:length - rem] # берем только кратные 3
+
+for x in range(0, length - rem, 3) :
+    summ = sum (len(a) for a in strings[x:x+3]) # вычисляем сумму эл-тов списка, если все эл-ты  -  числа (min и max)
+    result = []
+    for s in strings[x:x+3] :
+        temp = s.lover().split()
+        result += filter(lambda a: len(a) % 2 == summ % 2, temp)
+    result = sorted(set(map(lambda b: b.capitalize(), result)))[:5]
+    print(*result, sep='.')
 
 
 
