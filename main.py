@@ -575,7 +575,7 @@ import math
 
 # модуль random
 
-import random as r
+#import random as r
 #from random import sample
 
 #num = r.randint(0,10)  # случайное число в опр.диапазоне
@@ -629,9 +629,34 @@ import random as r
 # print(res)
 
 # функция random()
-r.seed()
-print(r.random())
+# r.seed()
+# print(r.random())
 
+# datetime - берет данные из системного времени (компа..)
 
+import datetime as dt
 
+# print(dt.datetime.now())  # дата в м/нар. формате
+# print(dt.datetime.now().date()) # только дата
+# print(dt.datetime.now().time())  # только время
+# print(type(dt.datetime.now().time()))
 
+# strftime
+# tim = dt.datetime.now()
+# ftim = tim.strftime('%d/%m/%y')  # только день/месяц/год, если "Y" , то будет "2025"
+# print(ftim)
+# print('Время:', tim.strftime('%H:%M'))  # вывели время
+
+# назначить свое время, какой-то опр.момент
+# my_time = dt.time(15, 27, 32)
+# print(my_time)
+# my_day = dt.date(2025, 7, 4)
+# print(my_day)
+# my_d_t = dt.datetime.combine(my_day, my_time)
+# print(my_d_t)
+
+# матем. операции для дат
+dat1 = dt.date(2025, 6,15)
+dat2 = dt.date(2025, 7, 3)
+delta = dat2 - dat1
+print(delta)
