@@ -525,7 +525,7 @@ turtle.speed(0)  # скорость от 0 до 10, 0 - самая быстра�
 #
 # turtle.mainloop()  # откроется графическое окно
 
-#DZ 03_07
+#DZ 03_07, control V
 
 string = [d.strip('\n') for d in sys.stdin.readlines()]
 length = len(string) # сколько строк
