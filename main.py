@@ -1,4 +1,4 @@
-import math
+#import math
 # def num_to_word(num) :
 #     e_d = ['один', 'два', 'три','четыре', 'пять', 'шесть','семь', 'восемь', 'девять',
 #            'десять', 'одиннадцать', 'двенадцать', 'тринадцать','четырнадцать', 'пятнадцать',
@@ -611,7 +611,7 @@ import math
 
 # shuffle - перетасовать, работает со списками
 
-#генерация случайного пароля, не менее 8 знаков, чтобы была котя бы одна цифра, один спец знак и одна большая буква
+#генерация случайного пароля, из 8 знаков, чтобы была хотя бы одна цифра, один спец знак и одна большая буква
 # N = 8
 # abc = 'qwertyyutyuukpipkasfgjkghlghj'
 # num = '1,2,3,4,5,6,7,8,9,0'
@@ -634,14 +634,15 @@ import math
 
 # datetime - берет данные из системного времени (компа..)
 
-#import datetime as dt
+# import datetime as dt
+# from calendar import weekday
 
 # print(dt.datetime.now())  # дата в м/нар. формате
 # print(dt.datetime.now().date()) # только дата
 # print(dt.datetime.now().time())  # только время
 # print(type(dt.datetime.now().time()))
 
-# strftime
+# strftime # преобразует дату в формат строки
 # tim = dt.datetime.now()
 # ftim = tim.strftime('%d/%m/%y')  # только день/месяц/год, если "Y" , то будет "2025"
 # print(ftim)
@@ -656,7 +657,7 @@ import math
 # print(my_d_t)
 
 # матем. операции для дат
-# dat1 = dt.date(2025, 6,15)
+#dat1 = dt.date(2025, 6,15)
 # dat2 = dt.date(2025, 7, 3)
 # delta = dat2 - dat1
 # print(delta)
@@ -671,3 +672,67 @@ import math
 #
 # print(matrix)
 # pprint(matrix)
+
+####################
+# Внешние библиотеки
+#ГРАФИКА
+# установка библиотеки PIL - Python Imagine Library - для обработки растровых изображений (м.передать реалистичную картину)
+# описание , какие внеш библиотеки установлены:
+#1 способ  pip freeze > requirements.txt
+# установка списка библиотек: pip install -r  requirements.txt
+# цветовая модель RGB
+
+#thumbnail  #сделать уменьшенную копию картинку, ее помещают в спец.директорию
+
+from PIL import Image  # базовые действия с изображением
+imag = Image.open('imges/piton.jpg')
+print(imag.size)  # свойства объекта - размер
+x,y = imag.size  # на первом месте ширина, затем высота
+print(f'Ширина = {x}, Длина = {y}')
+# нулевая точка в левом верхнем углу экрана
+mode = imag.mode  # свойства объекта - режим
+
+pixels = imag.load()  #метод для загрузки таблицы пикселей
+print(f'Цветовая схема: {mode}')
+# Инверсия
+# for i in range(x) :
+#     for j in range(y):
+#         r,g,b = pixels[i, j]
+#         pixels[i, j] = r, b, g
+# imag.save('imges/piton2.jpg')  # создание копии файла
+
+# Негатив
+# for i in range(x) :
+#     for j in range(y):
+#         r,g,b = pixels[i, j]
+#         pixels[i, j] = 255 - r, 255 - b, 255 - g
+
+# оттенки серого, перевод в черный-белое
+# for i in range(x) :
+#     for j in range(y):
+#         r,g,b = pixels[i, j]
+#         average = (r+g+b) // 3
+#         pixels[i, j] = average, average, average
+# imag.save('imges/piton2.jpg')
+
+
+#поворот изображения
+# img_rot = imag.rotate(90)
+#
+# img_rot.save('imges/piton2.jpg')
+
+# отразить
+# img_flip = imag.transpose(Image.Transpose.FLIP_LEFT_RIGHT)  # вправо влево , можно вверх-вниз
+# img_flip.save('imges/piton2.jpg')
+
+# вырезка изображения
+# сначала рисуем прямоугольник
+# cropped = imag.crop((270,0,540,300))
+# cropped.save('imges/piton2.jpg')
+
+# resize
+#resized = imag.resize((400,300))  # если неизвестно заранее размер, надо что-то взять за единицу, затем делать
+# пропорционально - из пропорций первоначального изображения
+
+#################################
+# создание изображений
