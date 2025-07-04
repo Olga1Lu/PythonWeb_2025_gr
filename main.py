@@ -1,4 +1,4 @@
-
+import math
 # def num_to_word(num) :
 #     e_d = ['один', 'два', 'три','четыре', 'пять', 'шесть','семь', 'восемь', 'девять',
 #            'десять', 'одиннадцать', 'двенадцать', 'тринадцать','четырнадцать', 'пятнадцать',
@@ -449,13 +449,13 @@
 
 ############################
 # черепашья графика
-import turtle
+#import turtle
 # import turtle as t # замена на короткое название для удобства вызова
 # начало координат в середине (600 х800)
 # turtle.goto(-100,-200) # переход в точку начала рисования
 # turtle.penup()  # оторвались от "земли"
 # turtle.pendown() # вернулись на "землю"
-turtle.speed(0)  # скорость от 0 до 10, 0 - самая быстрая
+#turtle.speed(0)  # скорость от 0 до 10, 0 - самая быстрая
 
 # colors = ['red', 'purple', 'blue', 'green', 'yellow', 'orange']
 # turtle.bgcolor('black')  # общий фон
@@ -527,24 +527,50 @@ turtle.speed(0)  # скорость от 0 до 10, 0 - самая быстра�
 
 #DZ 03_07, control V
 
-string = [d.strip('\n') for d in sys.stdin.readlines()]
-length = len(string) # сколько строк
-rem = length % 3
+# string = [d.strip('\n') for d in sys.stdin.readlines()]
+# length = len(string) # сколько строк
+# rem = length % 3
 
-if rem:
-    string = strings[:length - rem] # берем только кратные 3
+# if rem:
+#     string = strings[:length - rem] # берем только кратные 3
+#
+# for x in range(0, length - rem, 3) :
+#     summ = sum (len(a) for a in strings[x:x+3]) # вычисляем сумму эл-тов списка, если все эл-ты  -  числа (min и max)
+#     result = []
+#     for s in strings[x:x+3] :
+#         temp = s.lower().split()
+#         result += filter(lambda a: len(a) % 2 == summ % 2, temp)
+#     result = sorted(set(map(lambda b: b.capitalize(), result)))[:5]
+#     print(*result, sep='.')
 
-for x in range(0, length - rem, 3) :
-    summ = sum (len(a) for a in strings[x:x+3]) # вычисляем сумму эл-тов списка, если все эл-ты  -  числа (min и max)
-    result = []
-    for s in strings[x:x+3] :
-        temp = s.lover().split()
-        result += filter(lambda a: len(a) % 2 == summ % 2, temp)
-    result = sorted(set(map(lambda b: b.capitalize(), result)))[:5]
-    print(*result, sep='.')
+# функции sum, max, min
 
+# sum -принимает кортеж или список
+# res = sum([1,2,3])
+# print(res)
+#
+# lst = [1,2,3]
+# res = sum(lst)
+# min_lst = min(lst)
+# max_lst = max(lst)
+# print(res, max_lst, min_lst)
 
+#################################
+# Встроенные библиотеки
 
+# PyPi - хранилище внешних библиотек Python (pupi.org)
+
+#import math as m  #тогда можно обращаться через новое имя "m", импорт всей библиотеки, но вся она в память не выгружается
+# from  math import pi, sqrt  # импортируем только нужные функции - это правильноб если н.только несколько ф-ций
+from  math import sin, radians  # можно в несколько строк, если много ф-ций
+# from  math import *  # импорт всей библиотеки, но это грубый способ, т.к. все вытягивается в память, засоряется
+# пространство имен, лучше "import math"
+
+#print('Число Пи: ' , math.e)
+
+# print(dir(m))   # вызов списка всех ф-ций модуля
+# print(help(m.cos))  # вызов описания конкретной ф-ции
+print('Синус 30:', round(sin(radians(30)),2))
 
 
 
