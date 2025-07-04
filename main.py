@@ -560,9 +560,10 @@ import math
 
 # PyPi - хранилище внешних библиотек Python (pupi.org)
 
+# модуль math
 #import math as m  #тогда можно обращаться через новое имя "m", импорт всей библиотеки, но вся она в память не выгружается
 # from  math import pi, sqrt  # импортируем только нужные функции - это правильноб если н.только несколько ф-ций
-from  math import sin, radians  # можно в несколько строк, если много ф-ций
+#from math import sin, radians, hypot  # можно в несколько строк, если много ф-ций
 # from  math import *  # импорт всей библиотеки, но это грубый способ, т.к. все вытягивается в память, засоряется
 # пространство имен, лучше "import math"
 
@@ -570,14 +571,66 @@ from  math import sin, radians  # можно в несколько строк, �
 
 # print(dir(m))   # вызов списка всех ф-ций модуля
 # print(help(m.cos))  # вызов описания конкретной ф-ции
-print('Синус 30:', round(sin(radians(30)),2))
+#print('Синус 30:', round(sin(radians(30)),2))
+
+# модуль random
+
+import random as r
+#from random import sample
+
+#num = r.randint(0,10)  # случайное число в опр.диапазоне
+# for _ in range(10) :
+#     print(r.randint(0,10))
+#     print(r.randrange(0,10,2))  # только четные случ.  числа
+
+# ф-ция choice - выбирает эл-т случайным образом, не работает с множествами и словарями
+# lst = [1,2,3,4,5,6,7,8,9]
+# res = r.choice(lst)
+# print(res)
+# print(r.choice(['орел', 'решка']))  # подбрасывание монеты
+# print(r.choice('орел'))
+
+# d = {'a': 1, 'b': 2, 'c': 3}  # как обработать словарь с помощью choice
+# keys = list(d.keys())
+# key = r.choice(keys)
+# print(d[key])
 
 
+# бросание кубика zara
+# zara = ['\u2680', '\u2681','\u2682','\u2683','\u2684','\u2685']
+# for i in range(10) :
+#     print((r.choice(zara), r.choice(zara)))
 
+# sample - случайный выбор без повторов, можно указать кол-во выборов
 
+# lst = [1,2,3,4,5,6,7,8,9]
+# print(r.sample(lst, k = 5))
+#
+# for _ in range(10) :
+#     print((r.sample(lst, k = 5)))
 
+# shuffle - перетасовать, работает со списками
 
+#генерация случайного пароля, не менее 8 знаков, чтобы была котя бы одна цифра, один спец знак и одна большая буква
+# N = 8
+# abc = 'qwertyyutyuukpipkasfgjkghlghj'
+# num = '1,2,3,4,5,6,7,8,9,0'
+# spec = '#@$'
+# abc = list(abc)
+# num = list(num)
+# spec = list(spec)
+# r.shuffle(abc)
+# temp = abc[:N - 3]
+# temp.append(r.choice(abc).upper())
+# temp.append(r.choice(num))
+# temp.append(r.choice(spec))
+# r.shuffle(temp)
+# res = ''.join(temp)
+# print(res)
 
+# функция random()
+r.seed()
+print(r.random())
 
 
 
