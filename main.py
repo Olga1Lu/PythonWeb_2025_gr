@@ -771,14 +771,36 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 
+#V1  прямоугольник с белой окантовкой
 
-sky1 = Image.new('RGB', (600,400),(50,155,205))  # создание голубого квадрата
-sky1.save('imges/sanday.jpg')
-words = Image.open("imges/sanday.jpg")
-draw = ImageDraw.Draw(words)
-font = ImageFont.truetype('arial.ttf', 36)
-draw.text((200, 160), 'SANNY DAY', (180,193,27), font=font)
-draw.pieslice( (500,-100, 700, 100),start=90, end=180, fill=(180,193,27))
+# sky1 = Image.new('RGB', (600,400),(50,155,205))  # создание голубого квадрата
+# sky1.save('imges/sanday.jpg')
+#
+# words = Image.open("imges/sanday.jpg")
+# draw = ImageDraw.Draw(words)
+# draw.rectangle((0,0, 600, 400),outline=(255,255,255), width=10)
+#
+# font = ImageFont.truetype('arial.ttf', 36)
+# draw.text((200, 160), 'SANNY DAY', (255,224,32), font=font)
+#
+# draw.pieslice( (480,-100, 700, 120),start=90, end=180, fill=(255,224,32))
+#
+# words.save('imges/sanday.jpg')
 
-words.save('imges/sanday.jpg')
+
+#V2 закругл.прямоугольник с белой окантовкой
+
+# sky1 = Image.new('RGB', (600,400),(0, 0, 0))  # создание черного квадрата
+# sky1.save('imges/sanday1.jpg')
+#
+# words = Image.open("imges/sanday1.jpg")
+# draw = ImageDraw.Draw(words)
+#
+# draw.rounded_rectangle((0, 0, 600, 400), radius=40, fill=(50,155,205), outline=(255,255,255), width=4)
+# font = ImageFont.truetype('arial.ttf', 36)
+# draw.text((200, 160), 'SANNY DAY', (255,224,32), font=font)
+#
+# draw.pieslice( (480,-112, 712, 120),start=90, end=180, fill=(255,224,32))
+#
+# words.save('imges/sanday1.jpg')
 
