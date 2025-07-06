@@ -684,7 +684,7 @@
 
 #thumbnail  #сделать уменьшенную копию картинку, ее помещают в спец.директорию
 
-from PIL import Image, ImageDraw
+# from PIL import Image, ImageDraw
 # базовые действия с изображением
 # imag = Image.open('imges/piton.jpg')
 # print(imag.size)  # свойства объекта - размер
@@ -767,5 +767,18 @@ from PIL import Image, ImageDraw
 ####################
 #DZ 04_07_25
 
-sky1 = Image.new('RGB', (600,400),(0,0,50))  # создание голубого квадрата
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
+
+
+sky1 = Image.new('RGB', (600,400),(50,155,205))  # создание голубого квадрата
 sky1.save('imges/sanday.jpg')
+words = Image.open("imges/sanday.jpg")
+draw = ImageDraw.Draw(words)
+font = ImageFont.truetype('arial.ttf', 36)
+draw.text((200, 160), 'SANNY DAY', (180,193,27), font=font)
+draw.pieslice( (500,-100, 700, 100),start=90, end=180, fill=(180,193,27))
+
+words.save('imges/sanday.jpg')
+
