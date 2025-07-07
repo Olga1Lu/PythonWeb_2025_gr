@@ -808,6 +808,8 @@
 # font = 'fonts/Domb.ttf' - назначить пользовательский шрифт
 # _, _, w< h = draw.textbbox((0,0), text, font=font) - определяем высшту и ширину надписи для последующей центровки
 from PIL import  Image, ImageFilter, ImageEnhance
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+
 # orig = Image.open('imges/sanday.jpg').convert('RGB') # конвертируем в RGB-формат на всякий случай
 # up = orig.crop((0,0,600,200))
 # down = orig.crop((0,200,600,400))
@@ -829,5 +831,47 @@ orig = Image.open('imges/piton.jpg').convert('RGB') # конвертируем �
 # sharpened_image.show()
 
 #получить контуры изображения
-edges = orig.filter(ImageFilter.FIND_EDGES)
-edges.show()
+####################
+#Документы
+# Word - DOCX
+from docx import Document
+from doc.enum.text import WD_ALIGN_PARAGRAPH
+from docx.shared import Cm, Inches, Mm, Pt  # для размеров
+doc = Document()  # создали конструктор, создание экземпляра документа
+
+# Добавление заголовка
+doc.add_heading('Отчет за месяц', 1)  # заголовок первого уровня
+paragraf = doc.add_paragraph() # отступ чтобы начать новый абзац
+paragraf = doc.add_paragraph('В отчете представлены') # с лед.уровень
+paragraf.add_run('  ключевые показатели').bold = True  # можно что-то добавить в абзац, приклеиться с конца
+# run - это что-то внутри абзаца, текс, картинка и т.п.
+
+#добавление маркированного списка
+paragraf = doc.add_paragraph()
+paragraf_format = paragraf.paragraph_format
+paragraf_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+
+# маркированный
+# paragraf = doc.add_paragraph('Первый пункт', style='List Bullet')
+# paragraf = doc.add_paragraph('Второй пункт', style='List Bullet')
+#
+# #нумерованный
+# paragraf = doc.add_paragraph('Первый пункт', style='List Number')
+# paragraf = doc.add_paragraph('Второй пункт', style='List Number')
+
+# paragraf = doc.add_paragraph()
+
+# добавить таблицу
+# table = doc.add_table(rows=3, cols=3)  # можно еще добавить стиль
+# # заполнить таблицу
+# for i, row in enumerate(table.rows) :
+#     for j, cell in enumerate(table.columns) :
+#         cell.text = f'Строка {i + 1}, Столбец {j + 1}'
+
+# добавить изображение
+# paragraf = doc.add_paragraph()
+#
+# doc.add_picture('imges/sanday.jpg', width=Mm(105))  # нужны единицы измерения Word
+# # (см, мм или точки), поэтому импорт нужен - см.выше
+#
+# doc.save('docs/report.docx')
