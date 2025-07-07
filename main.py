@@ -767,9 +767,9 @@
 ####################
 #DZ 04_07_25
 
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw
+# from PIL import Image
+# from PIL import ImageFont
+# from PIL import ImageDraw
 
 #V1  прямоугольник с белой окантовкой
 
@@ -807,4 +807,27 @@ from PIL import ImageDraw
 # https:/fontsforyou.com/ru/specific-fonts/ttf-fonts/languageru
 # font = 'fonts/Domb.ttf' - назначить пользовательский шрифт
 # _, _, w< h = draw.textbbox((0,0), text, font=font) - определяем высшту и ширину надписи для последующей центровки
+from PIL import  Image, ImageFilter, ImageEnhance
+# orig = Image.open('imges/sanday.jpg').convert('RGB') # конвертируем в RGB-формат на всякий случай
+# up = orig.crop((0,0,600,200))
+# down = orig.crop((0,200,600,400))
+# new = Image.new('RGB', (600,400))
+#
+# new.paste(down, (0,0))
+# new.paste(up,(0,200))
+# new.show()
 
+orig = Image.open('imges/piton.jpg').convert('RGB') # конвертируем в RGB-формат на всякий случай,
+# если используем фильтры - обязательно это сделать
+#размытие
+# blur_image = orig.filter(ImageFilter.GaussianBlur(radius=8))
+# blur_image.show()
+
+#усиление резкости
+# enchancer = ImageEnhance.Sharpness(orig)
+# sharpened_image = enchancer.enhance(4.0)  # степень резкости
+# sharpened_image.show()
+
+#получить контуры изображения
+edges = orig.filter(ImageFilter.FIND_EDGES)
+edges.show()
