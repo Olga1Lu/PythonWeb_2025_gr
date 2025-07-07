@@ -6,7 +6,7 @@
 #     d_d = ['двадцать', 'тридцать', 'сорок', 'пятьдесят','шестьдесят', 'семьдесят',
 #            'восемьдесят', 'девяносто']
 #
-
+from itertools import count
 
 # DZ V-control + функция с аннотацией
 # def num_to_word(n: int)  -> str :
@@ -835,7 +835,7 @@ orig = Image.open('imges/piton.jpg').convert('RGB') # конвертируем �
 #Документы
 # Word - DOCX
 from docx import Document
-from doc.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Cm, Inches, Mm, Pt  # для размеров
 doc = Document()  # создали конструктор, создание экземпляра документа
 
@@ -875,3 +875,96 @@ paragraf_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
 # # (см, мм или точки), поэтому импорт нужен - см.выше
 #
 # doc.save('docs/report.docx')
+
+# документы по шаблону
+# Word - DOCX (docxtpl)
+
+# загрузка шаблона
+# from docxtpl import DocxTemplate
+# doc = DocxTemplate('docs/template.docx')
+#
+# # данные для подстановки в шаблон
+# content = {
+#     'company': 'ООО "Монолит"',
+#     'employee': 'Петров Д.И.',
+#     'position': 'Менеджер',
+#     'date': '01/02/2025'
+# }
+#
+# doc.render(content)  # загрузка данных в шаблон
+# doc.save('docs/about.docx')
+
+# count = 1
+# for i in content :
+#     doc.render(i)
+#     doc.save(f'docs/about{count}.docs')
+#     count +=1
+
+###############################
+# работа с эл.таблицами, Excel (openpyxl)
+from docxtpl import DocxTemplate  # для экселя проверить команду в мастер - образце
+
+#пустой файл excel
+# from openpyxl import Workbook  #  конструктор
+#
+# wb = Workbook()  # создали книгу
+# ws = wb.active  # обратились к активному листу
+# ws.title = 'Отчет' # назвали лист
+# wb.save(('docs/report.xlsx'))
+
+# запись данных в существующий файл
+from openpyxl import load_workbook  # подключили метод
+# wb = load_workbook('docs/report.xlsx')  # открыли/загрузили рабочю книгу
+#
+#ws = wb.active  # активный лист
+# можно и по имени листа
+# ws = wb['Отчет']
+#######################
+#  способы записи
+# #V1
+# ws['F1'] = 'Привет мир'  # запись данных в ячейку
+#
+# #V2
+# ws.cell(row=1, column=3, value='Hello!')
+#
+# wb.save('docs/new_table.xlsx')
+
+# Заголовки
+# ws['A1'] = 'ФИО'
+# ws['B1'] = 'Должность'
+# ws['C1'] = 'Отдел'
+#
+# # Данные
+# emploes = [
+#     ['Иванов И.И.', 'Менеджер', 'Продажи'],
+#     ['Петров П.П..', 'Бухгалтер', 'Финансы'],
+#     ['Сидорова С.С.', 'Аналитик', 'IT'],
+# ]
+#
+# for row, data in enumerate(emploes, start=2) :
+#     ws.cell(row=row, column=1, value=data[0])
+#     ws.cell(row=row, column=2, value=data[1])
+#     ws.cell(row=row, column=3, value=data[2])
+#
+# wb.save('docs/new_table1.xlsx')
+
+# работа с формулами
+# ws['A1'] = "=SUM(A1:A10)"  # ввод формулы в ячейку
+
+# Формат
+# from openpyxl.styles import  Font, Alignment
+# ws['A2'].font = Font(bold=True, size=14)  # назначение шрифтов
+# ws['A2'].alignment = Alignment(horizontal='center')  # выравнивание по горизонтали
+
+#######################
+# чтение данных из  файла excel
+
+# wb = load_workbook('docs/new_table1.xlsx')  # открыли/загрузили рабочю книгу
+# ws = wb.active  # активный лист
+#
+# rows_count = ws.max_row  # число заполненных строк
+# print(rows_count)
+#
+# for row in ws.iter_rows(values_only=True) :
+#     fio, pos, dept = row  # распаковка кортежа
+#     print(f'Фамилия: {fio}, Должность {pos}, Отдел {dept}')
