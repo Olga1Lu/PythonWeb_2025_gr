@@ -804,3 +804,7 @@ from PIL import ImageDraw
 #
 # words.save('imges/sanday1.jpg')
 
+# https:/fontsforyou.com/ru/specific-fonts/ttf-fonts/languageru
+# font = 'fonts/Domb.ttf' - назначить пользовательский шрифт
+# _, _, w< h = draw.textbbox((0,0), text, font=font) - определяем высшту и ширину надписи для последующей центровки
+
