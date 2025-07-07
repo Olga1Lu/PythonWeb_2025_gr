@@ -251,8 +251,38 @@ from itertools import count
 # print(lst)
 
 # открытие с менеджером контекста
-with open('info.txt', 'rt', encoding='utf-8') as fo :
-    text = fo.read()
-    lst = text.splitlines()
-    print(lst)
+# with open('info.txt', 'rt', encoding='utf-8') as fo :
+#     text = fo.read()
+#     lst = text.splitlines()
+#     print(lst)
 # менеджер конт. проследит, чтбы файл закрылся
+
+#####################################
+
+import  os  # модуль управления операционной системой
+
+# os.mkdir('libs')  # создание директории, если директория уже существует, тогда ошибка
+#
+# os.makedirs('libs', exist_ok=True)  # если директория уже существует, ошибки не будет
+# if os.path.exists('libs') :  # проверка существования пути
+#       os.rmdir('libs')  # удаление директории
+
+# Переключение директорий
+# path = os.getcwd()  # узнать, где находимся (текущая)
+# print(path)
+#
+# os.chdir(path + '/imges')
+# print(os.getcwd())
+#
+# os.chdir('..')
+# os.chdir(path + '/Fonts')
+# print(os.getcwd())
+
+# список всех файлов в директории
+path = os.getcwd()
+os.chdir(path + '/imges')
+#all_files = [f for f in os.listdir('.')]
+#all_files = [f for f in os.listdir('.') if f.endswith('.jpg')]  # список с фильтрацией
+all_files = [f for f in os.listdir('.') if f.startswith('pi')]  # список с фильтрацией
+print(all_files)
+
