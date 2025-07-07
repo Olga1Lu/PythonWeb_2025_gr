@@ -968,3 +968,28 @@ from openpyxl import load_workbook  # подключили метод
 # for row in ws.iter_rows(values_only=True) :
 #     fio, pos, dept = row  # распаковка кортежа
 #     print(f'Фамилия: {fio}, Должность {pos}, Отдел {dept}')
+
+########################################
+# Пишем свои модули
+#from . lib import summ - из текущей директории, из текущего файла
+#from .. lib import summ - из директории уровнем выше
+#from .lib import summ - импорт относительно текущего файла, т.е. в той же директории, что и текущий файл
+# подключаем свой модуль
+#V1
+# import  lib
+# c = lib.diff(7,3)
+#
+# #V2
+# from lib import diff
+#
+# print(diff(7,3))
+#
+#
+# print(__name__)
+def main():
+    from lib import diff, summ
+    print(summ(7,3))
+
+if __name__ == '__main__':   # пишем main и нажимаем 'tab'
+   print('Это main')
+   main()
