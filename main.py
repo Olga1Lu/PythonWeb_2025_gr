@@ -285,4 +285,4 @@ os.chdir(path + '/imges')
 #all_files = [f for f in os.listdir('.') if f.endswith('.jpg')]  # список с фильтрацией
 all_files = [f for f in os.listdir('.') if f.startswith('pi')]  # список с фильтрацией
 print(all_files)
-
+os.chdir('..')  # вернулись в корневую директорию
