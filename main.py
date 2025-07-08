@@ -311,9 +311,9 @@ res = []
 ###################################
 # сохранение сложных структур "сериализация и десериализация"
 
-# 1 способ pickle
-import pickle
-import pprint
+# 1 способ: pickle
+# import pickle
+# import pprint
 # d = {
 #     'стол': 'table' ,
 #     'стул': 'chair'
@@ -329,3 +329,8 @@ import pprint
 #     d = pickle.load(p)
 # pprint.pprint(d, width=15)
 # p.close()
+
+# организация путей /см. файл pathlib.py
+from pathlib import *
+print(img_dir)
+print(font_dir)
