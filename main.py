@@ -1,143 +1,4 @@
-####################
-#Документы
-# Word - DOCX
-# from docx import Document
-# from docx.enum.text import WD_ALIGN_PARAGRAPH
-# from docx.shared import Cm, Inches, Mm, Pt  # для размеров
-# doc = Document()  # создали конструктор, создание экземпляра документа
-from itertools import count
 
-# Добавление заголовка
-# doc.add_heading('Отчет за месяц', 1)  # заголовок первого уровня
-# paragraf = doc.add_paragraph() # отступ чтобы начать новый абзац
-# paragraf = doc.add_paragraph('В отчете представлены') # с лед.уровень
-# paragraf.add_run('  ключевые показатели').bold = True  # можно что-то добавить в абзац, приклеиться с конца
-# run - это что-то внутри абзаца, текс, картинка и т.п.
-
-#добавление списка
-# paragraf = doc.add_paragraph()
-# paragraf_format = paragraf.paragraph_format
-# paragraf_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
-
-# маркированный
-# paragraf = doc.add_paragraph('Первый пункт', style='List Bullet')
-# paragraf = doc.add_paragraph('Второй пункт', style='List Bullet')
-#
-# #нумерованный
-# paragraf = doc.add_paragraph('Первый пункт', style='List Number')
-# paragraf = doc.add_paragraph('Второй пункт', style='List Number')
-
-# paragraf = doc.add_paragraph()
-
-# добавить таблицу
-# table = doc.add_table(rows=3, cols=3)  # можно еще добавить стиль
-# # заполнить таблицу
-# for i, row in enumerate(table.rows) :
-#     for j, cell in enumerate(table.columns) :
-#         cell.text = f'Строка {i + 1}, Столбец {j + 1}'
-
-# добавить изображение
-# paragraf = doc.add_paragraph()
-#
-# doc.add_picture('imges/sanday.jpg', width=Mm(105))  # нужны единицы измерения Word
-# # (см, мм или точки), поэтому импорт нужен - см.выше
-#
-# doc.save('docs/report.docx')
-
-# документы по шаблону
-# Word - DOCX (docxtpl)
-
-# загрузка шаблона
-# from docxtpl import DocxTemplate
-# doc = DocxTemplate('docs/template.docx')
-#
-# # данные для подстановки в шаблон
-# content = {
-#     'company': 'ООО "Монолит"',
-#     'employee': 'Петров Д.И.',
-#     'position': 'Менеджер',
-#     'date': '01/02/2025'
-# }
-#
-# doc.render(content)  # загрузка данных в шаблон
-# doc.save('docs/about.docx')
-
-# count = 1
-# for i in content :
-#     doc.render(i)
-#     doc.save(f'docs/about{count}.docs')
-#     count +=1
-
-###############################
-# работа с эл.таблицами, Excel (openpyxl)
-#from docxtpl import DocxTemplate  # для экселя проверить команду в мастер - образце
-
-#пустой файл excel
-# from openpyxl import Workbook  #  подключили метод "конструктор"
-#
-# wb = Workbook()  # создали книгу
-# ws = wb.active  # обратились к активному листу
-# ws.title = 'Отчет' # назвали лист
-# wb.save(('docs/report.xlsx'))
-
-# запись данных в существующий файл
-#from openpyxl import load_workbook  # подключили метод
-# wb = load_workbook('docs/report.xlsx')  # открыли/загрузили рабочю книгу
-#
-#ws = wb.active  # активный лист
-# можно и по имени листа
-# ws = wb['Отчет']
-#######################
-#  способы записи
-# #V1
-# ws['F1'] = 'Привет мир'  # запись данных в ячейку
-#
-# #V2
-# ws.cell(row=1, column=3, value='Hello!')
-#
-# wb.save('docs/new_table.xlsx')
-
-# Заголовки
-# ws['A1'] = 'ФИО'
-# ws['B1'] = 'Должность'
-# ws['C1'] = 'Отдел'
-#
-# # Данные
-# emploes = [
-#     ['Иванов И.И.', 'Менеджер', 'Продажи'],
-#     ['Петров П.П..', 'Бухгалтер', 'Финансы'],
-#     ['Сидорова С.С.', 'Аналитик', 'IT'],
-# ]
-#
-# for row, data in enumerate(emploes, start=2) :
-#     ws.cell(row=row, column=1, value=data[0])
-#     ws.cell(row=row, column=2, value=data[1])
-#     ws.cell(row=row, column=3, value=data[2])
-#
-# wb.save('docs/new_table1.xlsx')
-
-# работа с формулами
-# ws['A1'] = "=SUM(A1:A10)"  # ввод формулы в ячейку
-
-# Формат
-# from openpyxl.styles import  Font, Alignment
-# ws['A2'].font = Font(bold=True, size=14)  # назначение шрифтов
-# ws['A2'].alignment = Alignment(horizontal='center')  # выравнивание по горизонтали
-
-#######################
-# чтение данных из  файла excel
-
-# wb = load_workbook('docs/new_table1.xlsx')  # открыли/загрузили рабочю книгу
-# ws = wb.active  # активный лист
-#
-# rows_count = ws.max_row  # число заполненных строк
-# print(rows_count)
-#
-# for row in ws.iter_rows(min_row=2, values_only=True) :
-#     fio, pos, dept = row  # распаковка кортежа
-#     print(f'Фамилия: {fio}, Должность {pos}, Отдел {dept}')
-
-########################################
 # Пишем свои модули
 #from . lib import summ - из текущей директории, из текущего файла
 #from .. lib import summ - из директории уровнем выше
@@ -286,7 +147,7 @@ import  os  # модуль управления операционной сис�
 # all_files = [f for f in os.listdir('.') if f.startswith('pi')]  # список с фильтрацией
 # print(all_files)
 # os.chdir('..')  # вернулись в корневую директорию
-res = []
+#res = []
 # with open('info1.txt', 'r') as f:
 # #f = open('info1.txt', 'rt', encoding='utf-8')
 #     while temp := f.readline():
@@ -331,6 +192,41 @@ res = []
 # p.close()
 
 # организация путей /см. файл pathlib.py
-from pathlib import *
-print(img_dir)
-print(font_dir)
+# from pathlib import *
+# print(img_dir)
+# print(font_dir)
+
+###############################
+
+# исключения, обработка ошибок (run time)
+#полная конструкция:
+# try:
+#     что пытаемся сделать
+#except:
+#    обрабатываем исключения, т.е. может быть несколько "except"
+#else:
+#    если исключения не было
+#finally:
+#    выполняется в любом случае
+
+# flag = False  # открывался ли файл на запись
+# try:
+#     fo = open('info3.txt', 'rt', encoding='utf-8')
+#
+# except FileNotFoundError :  # если не указать какое, то будет действовать для любого исключения
+#     fo = open('info3.txt', "wt", encoding='utf-8')
+#     flag = True
+#     print('файл не обнаружен и создан с параметрами по умолчанию')
+#     # with open('info3.txt', "wt", encoding='utf-8') as fo :
+#     #     fo.write('по умолчанию')
+# else:
+#     print('Файл открыт успешно. Читаем и закрываем')
+#     print(fo.read())
+#     fo.close()
+# finally:
+#     if flag:  #если файл был открыт на запись
+#     # print('продолжаем работать')
+#         fo.write('по умолчанию')
+#         fo.close()
+
+
