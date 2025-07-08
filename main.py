@@ -82,7 +82,7 @@ from logging import exception
 
 # Задача 1
 
-lst = [1,2,3,4,5,6,7,8,9]
+#lst = [1,2,3,4,5,6,7,8,9]
 # fl = True
 # while fl :
 #
@@ -97,20 +97,20 @@ lst = [1,2,3,4,5,6,7,8,9]
 #         print('Произошло исключение:', exp.__class__.__name__, exp)
 #     else:
 #         fl = False
-
+# другой вариант
 # try:
-#         ind = int(input('Введите индекс '))
-#         if not -len(lst) < ind < len(lst) - 1:
-#             raise ValueError('Индекс вне диапазона')
+#     ind = int(input('Введите индекс '))
+#     if not -len(lst) < ind < len(lst) - 1:
+#         raise ValueError('Индекс вне диапазона')
 #         res = lst[ind]
 #         print(f'Число по индексу "{ind}": {res}')
 #
-#     except Exception as exp :  # все остальные исключения
-#         mess = exp.args
-#         if mess.startwith('invalid literal') :   #в коммитек
+# except Exception as exp :  # все остальные исключения
+#     mess = exp.args
+#     if mess.startwith('invalid literal') :   # посмотреть в коммите
 #         print('вводить надо числа')
-#     else:
-#         print(exp)
+# else:
+#     print(exp)
 
 # задача 2
 # сделали с if - else
