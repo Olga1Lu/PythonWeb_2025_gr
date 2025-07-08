@@ -279,10 +279,53 @@ import  os  # модуль управления операционной сис�
 # print(os.getcwd())
 
 # список всех файлов в директории
-path = os.getcwd()
-os.chdir(path + '/imges')
-#all_files = [f for f in os.listdir('.')]
-#all_files = [f for f in os.listdir('.') if f.endswith('.jpg')]  # список с фильтрацией
-all_files = [f for f in os.listdir('.') if f.startswith('pi')]  # список с фильтрацией
-print(all_files)
-os.chdir('..')  # вернулись в корневую директорию
+# path = os.getcwd()
+# os.chdir(path + '/imges')
+# #all_files = [f for f in os.listdir('.')]
+# #all_files = [f for f in os.listdir('.') if f.endswith('.jpg')]  # список с фильтрацией
+# all_files = [f for f in os.listdir('.') if f.startswith('pi')]  # список с фильтрацией
+# print(all_files)
+# os.chdir('..')  # вернулись в корневую директорию
+res = []
+# with open('info1.txt', 'r') as f:
+# #f = open('info1.txt', 'rt', encoding='utf-8')
+#     while temp := f.readline():
+#         res += temp.split(', ')
+# print(type(res))
+# res = list(map(lambda x : x.rstrip('\n'), res))
+# print(res)
+# res = set(res)
+# res = sorted(int(x) for x in res)
+# print(res)
+# f.close()
+
+# Или др. вариант короче:
+# with open('info1.txt', 'r') as f:
+#     while temp := f.readline().rstrip('\n'):
+#         res += temp.split(', ')
+#
+# res = sorted(int(x) for x in set(res))
+# print(res)
+# f.close()
+
+###################################
+# сохранение сложных структур "сериализация и десериализация"
+
+# 1 способ pickle
+import pickle
+import pprint
+# d = {
+#     'стол': 'table' ,
+#     'стул': 'chair'
+# }
+
+#сериализация
+# with open ('dictfile.dat', 'wb') as p:
+#     pickle.dump(d, p)  #d - что сериализуем, p - куда сериализуем
+# p.close()
+
+# десериализация
+# with open ('dictfile.dat', 'rb') as p:
+#     d = pickle.load(p)
+# pprint.pprint(d, width=15)
+# p.close()
