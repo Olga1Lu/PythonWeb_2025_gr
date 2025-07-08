@@ -9,7 +9,7 @@
 # ? - от нуля до одного (фнфлог {0,1}
 # * - от нуля до бесконечности (она равна 32767), соответствует {0,}
 # + - от 1 до бесконечности, соответствует {1,}
-import  re
+# import  re
 
 # pattern = '20'
 # test_str = '10 плюс 20 будет 30'
@@ -79,8 +79,33 @@ import  re
 # result = re.findall(pattern, test_str)  # ищет все вхождения
 # print(result)
 
-pattern = 'o{2,5}'
-test_str = 'Google, Gooogle, Goooogle'
+# pattern = 'o{2,5}'
+# test_str = 'Google, Gooogle, Goooogle'
+#
+# result = re.findall(pattern, test_str)  # ищет все вхождения
+# print(result)
 
-result = re.findall(pattern, test_str)  # ищет все вхождения
+
+############################################
+# регулярное выражение, убирающее знаки препинания от Алисы
+
+import re
+
+def remove_punctuation(text):
+    # Создаем регулярное выражение, которое соответствует всем знакам препинания
+    # \p{P} - любой знак препинания в Unicode
+    # | - оператор ИЛИ
+    # [] - набор символов
+    pattern = r'[^\w\s]'
+
+    # Используем re.sub() для замены всех знаков препинания на пустую строку
+    cleaned_text = re.sub(pattern, '', text)
+    return cleaned_text
+
+
+# Пример использования
+user_input = input("Введите текст: ")
+result = remove_punctuation(user_input)
+print("Текст без знаков препинания:")
 print(result)
+########################################
