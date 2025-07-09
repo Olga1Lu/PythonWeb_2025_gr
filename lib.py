@@ -5,14 +5,22 @@ class Balance:
         self.left = 0
 
     def add_left(self, weigt):
-        pass
+        self.left += weigt
+
 
     def add_right(self, weigt):
-        pass
+        self.right += weigt
 
     def result(self) -> str:
-        return  # состояние (левая ...
-        pass
+        if self.left > self.right:
+            self.str = 'левая чаша тяжелее'
+        elif self.left < self.right:
+            self.str = 'правая чаша тяжелее'
+        else:
+            self.str = 'чаши уравновешены'
+
+        return  self.str
+
 
 class Sorter:
     def __init__(self):

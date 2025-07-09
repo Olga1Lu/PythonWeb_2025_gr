@@ -250,6 +250,7 @@ from lib import Car
 from lib import Clicker
 from lib import Separator
 from lib import Sorter
+from lib import Balance
 
 # car1 = Car()
 # car2 = Car()
@@ -282,8 +283,22 @@ from lib import Sorter
 # print(s.get_even())
 
 
-s = Sorter()
-s.add_word(('привет'))
-s.add_word(('пока'))
-s.add_word(('здорово'))
-print(s.result())
+# s = Sorter()
+# s.add_word(('привет'))
+# s.add_word(('пока'))
+# s.add_word(('здорово'))
+# print(s.result())
+
+
+b = Balance()
+
+b.add_left(5)
+b.add_right(4)
+b.add_left(3)
+b.add_right(5)
+b.add_left(6)
+b.add_right(7)
+b.add_left(2)
+b.add_right(4)
+
+print(b.result())
