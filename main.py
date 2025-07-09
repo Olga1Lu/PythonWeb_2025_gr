@@ -247,15 +247,43 @@
 #         print(f'Человек с именем {self._name} .  Возраст :{self._age}')
 
 from lib import Car
+from lib import Clicker
+from lib import Separator
+from lib import Sorter
 
-car1 = Car()
-car2 = Car()
-car3 = Car()
+# car1 = Car()
+# car2 = Car()
+# car3 = Car()
+#
+# print('В парке машин: ', Car.get_counter())
+#
+# from lib import Person
+# p = Person()
+# p.set_age(789)
+# print(p._age)
+# print(p._name)
 
-print(Car.get_counter())
 
-from lib import Person
-p = Person()
-p.set_age(789)
-print(p._age)
-print(p._name)
+# cl = Clicker()
+#
+# cl.click()
+# cl.click()
+# cl.click()
+#
+# print(cl.get_counter())
+#
+# cl.reset()
+# print(cl.get_counter())
+
+# s = Separator()
+# for i in range(20) :
+#     s.add_num(i)
+#
+# print(s.get_even())
+
+
+s = Sorter()
+s.add_word(('привет'))
+s.add_word(('пока'))
+s.add_word(('здорово'))
+print(s.result())
