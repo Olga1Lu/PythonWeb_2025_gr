@@ -1,6 +1,6 @@
 # Регулярные выражения - поиск по паттерну
 # Regular expressions (re)
-#r-строка -  row-string (игнорирует все управляющие последовательности)
+# r-строка -  row-string (игнорирует все управляющие последовательности)
 # Квантификаторы (quantity)
 # {m} - ровно m раз
 # {m,} - m раз и более
@@ -9,8 +9,10 @@
 # ? - от нуля до одного (фнфлог {0,1}
 # * - от нуля до бесконечности (она равна 32767), соответствует {0,}
 # + - от 1 до бесконечности, соответствует {1,}
-import  re
-#from os.path import split
+# import  re
+# from os.path import split
+
+
 
 # pattern = '20'
 # test_str = '10 плюс 20 будет 30'
@@ -72,7 +74,7 @@ import  re
 # result = re.findall(pattern, test_str)  # ищет все вхождения
 # print(result)
 
-#pattern = '[^ерм]'  # все кроме е,р,м (их исключили)
+# pattern = '[^ерм]'  # все кроме е,р,м (их исключили)
 # вытащить текст из скобок
 # pattern = r'\((.+?)\)'  # вытащить текст из скобок (повтор один раз и более), "." - любой символ
 # test_str = 'поиск по образцу (pattern)'
@@ -102,9 +104,9 @@ import  re
 # result = re.findall(pattern, test_str)  # ищет все вхождения
 # print(result)
 
-#pattern = r'<img[^>]+src="([^">])+)"'  # только путь к картинке
-#test_str = 'Картинка<img src="bg.jpg"> в тексте</p>'
-#абзац
+# pattern = r'<img[^>]+src="([^">])+)"'  # только путь к картинке
+# test_str = 'Картинка<img src="bg.jpg"> в тексте</p>'
+# абзац
 # test_str = '<b>Вот начало: </b><p>Содержимое</p><i>и т.д.</i>'
 # pattern = '<p>(.*?)</p>'  #содержимое абзаца html
 # result = re.findall(pattern, test_str)  # ищет все вхождения
@@ -143,7 +145,7 @@ import  re
 # result = sorted(x.strip() for x in result)
 # print(result)
 
-import requests
+# import requests
 # вытащить картинку из текста с сайта
 # pattern = r'<img[^>]+src="([^">]+)"'
 # test_str = '<img heit="50" width="150" src="images/bg.jpg">'
@@ -152,6 +154,108 @@ import requests
 # print(html)
 # result = re.findall(pattern, html)
 # print(result)
+#################################################
 
+# ООП/OOP
+# encapsulation
+# a = 3
+# print(a.__class__.__name__)  # класс и имя класса
+# создание класса
+# class Fruit:
+#
+# #свойства классов
+# #создание экземпляра класса
+#     a = Fruit()
+#     b = Fruit()
+#     c = Fruit()
+# #создание объекта, определяем свойства
+#     a.name = 'Яблоко'
+#     a.weight = 120
+#     print(a.name)
+#     print(a.weight)
+#
+#     b.name = 'Груша'
+#     b.weight = 180
 
+# Методы классов
+# class Greater:
+#     def hello(self, name='Noname')-> None:
+#         print('Привет, ', name)
+#
+#     def bye(self):
+#         print('Пока!')
+#
+#
+# # создадим объект
+# g = Greater()  # объект g
+# g.hello()
+#
+# c = Greater()
+# c.bye()
 
+# методы, анализ предыдущих  вызовов
+# class Car:
+#     def __init__(self, brand='Noname', model='NoModel', color='Nocolor'):
+#         self.engine_on = False  # прописываем свойства
+#         self.brand = brand  #'Skoda'
+#         self.model =  model  #'Oktavia'
+#         self.color = color #'red'
+#
+#
+#     def start_engine(self):
+#         self.engine_on = True  # self. - делает аналог глобальной переменной
+#
+#
+#     def drive_to(self, place):
+#         if self.engine_on:
+#             print(f'Едем в {place} на {self.brand}{self.model}')
+#         else:
+#             print('Двигатель не заведен, не едем')
+# from lib import Car  # описание класса в отдельной библиотеке (файл lib.py)
+#
+#
+# car = Car('Skoda', 'Oktavia', 'red')
+# car.start_engine()
+# car.drive_to('город')
+#
+# car2 = Car()
+# car2.start_engine()
+# car2.drive_to('город')
+
+# class Person:
+#     def __init__(self, name='Bill', age=1):
+#         self._name = name
+#         self._age = age
+#
+#     def set_name(self, new_name):  # setter - устанавливает значение свойств (полей класса)
+#         if new_name:
+#             self._name = new_name
+#
+#     def set_age(self, new_age):
+#         if 0 < new_age < 150 :
+#             self._age = new_age
+#         else:
+#             print('Некорректный возраст - ', new_age)
+#
+#     def get_name(self):  # getter - возвращает значение поля класса
+#         return self._name
+#
+#     def get_age(self):
+#         return self._age
+#
+#     def person_info(self):
+#         print(f'Человек с именем {self._name} .  Возраст :{self._age}')
+
+from lib import Car
+
+car1 = Car()
+car2 = Car()
+car3 = Car()
+
+print(Car.get_counter())
+
+from lib import Person
+p = Person()
+p.set_age(789)
+print(p._age)
+print(p._name)
