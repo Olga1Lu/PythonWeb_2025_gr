@@ -10,6 +10,7 @@
 # * - от нуля до бесконечности (она равна 32767), соответствует {0,}
 # + - от 1 до бесконечности, соответствует {1,}
 import  re
+#from os.path import split
 
 # pattern = '20'
 # test_str = '10 плюс 20 будет 30'
@@ -109,8 +110,48 @@ import  re
 # result = re.findall(pattern, test_str)  # ищет все вхождения
 # print(result)
 
-test_str = '<b>Центрируем </b><p align="center">Содержимое</p><i>и т.д.</i>'  # устаревший способ для центровки в html
-#pattern = '<p>(.*?)</p>'  #содержимое абзаца html
-pattern = r'<p[^>]*>(.*?)</p>'  # содержимое абзаца html с атрибутами, без захвата лишнего
-result = re.findall(pattern, test_str)  # ищет все вхождения
-print(result)
+# test_str = '<b>Центрируем </b><p align="center">Содержимое</p><i>и т.д.</i>'  # устаревший способ для центровки в html
+# #pattern = '<p>(.*?)</p>'  #содержимое абзаца html
+# pattern = r'<p[^>]*>(.*?)</p>'  # содержимое абзаца html с атрибутами, без захвата лишнего
+# result = re.findall(pattern, test_str)  # ищет все вхождения
+# print(result)
+
+# убираем все знаки препинания
+# def rem_punct(input_str: str) -> str :
+#     """
+#     методом sub() заменяем все найденные
+#     совпадения пустой строкой и возвращаем очищенную
+#     :param input_str:  строка со зн.препинания
+#     :return: строка, очищенная от зн.преп-я
+#     """
+#     return re.sub(r'[^\w\s]', '', input_str)
+# test_str = 'Язык Puthon, являясь интуитивно понятным, прост для изучения! Ну и PEP8'
+#
+# result = rem_punct(test_str)
+# print(result)
+
+# разделить по разным признакам сразу
+# test_str = '  яблоко, груша. банан ; слива !   абрикос  '
+# #test_str = ''.join(test_str.split())  # V1
+# print(test_str)
+# pattern = r'[,.;:!]'
+# result = re.split(pattern, test_str)
+# # через map
+# #result = list(map(lambda  x: x.strip(), result))
+#
+# # через строчное выражение с сортировкой
+# result = sorted(x.strip() for x in result)
+# print(result)
+
+import requests
+# вытащить картинку из текста с сайта
+# pattern = r'<img[^>]+src="([^">]+)"'
+# test_str = '<img heit="50" width="150" src="images/bg.jpg">'
+
+# html = requests.get('https://skillbox.ru').text
+# print(html)
+# result = re.findall(pattern, html)
+# print(result)
+
+
+
