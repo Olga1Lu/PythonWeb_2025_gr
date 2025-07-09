@@ -73,14 +73,44 @@ import  re
 
 #pattern = '[^ерм]'  # все кроме е,р,м (их исключили)
 # вытащить текст из скобок
-# pattern = r'\((.+?)\)'  # вытащить текст из скобок (повтор один раз и более)
+# pattern = r'\((.+?)\)'  # вытащить текст из скобок (повтор один раз и более), "." - любой символ
 # test_str = 'поиск по образцу (pattern)'
 #
 # result = re.findall(pattern, test_str)  # ищет все вхождения
 # print(result)
 
-pattern = 'o{2,5}'
-test_str = 'Google, Gooogle, Goooogle'
+# pattern = 'o{2,5}'
+# test_str = 'Google, Gooogle, Goooogle'
+#
+# result = re.findall(pattern, test_str)  # ищет все вхождения
+# print(result)
 
+# pattern = r'стеклянн?ый'  # вторая "н"может присутствовать , но необязат-но
+
+# "жадный" квантификатор
+# pattern = r'<img.*>'  # жадный (greedy quantifiers)
+# test_str = 'Картинка<img src="bg.jpg"> в тексте</p>'
+
+# result = re.findall(pattern, test_str)  # ищет все вхождения
+# print(result)
+
+# "ленивый" квантификатор (lazy, non-greedy)
+# pattern = r'<img.*?>'  # жадный
+# test_str = 'Картинка<img src="bg.jpg"> в тексте</p>'
+# #pattern = r'<img[^>]+src="([^">])+)"'
+# result = re.findall(pattern, test_str)  # ищет все вхождения
+# print(result)
+
+#pattern = r'<img[^>]+src="([^">])+)"'  # только путь к картинке
+#test_str = 'Картинка<img src="bg.jpg"> в тексте</p>'
+#абзац
+# test_str = '<b>Вот начало: </b><p>Содержимое</p><i>и т.д.</i>'
+# pattern = '<p>(.*?)</p>'  #содержимое абзаца html
+# result = re.findall(pattern, test_str)  # ищет все вхождения
+# print(result)
+
+test_str = '<b>Центрируем </b><p align="center">Содержимое</p><i>и т.д.</i>'  # устаревший способ для центровки в html
+#pattern = '<p>(.*?)</p>'  #содержимое абзаца html
+pattern = r'<p[^>]*>(.*?)</p>'  # содержимое абзаца html с атрибутами, без захвата лишнего
 result = re.findall(pattern, test_str)  # ищет все вхождения
 print(result)
