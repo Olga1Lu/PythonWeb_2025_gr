@@ -3,6 +3,7 @@ class Balance:
     def __init__(self):
         self.right = 0
         self.left = 0
+        self.str = ''
 
     def add_left(self, weigt):
         self.left += weigt
