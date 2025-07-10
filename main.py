@@ -1,163 +1,3 @@
-# Регулярные выражения - поиск по паттерну
-# Regular expressions (re)
-# r-строка -  row-string (игнорирует все управляющие последовательности)
-# Квантификаторы (quantity)
-# {m} - ровно m раз
-# {m,} - m раз и более
-# {,n} - не более n раз
-# {m,n} - от m до n (пишем без пробелов)
-# ? - от нуля до одного (фнфлог {0,1}
-# * - от нуля до бесконечности (она равна 32767), соответствует {0,}
-# + - от 1 до бесконечности, соответствует {1,}
-# import  re
-# from os.path import split
-# from idlelib.configdialog import is_int
-#
-# from openpyxl.xml import lxml_env_set
-# from typing_extensions import reveal_type
-
-# pattern = '20'
-# test_str = '10 плюс 20 будет 30'
-#
-# result = re.search(pattern, test_str)
-# print(result)
-
-# pattern = r'\а\п\р'  # регулярное выражение
-# test_str = '10 плюс 20 будет 30'
-#
-# result = re.search(pattern, test_str)
-# print(result)
-
-# pattern = r'\b\w{4}\b'  # регулярное выражение (все слова из 4 символов)
-# test_str = 'дома было холодно'
-#
-# #result = re.search(pattern, test_str)  # ищет одно(первое) вхождение
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-
-# pattern = r'\d'  # регулярное выражение (все цифры от 0 до 9)
-# test_str = '4 тел 45  1256'
-#
-# #result = re.search(pattern, test_str)  # ищет одно(первое) вхождение
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-# тернарный if
-# pattern = r'\d'  # регулярное выражение (все цифры от 0 до 9)
-# test_str = 'телефон 112'
-#
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print('Цифры есть') if result else print('Цифр нет')  # тернарный оператор if работает только с выражениями
-
-# pattern = r'\d{3}'  # регулярное выражение (три цифры подряд)
-# test_str = 'телефон 112'
-#
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-# pattern = r'начало\Z'  # оканчивается на опр.значение
-# test_str = 'Главное - начало'
-#
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-
-# pattern = r'[0-5][0-9]'  # два числа подряд, одно от 0 до 5, др.- 0-9
-# test_str = 'Время - 07:45'
-#
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-
-# pattern = r'[а-яА-Я]'  # все буквы от а до я и от А до Я
-# test_str = 'Время - 07:45'
-#
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-# pattern = '[^ерм]'  # все кроме е,р,м (их исключили)
-# вытащить текст из скобок
-# pattern = r'\((.+?)\)'  # вытащить текст из скобок (повтор один раз и более), "." - любой символ
-# test_str = 'поиск по образцу (pattern)'
-#
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-# pattern = 'o{2,5}'
-# test_str = 'Google, Gooogle, Goooogle'
-#
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-# pattern = r'стеклянн?ый'  # вторая "н"может присутствовать , но необязат-но
-
-# "жадный" квантификатор
-# pattern = r'<img.*>'  # жадный (greedy quantifiers)
-# test_str = 'Картинка<img src="bg.jpg"> в тексте</p>'
-
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-# "ленивый" квантификатор (lazy, non-greedy)
-# pattern = r'<img.*?>'  # жадный
-# test_str = 'Картинка<img src="bg.jpg"> в тексте</p>'
-# #pattern = r'<img[^>]+src="([^">])+)"'
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-# pattern = r'<img[^>]+src="([^">])+)"'  # только путь к картинке
-# test_str = 'Картинка<img src="bg.jpg"> в тексте</p>'
-# абзац
-# test_str = '<b>Вот начало: </b><p>Содержимое</p><i>и т.д.</i>'
-# pattern = '<p>(.*?)</p>'  #содержимое абзаца html
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-# test_str = '<b>Центрируем </b><p align="center">Содержимое</p><i>и т.д.</i>'  # устаревший способ для центровки в html
-# #pattern = '<p>(.*?)</p>'  #содержимое абзаца html
-# pattern = r'<p[^>]*>(.*?)</p>'  # содержимое абзаца html с атрибутами, без захвата лишнего
-# result = re.findall(pattern, test_str)  # ищет все вхождения
-# print(result)
-
-# убираем все знаки препинания
-# def rem_punct(input_str: str) -> str :
-#     """
-#     методом sub() заменяем все найденные
-#     совпадения пустой строкой и возвращаем очищенную
-#     :param input_str:  строка со зн.препинания
-#     :return: строка, очищенная от зн.преп-я
-#     """
-#     return re.sub(r'[^\w\s]', '', input_str)
-# test_str = 'Язык Puthon, являясь интуитивно понятным, прост для изучения! Ну и PEP8'
-#
-# result = rem_punct(test_str)
-# print(result)
-
-# разделить по разным признакам сразу
-# test_str = '  яблоко, груша. банан ; слива !   абрикос  '
-# #test_str = ''.join(test_str.split())  # V1
-# print(test_str)
-# pattern = r'[,.;:!]'
-# result = re.split(pattern, test_str)
-# # через map
-# #result = list(map(lambda  x: x.strip(), result))
-#
-# # через строчное выражение с сортировкой
-# result = sorted(x.strip() for x in result)
-# print(result)
-
-# import requests
-# вытащить картинку из текста с сайта
-# pattern = r'<img[^>]+src="([^">]+)"'
-# test_str = '<img heit="50" width="150" src="images/bg.jpg">'
-
-# html = requests.get('https://skillbox.ru').text
-# print(html)
-# result = re.findall(pattern, html)
-# print(result)
-#################################################
-
 # ООП/OOP
 # encapsulation
 # a = 3
@@ -481,9 +321,9 @@ from math import pi
 #         # hypot = ((self.x - other.x) ** 2 + (self.y - other.y) ** 2)**(1 / 2)
 #         # return hypot
 #         return hypot((self.x - other.x), (self.y - other.y))  # др. способ со станд. ф-цией
-#p = Point()
-#p = [Point(),Point()]
-#print(p)
+# p = Point()
+# p = [Point(),Point()]
+# print(p)
 
 # вычесть две точки
 # p1 = Point(5,7)
@@ -524,14 +364,156 @@ from math import pi
 # список спецметодов - см. док.
 # спецметод метод  __call__ - позволяет экземпляру класса вести себя как функция, т.е. становится вызываемым
 
-class SquareFunction:
-    def __init__(self, a, b, c) :
-        self.a = a
-        self.b = b
-        self.c = c
-    def __call__(self, x) :
-        return self.a * x ** 2 + self.b * x + self.c  # считает квадратичную функцию
+# class SquareFunction:
+#     def __init__(self, a, b, c) :
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#     def __call__(self, x) :
+#         return self.a * x ** 2 + self.b * x + self.c  # считает квадратичную функцию
+#
+# s = SquareFunction(1,2,3)
+# print(s(2))
 
-s = SquareFunction(1,2,3)
-print(s(2))
+#############################
+# ООП Наследование  (Inheritance)
+
+from math import pi
+from abc import ABC, abstractmethod  #можно использовать для указания абстрактного класса (ниже), но редко применяется
+
+
+class Shape(ABC):  #  в данном примере это абстрактный класс
+    def info(self):
+        print(f'Класс:  {self.__class__.__name__}')
+
+    def area(self):
+        pass  # джля абстрактного класс
+
+    def perimetr(self):
+        pass
+
+
+    # фигуры
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def perimetr(self):
+        return 2 * pi * self.radius
+
+    def area(self):
+        return pi * self.radius ** 2
+
+
+class Rectangle(Shape):
+    def __init__(self, widt, long):
+        self.widt = widt
+        self.long = long
+        self.name = 'прямоугольник'
+
+    def perimetr(self):
+        return 2 * (self.widt + self.long)
+
+    def area(self):
+        return self.widt * self.long
+
+    def get_name(self):
+        return self.name
+
+
+class Square(Rectangle):  # производный от класса Rectangle
+    def __init__(self, side):
+        super().__init__(side, side)  # приобретает все свойства родителя
+        self.side = side
+        self.name = 'квадрат'
+
+
+# все, что ниже, не нужно, т.к. это уже есть в родительком (базовом) классе
+##############################################
+# def perimetr(self):
+#     return 4 * self.side
+#
+# def area(self):
+#     return self.side ** 2
+############################################
+
+# class Triangle(Square):
+#     def __init__(self, side):
+#         super.__init__(self, side)  # если множ.наслед- е, то н. указывать имя род.класса вместо "super"
+#         self.side = side
+#         self.name = 'треугольник'
+#
+#     def area(self):
+#         return self.side ** 2 * 3**0.5 / 4
+#
+#     def perimetr(self):
+#         return 3 * self.side
+
+
+
+
+
+# s = Square(5)
+# print(s.area())
+# print(s.perimetr())
+# print(s.name)
+# s.info()
+#
+# t = Triangle(8)
+# print(t.area())
+# print(t.perimetr())
+# print(t.name)
+# s.info()
+
+############################################
+#Home task  10_07_25
+
+"""
+смоделировать зоопарк с разными животными
+УсловияЖ
+Базовый класс Animal c методом make_sound()/
+классы-наследники: Dog, Cat, Elephant c переопределением звуков.
+Класс Zoo хранит список животных и метод make_all_sounds
+"""
+
+##########################################
+
+#task  "банк"
+# """
+# условия
+#
+# class: BankAccount(owner, balance)
+# методы: deposit(amount), withdrow(amount), get_balance()
+#
+# """
+#
+# class BankAcount:
+#     def __init__(self, owner, balance=0):
+#         self._owner = owner
+#         self._balance = balance
+#
+#     def get_balance(self):
+#         return self._balance
+#
+#     def dep_amount(self, amount):
+#         if amount > 0:
+#             self._balance += amount
+#             print(f'Депозит пополнен на сумму {amount}')
+#         else:
+#             print(f'Нельзя вносить отрицательную сумму на депозит')
+#
+#     def with_amount(self, amount):
+#         if 0 < amount < self._balance:
+#             self._balance -= amount
+#             print(f'С депозита снята сумма {amount}')
+#         else:
+#             print('Не хватает средств. Овердрафт недоступен')
+#
+#
+# client1 = BankAcount('John')
+# client1.dep_amount(500)
+# client1.with_amount(600)
+# print('Остаток: ', client1.get_balance())
+
+
 
