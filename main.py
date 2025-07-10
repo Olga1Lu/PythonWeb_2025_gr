@@ -11,8 +11,10 @@
 # + - от 1 до бесконечности, соответствует {1,}
 # import  re
 # from os.path import split
-
-
+# from idlelib.configdialog import is_int
+#
+# from openpyxl.xml import lxml_env_set
+# from typing_extensions import reveal_type
 
 # pattern = '20'
 # test_str = '10 плюс 20 будет 30'
@@ -246,11 +248,11 @@
 #     def person_info(self):
 #         print(f'Человек с именем {self._name} .  Возраст :{self._age}')
 
-from lib import Car
-from lib import Clicker
-from lib import Separator
-from lib import Sorter
-from lib import Balance
+# from lib import Car
+# from lib import Clicker
+# from lib import Separator
+# from lib import Sorter
+# from lib import Balance
 
 # car1 = Car()
 # car2 = Car()
@@ -290,16 +292,246 @@ from lib import Balance
 # print(s.result())
 
 
-b = Balance()
+# b = Balance()
+#
+# b.add_left(5)
+# b.add_right(4)
+# b.add_left(3)
+# b.add_right(5)
+# b.add_left(6)
+# b.add_right(7)
+# b.add_left(2)
+# b.add_right(4)
+#
+# print(b.result())
 
-b.add_left(5)
-b.add_right(4)
-b.add_left(3)
-b.add_right(5)
-b.add_left(6)
-b.add_right(7)
-b.add_left(2)
-b.add_right(4)
+################################
+# полиморфизм
+# method override; operator overloading
 
-print(b.result())
+# пример - перегрузка оператора " + ", он полиморфный
+# print(1+2)
+# print(1+2.0)
+# print('abc' + 'def')
+# print([1,2] + [3,4])
+#
+# def fun1(x,y):
+#     return  x + y
+#
+# print(fun1(2 , 3.0))
+
+# from lib import Book
+#
+#
+# book = Book('Язык C++', 'Бьярн Страупструп')  # отлич. книга по C++
+#
+# print(f'{book.get_title(), book.get_author()}')
+
+# полиморфизм, пример - переопределение метода
+from math import pi
+
+# первый способ добавления имен для фигур, второй см. в lib.py
+# class Circle:
+#     def __init__(self, radius, name):
+#         self.radius = radius
+#         self.name = 'круг'
+#
+#     def perimetr(self):
+#         return 2 * pi * self.radius
+#
+#     def area(self):
+#         return pi * self.radius ** 2
+#
+#     def get_name(self):
+#         return self.name
+#
+#
+# class Square:
+#     def __init__(self, side, name):
+#         self.side = side
+#         self.name = 'квадрат'
+#
+#     def perimetr(self):
+#         return 4 * self.side
+#
+#     def area(self):
+#         return self.side ** 2
+#
+#     def get_name(self):
+#         return self.name
+#
+#
+# class Rectangle:
+#     def __init__(self, widt, long, name):
+#         self.widt = widt
+#         self.long = long
+#         self.name = 'прямоугольник'
+#
+#     def perimetr(self):
+#         return 2 * (self.widt + self.long)
+#
+#     def area(self):
+#         return self.widt * self.long
+#
+#     def get_name(self):
+#         return self.name
+#
+#
+# def shape_info(shape: object):
+#     print(f'Объект {shape.get_name()}а :\n Площадь : {shape.area()},  Периметр: {shape.perimetr()}')
+#
+#
+# s = Square(10)
+# shape_info(s)
+#
+# cr = Circle(10)
+# shape_info(cr)
+#
+# rc = Rectangle(5, 10)
+# shape_info(rc)
+
+# print(dir(s))
+# print(dir(cr))
+
+##########################################
+# from lib import Student, Employee, Person
+# people = [
+#     Person('Александр', 27),
+#     Student('Дмитрий', 'ГУАП'),
+#     Employee('Пётр', 'Авангард'),
+# ]
+#
+# for person in people:
+#     if isinstance(person, Student):
+#         print(person.get_univercity())
+#     if isinstance(person, Employee):
+#         print(person.get_company())
+#     else:
+#         print(person.get_name())
+
+############################
+# lst = list(range(1,15))
+#
+# class Stat:
+#     def __init__(self, lst1):
+#         self.lst1 = lst1[:]
+#
+#     def is_int(self):  # проверяет, все ли числа целые, иначе None
+#         return all(isinstance(item, int) for item in self.lst1 )
+#
+#
+#     def get_min(self):
+#         if is_int():
+#             return min(self.lst1)
+#         else:
+#             return None
+#
+#     def get_max(self):
+#         if self.is_int():
+#             return max(self.lst1)
+#         return None
+#
+#     def get_avg(self):
+#         if self.is_int():
+#             return sum(self.lst1)  / len(self.lst1) # среднее
+#         return None
+#
+#
+# class Selector:
+#     def __init__(self, lst1):
+#         self.lst1 = lst1[:]
+#
+#     def get_odd(self):
+#         return [x for x in self.lst1  if x % 2]
+#
+#     def get_even(self):
+#         return [x for x in self.lst1  if x % 2 == 0]
+
+############################################
+
+# s = Selector(lst)
+# print(s.get_odd())
+# print(s.get_even())
+
+# s = Stat(lst)
+# print(s.get_min())
+# print(s.get_max())
+# print(s.get_avg())
+
+############################################
+# from math import hypot
+# # Special methods
+# # переопределение метода
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#
+#     def __str__(self):  # переопределили метод
+#         return f'<Point: ({self.x}, {self.y})>'
+#
+#     def __repr__(self):
+#         return f'<List of Point: ({self.x}, {self.y})>'  # представление объекта для
+#         # читабельности (как лучше представлять информацию)
+#
+#     def __sub__(self, other):
+#         return Point(self.x - other.x, self.y - other.y)
+#
+#     def __add__(self, other):
+#         # hypot = ((self.x - other.x) ** 2 + (self.y - other.y) ** 2)**(1 / 2)
+#         # return hypot
+#         return hypot((self.x - other.x), (self.y - other.y))  # др. способ со станд. ф-цией
+#p = Point()
+#p = [Point(),Point()]
+#print(p)
+
+# вычесть две точки
+# p1 = Point(5,7)
+# p2 = Point(9, 12)
+# print(p1 - p2)
+
+# расстояние между двумя точками
+# p1 = Point(5,7)
+# p2 = Point(9, 12)
+# print(p1 - p2)
+# print(p1 + p2)
+
+# class MyTime:
+#     def __init__(self, minutes, seconds):
+#         if 0 <= minutes <= 60:
+#             self.minutes = minutes
+#         if 0 <= seconds <= 60:
+#             self.seconds = seconds
+#
+#     def __str__(self):
+#         return f'<Time {self.minutes:02}:{self.seconds:02}>'
+#
+#
+#     def __add__(self, other):
+#         m = self.minutes + other.minutes
+#         s = self.seconds + other.seconds
+#         m += s //60
+#         s += s % 60
+#         m = m % 60
+#         return MyTime(m,s)
+
+
+# t = MyTime(13, 15)
+# print(t)
+# t1 = MyTime(20,10)
+# print(t + t1)
+########################################################################
+# список спецметодов - см. док.
+# спецметод метод  __call__ - позволяет экземпляру класса вести себя как функция, т.е. становится вызываемым
+
+class SquareFunction:
+    def __init__(self, a, b, c) :
+        self.a = a
+        self.b = b
+        self.c = c
+    def __call__(self, x) :
+        return self.a * x ** 2 + self.b * x + self.c  # считает квадратичную функцию
+
+s = SquareFunction(1,2,3)
+print(s(2))
 

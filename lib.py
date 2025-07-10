@@ -111,6 +111,29 @@ class Car:
         return Car.counter
 
 
+class Student():
+    def __init__(self,name, univercity):
+        self.name = name
+        self.univercity = univercity
+
+    def get_univercity(self):
+        return  self.univercity
+
+    def get_name(self):
+        return  self.name
+
+
+class Employee():
+    def __init__(self, name, company):
+        self.name = name
+        self.company = company
+
+    def get_company(self):
+        return self.company
+
+    def get_name(self):
+        return  self.name
+
 class Person:
     def __init__(self, name='Bill', age=1):
         self._name = name
@@ -136,6 +159,71 @@ class Person:
         print(f'Человек с именем {self._name} .  Возраст :{self._age}')
 
 
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+
+    def get_title(self):
+        return self.title
+
+    def get_author(self):
+        return self.author
+
+
+from math import pi
+
+# второй способ добавления имен для фигур, второй см. в main.py
+#isinstance(объект, тип) -> True
+#isinstance(объект, (тип1, тип2, ...)) -> True
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def perimetr(self):
+        return 2 * pi * self.radius
+
+    def area(self):
+        return pi * self.radius ** 2
+
+
+class Square:
+    def __init__(self, side):
+        self.side = side
+
+    def perimetr(self):
+        return 4 * self.side
+
+    def area(self):
+        return self.side ** 2
+
+
+class Rectangle:
+    def __init__(self, widt, long):
+        self.widt = widt
+        self.long = long
+
+    def perimetr(self):
+        return 2 * (self.widt + self.long)
+
+    def area(self):
+        return self.widt * self.long
+
+
+r,c,s = 'прямоугольник', 'круг', 'квадрат'
+fig = ''
+def shape_info(shape: object):
+    if isinstance(shape, Circle):
+        fig = c
+    elif isinstance(shape, Square):
+        fig = s
+    elif isinstance(shape, Rectangle):
+        fig = r
+
+
+    print(f'Площадь : {fig}а,  Периметр: {shape.perimetr()}')
+
+######################################################
 def summ(a, b):
     return a + b
 
@@ -148,3 +236,7 @@ print(__name__)
 
 # if __name__ != '__main__':
 #    print('Это библиотека, а исполняемый - main.py')
+
+#################################################
+
+
