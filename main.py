@@ -168,7 +168,7 @@
 # print(f'{book.get_title(), book.get_author()}')
 
 # полиморфизм, пример - переопределение метода
-from math import pi
+#from math import pi
 
 # первый способ добавления имен для фигур, второй см. в lib.py
 # class Circle:
@@ -378,54 +378,55 @@ from math import pi
 #############################
 # ООП Наследование  (Inheritance)
 
-from math import pi
-from abc import ABC, abstractmethod  #можно использовать для указания абстрактного класса (ниже), но редко применяется
-
-
-class Shape(ABC):  #  в данном примере это абстрактный класс
-    def info(self):
-        print(f'Класс:  {self.__class__.__name__}')
-
-    def area(self):
-        pass  # джля абстрактного класс
-
-    def perimetr(self):
-        pass
-
-
-    # фигуры
-class Circle(Shape):
-    def __init__(self, radius):
-        self.radius = radius
-
-    def perimetr(self):
-        return 2 * pi * self.radius
-
-    def area(self):
-        return pi * self.radius ** 2
-
-
-class Rectangle(Shape):
-    def __init__(self, widt, long):
-        self.widt = widt
-        self.long = long
-        self.name = 'прямоугольник'
-
-    def perimetr(self):
-        return 2 * (self.widt + self.long)
-
-    def area(self):
-        return self.widt * self.long
-
-    def get_name(self):
-        return self.name
-
-
-class Square(Rectangle):  # производный от класса Rectangle
-    def __init__(self, side):
-        super().__init__(side, side)  # приобретает все свойства родителя
-        self.side = side
-        self.name = 'квадрат'
+# from math import pi
+# from abc import ABC, abstractmethod  #можно использовать для указания абстрактного класса (ниже), но редко применяется
+#
+#
+#
+# class Shape(ABC):  #  в данном примере это абстрактный класс
+#     def info(self):
+#         print(f'Класс:  {self.__class__.__name__}')
+#
+#     def area(self):
+#         pass  # джля абстрактного класс
+#
+#     def perimetr(self):
+#         pass
+#
+#
+#     # фигуры
+# class Circle(Shape):
+#     def __init__(self, radius):
+#         self.radius = radius
+#
+#     def perimetr(self):
+#         return 2 * pi * self.radius
+#
+#     def area(self):
+#         return pi * self.radius ** 2
+#
+#
+# class Rectangle(Shape):
+#     def __init__(self, widt, long):
+#         self.widt = widt
+#         self.long = long
+#         self.name = 'прямоугольник'
+#
+#     def perimetr(self):
+#         return 2 * (self.widt + self.long)
+#
+#     def area(self):
+#         return self.widt * self.long
+#
+#     def get_name(self):
+#         return self.name
+#
+#
+# class Square(Rectangle):  # производный от класса Rectangle
+#     def __init__(self, side):
+#         super().__init__(side, side)  # приобретает все свойства родителя
+#         self.side = side
+#         self.name = 'квадрат'
 
 
 # все, что ниже, не нужно, т.к. это уже есть в родительком (базовом) классе
@@ -466,17 +467,7 @@ class Square(Rectangle):  # производный от класса Rectangle
 # s.info()
 
 ############################################
-#Home task  10_07_25
 
-"""
-смоделировать зоопарк с разными животными
-УсловияЖ
-Базовый класс Animal c методом make_sound()/
-классы-наследники: Dog, Cat, Elephant c переопределением звуков.
-Класс Zoo хранит список животных и метод make_all_sounds
-"""
-
-##########################################
 
 #task  "банк"
 # """
@@ -514,6 +505,77 @@ class Square(Rectangle):  # производный от класса Rectangle
 # client1.dep_amount(500)
 # client1.with_amount(600)
 # print('Остаток: ', client1.get_balance())
+##########################################
+#Home task  10_07_25
+
+"""
+смоделировать зоопарк с разными животными
+Условия:
+Базовый класс Animal c методом make_sound().
+классы-наследники: Dog, Cat, Elephant c переопределением звуков.
+Класс Zoo хранит список животных и метод make_all_sounds
+"""
+from abc import ABC, abstractmethod
+
+
+class Animal(ABC):
+    def info(self):
+        print(f'Класс:  {self.__class__.__name__}')
+
+
+    def make_sound(self):
+        print('Животное издает звуки: "У-р-р"')
+
+
+class Dog(Animal):
+    def  __init__(self, color):
+        self.color = color
+        self.name = 'собака'
+
+    def  make_sound(self):
+        print(f'Животное:  {self.color} {self.name} издает звуки: "Гав-гав-ррр"')
+
+
+class Cat(Animal):
+    def __init__(self, color):
+        #super().__init__(place)
+        self.name = 'кошка'
+        self.color = color
+
+
+    def make_sound(self):
+        print(f'Животное:  {self.color} {self.name} издает звуки: "Мяу-мяу-мурр"')
+
+
+class Elephant(Animal):
+    def __init__(self, color):
+        self.color = color
+        self.name = 'слон'
+
+    def make_sound(self):
+        print(f'Животное {self.color} {self.name} издает звуки: "U-u-u-u"')
+
+
+animal1 = Cat('черная')
+animal2 = Dog('пегая')
+animal3 = Elephant('белый')
+print(animal1.make_sound())
+print(animal2.make_sound())
+print(animal3.make_sound())
+Animal.info(animal1)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
