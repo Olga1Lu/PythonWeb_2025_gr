@@ -578,20 +578,41 @@
 
 #############################
 
-import sys
-print(len(sys.argv))
+# import sys
+# print(len(sys.argv))
+#
+# if len(sys.argv) >= 2:
+#     match sys.argv[1]:
+#         case 'p':
+#             print('Привет')
+#         case 'g':
+#             print('Пока')
+#         case _:
+#             print('Пока')
+#
+#     print('Я', sys.argv[0] , 'и мой аргумент', sys.argv[1])
 
-if len(sys.argv) >= 2:
-    match sys.argv[1]:
-        case 'p':
-            print('Привет')
-        case 'g':
-            print('Пока')
-        case _:
-            print('Пока')
 
-    print('Я', sys.argv[0] , 'и мой аргумент', sys.argv[1])
+#########################
+# Периодические задачи
+import schedule
+import datetime
 
+####################################
+#выполнение задач через опр. интервал времени, по расписанию
+i = 1
+
+def job():  # действия, которые будут выполняться
+    global i
+    print(f'Скрипт запустился {i}-раз')
+    i += 1
+    t = datetime.datetime.now()
+    print('Время', t.strftime('%H:%M:%S'))
+
+schedule.every(3).seconds.do(job)
+
+while True:
+    schedule.run_pending()  # инициализировать выполнение
 
 
 
