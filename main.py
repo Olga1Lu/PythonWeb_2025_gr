@@ -515,57 +515,82 @@
 классы-наследники: Dog, Cat, Elephant c переопределением звуков.
 Класс Zoo хранит список животных и метод make_all_sounds
 """
-from abc import ABC, abstractmethod
+# from abc import ABC, abstractmethod
+#
+#
+# class Animal(ABC):
+#     def make_sound(self):
+#         pass
+#
+#
+#     def make_sound(self):
+#         print('Животное издает звуки: "У-р-р"')
+#
+#
+# class Dog(Animal):
+#     def  __init__(self, color):
+#         self.color = color
+#         self.name = 'собака'
+#
+#     def  make_sound(self):
+#         print(f'Животное:  {self.color} {self.name} издает звуки: "Гав-гав-ррр"')
+#
+#
+# class Cat(Animal):
+#     def __init__(self, color):
+#         #super().__init__(place)
+#         self.name = 'кошка'
+#         self.color = color
+#
+#
+#     def make_sound(self):
+#         print(f'Животное:  {self.color} {self.name} издает звуки: "Мяу-мяу-мурр"')
+#
+#
+# class Elephant(Animal):
+#     def __init__(self, color):
+#         self.color = color
+#         self.name = 'слон'
+#
+#     def make_sound(self):
+#         print(f'Животное {self.color} {self.name} издает звуки: "U-u-u-u"')
+#
+# class zoo:
+#     def __init__(self):
+#         self.animals = []  # закончить
+#
+#     def add_animals(self):
+#
+#
+#
+# animal1 = Cat('черная')
+# animal2 = Dog('пегая')
+# animal3 = Elephant('белый')
+# print(animal1.make_sound())
+# print(animal2.make_sound())
+# print(animal3.make_sound())
+# Animal.info(animal1)
+#
 
+#########################################
+# Протоколы
+# TCP, IP - обычная запись: TCP/IP
 
-class Animal(ABC):
-    def info(self):
-        print(f'Класс:  {self.__class__.__name__}')
+#############################
 
+import sys
+print(len(sys.argv))
 
-    def make_sound(self):
-        print('Животное издает звуки: "У-р-р"')
+if len(sys.argv) >= 2:
+    match sys.argv[1]:
+        case 'p':
+            print('Привет')
+        case 'g':
+            print('Пока')
+        case _:
+            print('Пока')
 
-
-class Dog(Animal):
-    def  __init__(self, color):
-        self.color = color
-        self.name = 'собака'
-
-    def  make_sound(self):
-        print(f'Животное:  {self.color} {self.name} издает звуки: "Гав-гав-ррр"')
-
-
-class Cat(Animal):
-    def __init__(self, color):
-        #super().__init__(place)
-        self.name = 'кошка'
-        self.color = color
-
-
-    def make_sound(self):
-        print(f'Животное:  {self.color} {self.name} издает звуки: "Мяу-мяу-мурр"')
-
-
-class Elephant(Animal):
-    def __init__(self, color):
-        self.color = color
-        self.name = 'слон'
-
-    def make_sound(self):
-        print(f'Животное {self.color} {self.name} издает звуки: "U-u-u-u"')
-
-
-animal1 = Cat('черная')
-animal2 = Dog('пегая')
-animal3 = Elephant('белый')
-print(animal1.make_sound())
-print(animal2.make_sound())
-print(animal3.make_sound())
-Animal.info(animal1)
-
-
-
+    print('Я', sys.argv[0] , 'и мой аргумент', sys.argv[1])
 
 
 
