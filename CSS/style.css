@@ -1,0 +1,23 @@
+h2 {
+    color: blue;
+}
+
+p.red {
+   color: RGBA(255,0,0,1);
+}
+
+.green {
+color: green;
+}
+
+#yellow {
+color: yellow;
+}
+
+ul>li {
+color: red;
+}
+
+ol>li {
+color: green;
+}
