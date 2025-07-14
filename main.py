@@ -595,28 +595,65 @@
 
 #########################
 # Периодические задачи
-import schedule
-import datetime
+# import schedule
+# import datetime
 
 ####################################
 #выполнение задач через опр. интервал времени, по расписанию
-i = 1
+# i = 1
+#
+# def job():  # действия, которые будут выполняться
+#     global i
+#     print(f'Скрипт запустился {i}-раз')
+#     i += 1
+#     t = datetime.datetime.now()
+#     print('Время', t.strftime('%H:%M:%S'))
+#
+# schedule.every(3).seconds.do(job)
+#
+# while True:
+#     schedule.run_pending()  # инициализировать выполнение
 
-def job():  # действия, которые будут выполняться
-    global i
-    print(f'Скрипт запустился {i}-раз')
-    i += 1
-    t = datetime.datetime.now()
-    print('Время', t.strftime('%H:%M:%S'))
+import csv
 
-schedule.every(3).seconds.do(job)
+from PIL.EpsImagePlugin import field
+from jinja2.lexer import newline_re
+from urllib3.filepost import writer
 
-while True:
-    schedule.run_pending()  # инициализировать выполнение
+# data = [
+#     ['name', 'age', 'city'],
+#     ['Борис', '25', 'Воронеж'],
+#     ['Владимир', '28', 'Тверь'],
+#     ['Глеб', '35', 'Москва'],
+#]
 
+#with open('people.csv', 'r', encoding='utf-8') as  f:
+    # dict_reader = csv.DictReader(f)
+    # for row in dict_reader:
+    #     print(f'{row['name']} живет в городе {row['city']})
 
+# data = {
+#     'name': 'Борис',
+#     'age': '27',
+#     'city': 'Москва'
 
+#}
+# with open('file.csv', 'w', newline='', encoding='utf-8') as f:
+#     writer = csv.DictWriter(f, field_names=field_names)
+#     writer.writerow(data)
+#     # reader = csv.reader(f, delimiter=',', quotechar='"')
+#     # for row in reader:
+#     #     print(row)
 
+# with open('employee.csv', 'w', newline='', encoding='utf-8') as f:
+#     writer = csv.writer(f)
+#     writer.writerow(data)
+
+# режимы квотирования
+data = ['name', 25, 'town']
+with open('sample.csv', 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f, quoting=csv.QUOTE_NONNUMERIC)  # надо записать все, но числа в кавычки не заключать
+    writer.writerow(data)
 
 
 
