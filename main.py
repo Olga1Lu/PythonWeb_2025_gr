@@ -678,11 +678,12 @@ from urllib3.filepost import writer
 ########################################
 
 # JSON (Java Script Object Notation)
-#load - для чтения из файла
-#loads - для чтения данных в строковом представлении - данные прямо в этом же файле
-import json
+#import json
 
 #чтение данных
+#load - для чтения из файла
+#loads - для чтения данных в строковом представлении - данные прямо в этом же файле
+
 # with open('dogs.json', 'rt') as d:
 #     #data = json.load(d)  # напрямую из файла
 #     temp = d.read()  # прочитали файл как строку
@@ -702,7 +703,6 @@ import json
     #         print(f'{k}: {', '.join(v)}')
     #     else:
     #         print(f'{k}: {v}')
-
 
 
 # запись
