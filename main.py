@@ -1,7 +1,7 @@
 #########################################
 # Протоколы
 # TCP, IP - обычная запись: TCP/IP
-from tkinter.filedialog import dialogstates
+#from tkinter.filedialog import dialogstates
 
 #############################
 
@@ -43,10 +43,10 @@ from tkinter.filedialog import dialogstates
 
 #import csv
 
-from PIL.EpsImagePlugin import field
-from jinja2.lexer import newline_re
-from urllib3 import connection_from_url
-from urllib3.filepost import writer
+# from PIL.EpsImagePlugin import field
+# from jinja2.lexer import newline_re
+# from urllib3 import connection_from_url
+# from urllib3.filepost import writer
 
 # data = [
 #     ['name', 'age', 'city'],
@@ -151,7 +151,7 @@ from urllib3.filepost import writer
 
 ###################################
 
-# Бфзы данных
+# Базы данных
 #чтение данных
 
 """
@@ -167,10 +167,10 @@ import sqlite3
 import csv
 
 # подключаемся
-connection = sqlite3.connect('db/movies.sqlite')
+#connection = sqlite3.connect('db/movies.sqlite')
 
 # курсор
-cursor = connection.cursor()
+#cursor = connection.cursor()
 
 # запрос (с помощью курсора)
 # result = cursor.execute(
@@ -218,7 +218,26 @@ cursor = connection.cursor()
 #
 # connection.commit()  # подтверждение
 # connection.close()  # закрываем подключение
+############################################
+# DZ
+# connection = sqlite3.connect('db/movies.sqlite')
+# cursor = connection.cursor()
+# with open('users.sql', 'r', encoding='utf-8') as f:
+#     reader = sqlite3.reader(f, delimiter=',')
+#     next(reader)  # пропустить заголовок
+# for name, city, per_diem, data_first, data_last in reader:
+#     cursor.execute(
+#         """
+#         INSERT INTO users (name, city, per_diem, data_first, data_last)
+#         VALUES(?, ?),
+#
+#         """, (name, city, per_diem, data_first, data_last)
+#     )
 
+# connection.commit()  # подтверждение
+# connection.close()  # закрываем подключение
+
+###########################################
 # class Crud:
 #     def __init__(self, db_path):
 #         self._conn = sqlite3.connect(db_path)
@@ -382,19 +401,20 @@ cursor = connection.cursor()
 #
 # make_burger('бараниной', onion=True)
 
-import time
+# import time
+#
+# def timeit(func):
+#     def wrapper(*args, **kwargs):
+#         start = time.time()
+#         result = func(*args, **kwargs)
+#         finish = time.time()
+#         print(f'Функция исполнялась:  {finish - start:.4f} сек.')
+#         return  result
+#     return wrapper
+#
+# @timeit
+# def test():
+#     time.sleep(0.8)
+#
+# test()
 
-def timeit(func):
-    def wrapper(*args, **kwargs):
-        start = time.time()
-        result = func(*args, **kwargs)
-        finish = time.time()
-        print(f'Функция исполнялась:  {finish - start:.4f} сек.')
-        return  result
-    return wrapper
-
-@timeit
-def test():
-    time.sleep(0.8)
-
-test()

@@ -163,3 +163,27 @@ trip_id    INTEGER PRIMARY KEY AUTOINCREMENT,
     date_last  DATE    NOT NULL
 );
 ```
+
+# ДЗ
+
+```
+CREATE TABLE IF NOT EXISTS users (
+
+    trip_id    INTEGER     PRIMARY KEY AUTOINCREMENT,
+    name       TEXT (30)   NOT NULL,
+    city       TEXT (25)   NOT NULL,
+    per_diem   REAL (8, 2) NOT NULL,
+    date_first DATE        NOT NULL,
+    date_last  DATE        NOT NULL
+);
+```
+
+```
+LOAD DATA INFILE 'users.sql'
+INTO TABLE users
+FIELDS TERMINATED BY ','  
+ENCLOSED BY '"'          
+LINES TERMINATED BY '\n' 
+IGNORE 1 LINES;  
+```
+
