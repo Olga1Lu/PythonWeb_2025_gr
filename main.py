@@ -618,6 +618,7 @@ import csv
 
 from PIL.EpsImagePlugin import field
 from jinja2.lexer import newline_re
+from urllib3 import connection_from_url
 from urllib3.filepost import writer
 
 # data = [
@@ -722,4 +723,101 @@ from urllib3.filepost import writer
 # упражнение Получение прогноза погоды
 
 ###################################
+
+# Бфзы данных
+#чтение данных
+
+"""
+1.Импорт библ. sqlite3
+2.подключаемся к БД
+3.назначить "курсор"
+4.работаем с БД (запросы и ответы)
+5.отключаемся от БД
+6.подтвердить изменения (commit) - делакется на уровне подключения
+"""
+
+import sqlite3
+import csv
+
+# подключаемся
+connection = sqlite3.connect('db/movies.sqlite')
+
+# курсор
+cursor = connection.cursor()
+
+# запрос (с помощью курсора)
+# result = cursor.execute(
+#     """
+#     INSERT INTO users (name, age)
+#     VALUES('Sim', 25),
+#     ('Rom', 41)
+#     """
+# )
+#print(result)  # получили объект
+
+# fetch
+# array =result.fetchall()  # получить все соответствия
+# for title, year in array:
+#     print(title, year) # распаковка на печать
+
+# array =result.fetchone()  # получить только первое соответствие
+# print(array)
+
+# array =result.fetchmany(5)  #  первые 5 соответствий
+# print(array)
+
+# connection.commit()  # подтверждение
+# connection.close()  # закрываем подключение
+
+#########
+
+#запись данных в БД
+# с ошибкой!!
+# connection = sqlite3.connect('db/movies.sqlite')
+# cursor = connection.cursor()
+#
+# with open('people.csv', 'r', encoding='utf-8') as f:
+#     reader = csv.reader(f, delimiter=',')
+#     next(reader)  # пропустить заголовок
+#
+# for name, age in reader:
+#     cursor.execute(
+#         """
+#         INSERT INTO users (name, age)
+#         VALUES(?, ?),
+#
+#         """, (name, int(age))
+#     )
+#
+# connection.commit()  # подтверждение
+# connection.close()  # закрываем подключение
+
+class Crud:
+    def __init__(self, db_path):
+        self._conn = sqlite3.connect(db_path)
+        self._cur = self._conn.cursor()
+
+    def read(self, table_name):
+        res = self._cur.execute(
+            f'SELECT * FROM {table_name}'
+        ).fetchall()
+        for num, name, age in res:
+            print(num, name, age)
+
+    def delet(self, in_num, table_name):
+        self._cur.execute(
+            f'DELETE  FROM {table_name} WHERE id ={in_num}'
+        )
+        self._conn.commit()
+
+
+    def __del__(self):  # переопределяем метод уничтожения объекта)
+        self._cur.close()
+        self._conn.close()
+
+db = Crud('db/movies.sqlite')
+db.delet(3, 'users')
+db.read('users')
+
+
 

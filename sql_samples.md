@@ -45,8 +45,7 @@ WHERE genre = 8
 
 # исправленный составной запрос
 ```
-SELECT title
-FROM films
+
 
 ```
 
@@ -121,5 +120,34 @@ SELECT year, count(*) as Кол_во
 FROM films
 GROUP BY year HAVING Кол_во > 500
 ORDER BY Кол_во DESC
+
+```
+
+# добавление записей в таблицу
+```
+INSERT INTO users (name, age)
+VALUES('Sim', 25),
+('Rom', 41)
+
+```
+
+# изменение данных в поле "age"
+```
+update users 
+SET age = 22 WHERE id = 2
+
+```
+
+# изменение данных в двух полях одной записи
+```
+update users 
+SET name = "Billy", age = 23 WHERE id = 2
+
+```
+
+# удаление данных тех, кто старше 30 лет
+```
+DELETE from users 
+WHERE age>30
 
 ```
