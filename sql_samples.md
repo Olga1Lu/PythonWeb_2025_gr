@@ -151,3 +151,13 @@ DELETE from users
 WHERE age>30
 
 ```
+
+CREATE TABLE IF NOT EXISTS users (
+
+trip_id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    name       TEXT    NOT NULL,
+    city       TEXT    NOT NULL,
+    per_diem   REAL    NOT NULL,
+    date_first DATE    NOT NULL,
+    date_last  DATE    NOT NULL
+);
