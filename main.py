@@ -1,6 +1,7 @@
 #########################################
 # Протоколы
 # TCP, IP - обычная запись: TCP/IP
+from tkinter.filedialog import dialogstates
 
 #############################
 
@@ -270,40 +271,130 @@ cursor = connection.cursor()
 
 
 ##################################
-# Погода через API
+# Погода и карта места через API
 
-import requests
-from PIL import Image
-import io  # базовый интерфейс ввода-вывода
+# import requests
+# from PIL import Image
+# import io  # базовый интерфейс ввода-вывода
+#
+# API_KEY = '3cd660f4466f3c3784bd9ca613c0ddaa'
+# URL = 'http://api.openweathermap.org/data/2.5/weather'
+# CITY = 'Санкт-Петербург'
+#
+# params = {
+#     'q': CITY,   # город
+#     'appid': API_KEY,  # ключ
+#     'units': 'metric',
+#     'lang': 'ru'
+#
+# }
+#
+# response = requests.get(URL, params=params)
+# result = response.json()
+#
+# weather = result['weather'][0]['description']
+# temperature = result['main']['temp']
+# humidity = result['main']['humidity']
+# wind = result['wind']['speed']
+# print(f'Сегодня в городе {CITY}: {weather}')
+# print(f'Температура: {temperature:.1f}\xB0C')
+# print(f'Влажность: {humidity}%')
+# print(f'Скорость ветра: {wind}m/c')
+# data = result['coord']
+# ll = f'{data['lon']},{data['lat']}'
+# link = f'https://static-maps.yandex.ru/1.x/?ll={ll}&spn=0.005,0.005&l=sat&pt={ll},pm2dgl'  #картинка с местом на карте
+# image = requests.get(link).content
+# if image:
+#     im = Image.open(io.BytesIO(image)).convert('RGB')
+#     im.save('map.jpg')
+# print(ll)
 
-API_KEY = '3cd660f4466f3c3784bd9ca613c0ddaa'
-URL = 'http://api.openweathermap.org/data/2.5/weather'
-CITY = 'Санкт-Петербург'
+################################################
 
-params = {
-    'q': CITY,   # город
-    'appid': API_KEY,  # ключ
-    'units': 'metric',
-    'lang': 'ru'
+# Декораторы
+# функция внутри другой функции
+# def answer(question):
+#     return 'самост'
+#
+# def dialog():
+#     def answer(question):
+#         if question.lower().startswith('когда'):
+#             return  'Никогда'
+#         else:
+#             return 'УПППС'
+#     question = input()
+#     while question !=''
+#         print(answer(question))
+#         question = input()
+#
+# dialog()
 
-}
 
-response = requests.get(URL, params=params)
-result = response.json()
+# def upper_case_print(old_function):
+#     def new_function(*args, **kwargs):
+#         case = kwargs.pop('case', None)
+#         if case == 'U':
+#             args = [str(arg).upper() for arg in args]
+#         elif case == 'L':
+#             args = [str(arg).lower() for arg in args]
+#         return old_function(*args, **kwargs)
+#     return new_function
+#
+# new_print = upper_case_print(print)
+#
+# new_print('Привет, пока', case='L')
 
-weather = result['weather'][0]['description']
-temperature = result['main']['temp']
-humidity = result['main']['humidity']
-wind = result['wind']['speed']
-print(f'Сегодня в городе {CITY}: {weather}')
-print(f'Температура: {temperature:.1f}\xB0C')
-print(f'Влажность: {humidity}%')
-print(f'Скорость ветра: {wind}m/c')
-data = result['coord']
-ll = f'{data['lon']},{data['lat']}'
-link = f'https://static-maps.yandex.ru/1.x/?ll={ll}&spn=0.005,0.005&l=sat&pt={ll},pm2dgl'  #картинка с местом на карте
-image = requests.get(link).content
-if image:
-    im = Image.open(io.BytesIO(image)).convert('RGB')
-    im.save('map.jpg')
-print(ll)
+# non local
+# def outer():
+#     x = 5
+#
+#     def inner():
+#         nonlocal x
+#         print('Nonlocal x=', x)
+#         x = 10
+#     inner()
+#     print('New x=', x)
+#
+# outer()
+
+# def logger(func):
+#     counter - 0
+#
+#     def decorated_func(*args, **kwargs):
+#         nonlocal  counter
+#         counter += 1
+#         print(counter, '->', 'Аргументы:' , args,
+#               'Именованные аргументы:' , kwargs)
+#         result = func(*ar,**kwargs)
+#         print('____', 'Результат:' , result)
+#         return result
+#     return decorated_func
+#
+# @logger  # ф-ция будет завернута в функцию logger
+# def make_burger(meal='говядиной', onion=False, tomato=False):
+#     print('Булочка')
+#     if onion:
+#         print('Луковые кольца')
+#     print('Котлета с', meal)
+#     if tomato:
+#         print('Помидоры')
+#     print('Булочка')
+#
+# make_burger('бараниной', onion=True)
+
+import time
+
+def timeit(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        finish = time.time()
+        print(f'Функция исполнялась:  {finish - start:.4f} сек.')
+        return  result
+    return wrapper
+
+@timeit
+def test():
+    time.sleep(0.8)
+
+test()

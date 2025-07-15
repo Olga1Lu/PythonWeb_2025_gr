@@ -152,6 +152,7 @@ WHERE age>30
 
 ```
 
+```
 CREATE TABLE IF NOT EXISTS users (
 
 trip_id    INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -161,3 +162,4 @@ trip_id    INTEGER PRIMARY KEY AUTOINCREMENT,
     date_first DATE    NOT NULL,
     date_last  DATE    NOT NULL
 );
+```
