@@ -1,9 +1,8 @@
 #Flask
 #MVC-(Model View Controller)
 from fileinput import filename
-from http.cookiejar import debug
 
-from flask import Flask, url_for
+from flask import Flask, url_for, request
 import sqlite3
 
 from urllib3.util.proxy import connection_requires_http_tunnel
@@ -72,20 +71,44 @@ def greeting(user, id_num):
     return f'Привет, {user} c id= {id_num}'
 
 #обращение к базе данных
-@app.route('/get-user/<int:id_num>')  # вместо <> м.подставить любое слово
-def get_user(id_num):
-
+@app.route('/get-user/')
+@app.route('/get-user/<int:id_num>')  # вместо <> м.подставить любой номер для вывода опрюзаписи из БД
+def get_user(id_num=None):  # если не введен порядковый номер записи
+    if id_num is None:
+        return 'Нет номера записи'
     con = sqlite3.connect('db/movies.sqlite')
     cur = con.cursor()
-    query = f'SELECT name FROM users WHERE trip_id={id_num}'
+    query = f'SELECT name, city FROM users WHERE trip_id={id_num}'
     response = cur.execute(query)
     result = response.fetchone()
+    name, city = result  # распаковка кортежа name, city
     #print(result)  # получили объект
 
     cur.close()  # подтверждение
     con.close()  # закрываем подключение
-    return  str(result[0])
+    return  f"""<table border="1">  # вывод в табличной форме
+    <tr>
+    <td>ФИО</td>
+    <td>Город</td>
+    </tr>
+    <tr>
+    <td>{name}</td>
+    <td>{city}</td>
+    </tr>
+    </table>
+    """
+@app.route('/form-test', methods=['POST', 'GET'])
+def form_test():
+    if request.method == 'GET' :
+        with open('form.html', 'r', encoding='utf-8') as html :
+            return html.read()
+    elif request.method == 'POST' :
+            print(request.form['gender'])
+            print(request.form['email'])
 
+            return 'Форма успешно отправлена'
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=debug)
+
+

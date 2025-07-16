@@ -179,11 +179,10 @@ CREATE TABLE IF NOT EXISTS users (
 ```
 
 ```
-LOAD DATA INFILE 'users.sql'
-INTO TABLE users
-FIELDS TERMINATED BY ','  
-ENCLOSED BY '"'          
-LINES TERMINATED BY '\n' 
-IGNORE 1 LINES;  
+SELECT city, count(*) as Кол_во
+FROM users
+GROUP BY city
+ORDER BY Кол_во DESC
+Limit 2
 ```
 
