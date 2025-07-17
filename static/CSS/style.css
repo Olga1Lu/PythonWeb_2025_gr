@@ -1,6 +1,6 @@
 h1 {
 color: #d22e34;
-text-align = center
+text-align: center;
 }
 
 form.login_form {
@@ -11,4 +11,8 @@ form.login_form {
     padding: 10px;
     border: 2px solid gray;
     border-radius: 5px;
+}
+
+.error {
+color: #ff0000
 }

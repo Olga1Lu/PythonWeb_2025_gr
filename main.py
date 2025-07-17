@@ -1,6 +1,12 @@
 # Flask
 # MVC-(Model View Controller)
-#JINJA - шаблонизатор: переменные, условия, циклы
+# MVC-(Model View Controller)
+# GET - запрашивает данные (read)
+# POST - отправляет данные на сервер (submit)
+# PUT - заменяет всё на сервере из контекста запроса ("заменить")
+# DELETE - удаляет указанные данные ("удалить")
+# PATCH - частичное изменение данных
+# JINJA - переменные, условия, циклы и т.д.
 import os.path
 from fileinput import filename
 
@@ -8,11 +14,12 @@ from flask import Flask, url_for, request, render_template
 from openpyxl.styles.builtins import title
 from werkzeug.utils import secure_filename  # проверка, что имя файла безопасно
 import sqlite3
-
+from forms.loginform import LoginForm
 from urllib3.util.proxy import connection_requires_http_tunnel
 
 app = Flask(__name__)  # регистрируем приложение
 app.config['UPLOAD_FOLDER'] = 'uploads/'
+app.config['SECRET_KEY'] = 'just_secret_key'  # ключ для защиты от межсайт.подделки запросов
 ALLOWED_EXTENSIONS = ['txt', 'pdf', 'zip', 'jpg', 'png']
 debug = False
 
@@ -35,9 +42,23 @@ def index():
 
 @app.route('/about')
 def about():
-    print('Вызвана функция about')
-    return 'О нас'
+    return render_template('about.html', title='О нас')
 
+
+@app.route('/contacts')
+def contacts():
+    return render_template('contacts.html', title='Свяжитесь с нами')
+
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return 'Форма отправлена'
+    render_template('login.html', title='Авторизация', form=form)
+
+
+################
 
 @app.route('/countdown')
 def cd():
@@ -153,21 +174,32 @@ def file_upload():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], new_name))
             return f'Файл {new_name} загружен успешно.'
     return 'Ошибка загрузки.'
-@app.route('/numbers/')
-@app.route('/numbers/<int:id_num>')
-if num is None# загрузка файла на сервер
-def odd_even(id_num):
-    return render_template('numbers.html', title='Чет-нечет', number=id_num)
 
-@app.route('/deals')  # загрузка файла на сервер
+
+@app.route('/numbers/')
+@app.route('/numbers/<int:num>')
+def odd_even(num=None):
+    if num is None:
+        return render_template('numbers.html',
+                               title='Нет числа', number='')
+    return render_template('numbers.html', title='Чет-нечет', number=num)
+
+
+@app.route('/deals')
 def printlist():
     deal = ['Помыть посуду', 'Выгулять собаку', 'Снять счетчик', 'Сходить в магазин']
     return render_template('printlist.html', deals=deal)
 
-@app.route('/queue')  # загрузка файла на сервер
-def queue():
 
+@app.route('/queue')
+def queue():
     return render_template('wars.html', title='Стоим в очереди')
+
+
+# loop.index - номер итерации, начиная с 1
+# loop.index0 - номер итерации, начиная с 0
+# loop.first - True, если первая итерация
+# loop.last - True, если последняя итерация
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=debug)

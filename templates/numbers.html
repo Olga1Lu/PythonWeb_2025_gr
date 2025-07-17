@@ -6,11 +6,13 @@
 </head>
 <body>
 {% if number %}
-    {% if number % 2 == 0%}
-    <p>Число {{number}} четное</p>
+    {% if number % 2 == 0 %}
+        <p>Число {{number}} чётное!</p>
     {% else %}
-    <p>Число {{number}} нечетное</p>
-{% endif %}
+        <p>Число {{number}} нечётное!</p>
+    {% endif %}
 {% else %}
+    <p>Числа нет!</p>
+{% endif %}
 </body>
 </html>
