@@ -1,11 +1,10 @@
-{% extends "base.html" %}
+{{% extends "base.html" %}
 
 {% block content %}
- {%if current_user.is_authenticated%}
-    <h1>Привет, {{user}}!</h1>
-    <p>{{weather}}</p>
+{% if current_user.is_authenticated %}
+<h1>Привет, {{user}}!</h1>
+<p>{{weather}}</p>
 {% else %}
-<h1>Сначала авторизуйтесь</h1>
+<h2>Сначала авторизуйтесь!</h2>
 {% endif %}
-<h2></h2>
 {% endblock %}
