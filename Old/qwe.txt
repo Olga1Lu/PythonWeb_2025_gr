@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER NOT NULL);
+INSERT INTO users (id, name, age) VALUES (1, 'John', 32);
+INSERT INTO users (id, name, age) VALUES (2, 'Billy', 22);
+INSERT INTO users (id, name, age) VALUES (4, 'Thomas', 41);
+INSERT INTO users (id, name, age) VALUES (5, 'Sim', 25);
+INSERT INTO users (id, name, age) VALUES (6, 'Rom', 41);
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;
+
+

@@ -1,0 +1,21 @@
+[
+{
+  "name": "Rex",
+  "photo": "rex.jpg",
+  "age": 8,
+  "meals": [
+    "purina",
+    "Royal Canin"
+  ]
+},
+  {
+    "name": "Bob",
+    "photo": "bob.jpg",
+    "age": 10,
+    "meals": [
+      "Purina",
+      "Royal Canin",
+      "Hills"
+    ]
+  }
+]
