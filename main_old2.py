@@ -6,9 +6,8 @@
 # DELETE - удаляет указанные данные ("удалить")
 # PATCH - частичное изменение данных
 # JINJA - переменные, условия, циклы и т.д.
-# ORM - Object Relational Mapping
+# ORM - Object Relation Mapping
 import os.path
-from sqlite3 import Error
 
 from openpyxl.styles.builtins import title
 
@@ -16,8 +15,6 @@ from forms.loginform import LoginForm
 from flask import Flask, url_for, request, render_template
 from werkzeug.utils import secure_filename
 from data import db_session
-from data.users import User
-from data.news import News
 import sqlite3
 
 app = Flask(__name__)
@@ -32,10 +29,10 @@ def allowed_file(filename):
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.errorhandler(404)
-def not_found(e):
-    return render_template('404.html', title='Не найдено')
 
+@app.errorhandler(404)
+def not_found(a):
+    return render_template('404.html', title='Не найдено')
 
 @app.route('/')
 @app.route('/index')
@@ -122,40 +119,27 @@ def greeting(user, id_num):
 @app.route('/get-user/')
 @app.route('/get-user/<int:id_num>')
 def get_user(id_num=None):
-    try:
-        # Подключение к базе данных
-        con = sqlite3.connect('db/movies.sqlite')
-        cur = con.cursor()
-
-        if id_num is None:
-            # Получение списка всех пользователей
-            query = 'SELECT trip_id, name FROM users'
-            response = cur.execute(query)
-            result = response.fetchall()
-            return render_template('get_user.html', users=result)
-
-        # Получение информации о конкретном пользователе
-        query = 'SELECT name, city, date_first FROM users WHERE trip_id=?'
-        response = cur.execute(query, (id_num,))
-        result = response.fetchone()
-
-        if result:
-            name, city, date_first = result
-            return render_template('get_user.html',
-                                   name=name,
-                                   city=city,
-                                   start=date_first)
-        else:
-            return "Пользователь не найден", 404
-
-    except Error as e:
-        return f"Произошла ошибка: {str(e)}", 500
-
-    finally:
-        # Гарантированное закрытие соединения
-        if con:
-            cur.close()
-            con.close()
+    if id_num is None:
+        return f'<a href="http://localhost:5000/get-user/{id_num}">ФИО</a>'
+    con = sqlite3.connect('db/movies.sqlite')
+    cur = con.cursor()
+    query = f'SELECT name, city FROM users WHERE trip_id={id_num}'
+    response = cur.execute(query)
+    result = response.fetchone()
+    # print(result)
+    name, city = result
+    cur.close()
+    con.close()
+    return f'''<table border="1">
+    <tr>
+    <td>ФИО</td>
+    <td>Город</td>
+    </tr>
+    <tr>
+    <td>{name}</td>
+    <td>{city}</td>
+    </tr>
+    </table>'''
 
 
 @app.route('/form-test', methods=['POST', 'GET'])
@@ -215,62 +199,7 @@ def queue():
     # loop.last - True, если последняя итерация
     return render_template('vars.html', title='Стоим в очереди')
 
-# вывод все публичных новостей, т.е. is_private == False
-@app.route('/news')
-def news():
-    db_sess = db_session.create_session()
-    all_news = db_sess.query(News).filter(News.is_private != True).all()
-    #print(all_news)
-    return render_template('news.html', title='Новости',news=all_news )
-
 
 if __name__ == '__main__':
     db_session.global_init('db/news.sqlite')
     app.run(host='127.0.0.1', port=5000, debug=debug)
-    #user = User()
-    # db_sess = db_session.create_session()
-    # user = db_sess.query(User).filter(User.id == 1).first()
-    # news = News(title='First News', content='News Content', user_id=user.id, is_private=False)  # добавление данных в таблицу News
-    # db_sess.add(news)
-
-    # db_sess = db_session.create_session()  # другой способ добавления новости
-    # user = db_sess.query(User).filter(User.id == 1).first()
-    # news = News(title='First News', content='Third Content',
-    #             is_private=False)  # добавление данных в таблицу News
-    # user.news.append(news)
-
-
-    # user = db_sess.query(User).filter(User.id == 2).first()
-    # news2 = News(title='Second News', content='News Content', user_id=user.id,
-    #             is_private=False)  # добавление данных в таблицу News
-    # db_sess.add(news2)
-
-
-
-    # db_sess = db_session.create_session()
-    # user = db_sess.query(User).filter(User.id == 1).first()
-    # for news in user.news:
-    #     print(news)
-
-   # db_sess = db_session.create_session()  #
-
-    # user = db_sess.query(User).filter(User.id == 2).first()
-    # user.set_username('John')  # изменили имя через сеттер
-    # user = db_sess.query(User).filter(User.id == 2).delete()  # удаление записи с id=2
-    # user = db_sess.query(User).filter(User.id == 2).first()  # удаление записи с id=2 второй способ
-    # db_sess.delete(user)  # удаление записи с id=2 второй способ
-
-    # first = db_sess.query(User).first()  # вывод первой записи в таблице
-    # alls = db_sess.query(User).all()  # вывод всех записи в таблице
-    # first1 = db_sess.query(User).filter(User.name.not_ilike('%1%')).all()  # фильтр для выбора значений
-    # first2 = db_sess.query(User).filter(User.id !=1 , User.email.not_ilike('%a%')).all()
-    # first3 = db_sess.query(User).filter((User.id != 1) | (User.email.not_ilike('%a%'))).all()
-    # print(first3)
-    # user.name = 'User2'
-    # user.about = 'Данные о User2'
-    # user.email = 'ggg@.ru'
-    # db_sess = db_session.create_session()
-    # db_sess.add(user)
-
-    # db_sess.commit()
-    # print(user)
