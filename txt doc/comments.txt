@@ -1,8 +1,35 @@
-1. Взять коммит от 18.07.25 index.html скопирован
-
-темы:
-a)ошибка 404
+1. темы:
+a)ошибка 404                                                                      -OK
 b) иконка на вкладке: люб.файл png на прозрач фоне или "иконки для сайта"
 д.б.16х16 или 32х32 скачать, перетащить в static
-в базовый шаблон
+в базовый шаблон                                                                   -OK
+
 2. pip install flask-login
+
+3.Выдает ошибку:
+ 127.0.0.1 - - [20/Jul/2025 13:09:04] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/Jul/2025 13:09:04] "GET /static/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [20/Jul/2025 13:09:07] "GET /register HTTP/1.1" 200 -
+127.0.0.1 - - [20/Jul/2025 13:09:07] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [20/Jul/2025 13:09:08] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [20/Jul/2025 13:09:09] "GET /static/css/style.css HTTP/1.1" 304 -
+[2025-07-20 13:09:22,376] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\User\PycharmProjects\PythonWeb_2025_gr\main.py", line 81, in login
+    user = db_sess.query((User).filter(User.email == form.email.data))
+                         ^^^^^^^^^^^^^
+AttributeError: type object 'User' has no attribute 'filter'
+127.0.0.1 - - [20/Jul/2025 13:09:22] "POST /login HTTP/1.1" 500 -
+127.0.0.1 - - [20/Jul/2025 13:09:22] "GET /favicon.ico HTTP/1.1" 200 -
+
+Process finished with exit code 0
+

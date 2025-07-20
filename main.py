@@ -87,7 +87,7 @@ def login():
 
     return render_template('login.html', title='Авторизация', form=form)
 
-@app.route('/logout')  #регистрация пользователя
+@app.route('/logout')  #  выход пользователя
 def logout():
     logout_user()
     return  redirect('/')
