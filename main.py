@@ -7,21 +7,21 @@
 # PATCH - частичное изменение данных
 # JINJA - переменные, условия, циклы и т.д.
 # ORM - Object Relational Mapping
+# DBeaver - универсальный софт для работы с БД
 import os.path
+import sqlite3
 from sqlite3 import Error
 
-from openpyxl.styles.builtins import title
-from pyexpat.errors import messages
-
-from forms.loginform import LoginForm
-from forms.user import Register
-from flask import Flask, url_for, request, render_template, redirect
-from flask_login import LoginManager, login_user, logout_user
+from flask import Flask, url_for, request, render_template, redirect, abort
 from werkzeug.utils import secure_filename
+
 from data import db_session
-from data.users import User
 from data.news import News
-import sqlite3
+from data.users import User
+from forms.loginform import LoginForm
+from forms.news import NewsForm
+from forms.user import Register
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
 app = Flask(__name__)
 
@@ -38,16 +38,21 @@ def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
 
 
-
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html', title='Не найдено')
+
+
+@app.errorhandler(401)
+def not_authorized(_):
+    return redirect('/login')
 
 
 @app.route('/')
@@ -78,45 +83,54 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        user = db_sess.query((User).filter(User.email == form.email.data))
+        user = db_sess.query(User).filter(User.email == form.email.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             return redirect('/')
-        return render_template('login.html', title='Ошибка вторизации',
-                               message="Неверный логин или пароль", form=form)
-
+        return render_template('login.html',
+                               message='Неверный логин или пароль',
+                               title='Ошибка авторизации',
+                               form=form)
     return render_template('login.html', title='Авторизация', form=form)
 
-@app.route('/logout')  #  выход пользователя
+
+@app.route('/logout')
+@login_required
 def logout():
     logout_user()
-    return  redirect('/')
+    return redirect('/')
 
-@app.route('/register', methods=['POST', 'GET'])  #регистрация пользователя
+
+@app.route('/register', methods=['POST', 'GET'])
 def register():
     form = Register()
-    if form.validate_on_submit(): # то же самое что и request.method == 'POST'
-        # если пароли не совпали, то:
-        if form.password.data != form.password_again.data :
-            return render_template('register.html', title='регистрация',
-                                   message='Пароли не совпадают', form=form)
+    if form.validate_on_submit():  # тоже самое, что и request.method == 'POST'
+        # если пароли не совпали
+        if form.password.data != form.password_again.data:
+            return render_template('register.html',
+                                   title='Регистрация',
+                                   message='Пароли не совпадают',
+                                   form=form)
+
         db_sess = db_session.create_session()
-        # если поль с таким е-мейлом уже есть
-        if db_sess.query(User).filter(User.email==form.email.data).first():
-           return render_template('register.html', title='регистрация',
-                                       message='Такой пользователь уже есть', form=form)
-        user = User(name=form.name.data,
-                    email=form.email.data,
-                    about=form.about.data
-                    )
+
+        # Если пользователь с таким E-mail в базе уже есть
+        if db_sess.query(User).filter(User.email == form.email.data).first():
+            return render_template('register.html',
+                                   title='Регистрация',
+                                   message='Такой пользователь уже есть',
+                                   form=form)
+        user = User(
+            name=form.name.data,
+            email=form.email.data,
+            about=form.about.data
+        )
         user.set_password(form.password.data)
-        db_sess.add(user)  # добавили польз в БД
+        db_sess.add(user)
         db_sess.commit()
-        return  redirect('/login')
-    return render_template('register.html', title='регистрация',
-                                    form=form)
-
-
+        return redirect('/login')
+    return render_template('register.html',
+                           title='Регистрация', form=form)
 
 
 @app.route('/countdown')
@@ -148,7 +162,7 @@ def sample_page():
 
 @app.route('/sample-page2')
 def sample_page2():
-    with open('temp.html', 'r', encoding='utf-8') as html:
+    with open('old/temp.html', 'r', encoding='utf-8') as html:
         return html.read()
 
 
@@ -212,7 +226,7 @@ def get_user(id_num=None):
 @app.route('/form-test', methods=['POST', 'GET'])
 def form_test():
     if request.method == 'GET':
-        with open('form.html', 'r', encoding='utf-8') as html:
+        with open('old/form.html', 'r', encoding='utf-8') as html:
             return html.read()
     elif request.method == 'POST':
         print(request.form)
@@ -222,7 +236,7 @@ def form_test():
 @app.route('/upload', methods=['POST', 'GET'])
 def file_upload():
     if request.method == 'GET':
-        with open('upload.html', 'r', encoding='utf-8') as html:
+        with open('old/upload.html', 'r', encoding='utf-8') as html:
             return html.read()
     elif request.method == 'POST':
         # print(request.files)
@@ -266,18 +280,117 @@ def queue():
     # loop.last - True, если последняя итерация
     return render_template('vars.html', title='Стоим в очереди')
 
-# вывод все публичных новостей, т.е. is_private == False
+
+# Вывод всех публичных новостей (is_private == False)
 @app.route('/news')
 def news():
     db_sess = db_session.create_session()
-    all_news = db_sess.query(News).filter(News.is_private != True).all()
-    #print(all_news)
-    return render_template('news.html', title='Новости',news=all_news )
+    if current_user.is_authenticated:
+        all_news = db_sess.query(News).filter(
+            (News.user == current_user) | (News.is_private != True)).all()
+    else:
+        all_news = db_sess.query(News).filter(News.is_private != True).all()
+    # print(all_news)
+    return render_template('news.html',
+                           title='Новости', news=all_news)
+
+
+@app.route('/newsjob', methods=['GET', 'POST'])
+@login_required
+def add_news():
+    form = NewsForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        news = News()
+        news.title = form.title.data
+        news.content = form.content.data
+        news.is_private = form.is_private.data
+        current_user.news.append(news)
+        db_sess.merge(current_user)
+        db_sess.commit()
+        return redirect('/news')
+    return render_template('newsjob.html',
+                           title='Добавление новости',
+                           form=form)
+
+
+@app.route('/newsjob/<int:id_num>', methods=['GET', 'POST'])
+@login_required
+def edit_news(id_num):
+    form = NewsForm()
+    if request.method == 'GET':
+        db_sess = db_session.create_session()
+        news = db_sess.query(News).filter(
+            News.id == id_num, News.user == current_user
+        ).first()
+        if news:
+            form.title.data = news.title
+            form.content.data = news.content
+            form.is_private.data = news.is_private
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        news = db_sess.query(News).filter(
+            News.id == id_num, News.user == current_user
+        ).first()
+        if news:
+            news.title = form.title.data
+            news.content = form.content.data
+            news.is_private = form.is_private.data
+            db_sess.commit()
+            return redirect('/news')
+        else:
+            abort(404)
+    return render_template('newsjob.html',
+                           title='Редактирование новости',
+                           form=form)
+
+@app.route('/newsdel/<int:news_id>')
+@login_required
+def news_delete(news_id):
+    db_sess = db_session.create_session()
+    news = db_sess.query(News).filter(
+        News.id == news_id, News.user == current_user
+    ).first()
+
+    if news:
+        db_sess.delete(news)
+        db_sess.commit()
+    else:
+        abort(404)
+    return redirect('/news')
 
 
 if __name__ == '__main__':
     db_session.global_init('db/news.sqlite')
     app.run(host='127.0.0.1', port=5000, debug=debug)
+
+    # db_sess = db_session.create_session()
+    # user = db_sess.query(User).filter(User.id == 1).first()
+    # for news in user.news:
+    #     print(news)
+    # print(user.id)
+    # news = News(title='Third News', content='Third Content',
+    #              is_private=False)
+    # user.news.append(news)
+    # # db_sess.add(news)
+    # db_sess.commit()
+    # user = User()
+    # db_sess = db_session.create_session()
+    # user = db_sess.query(User).filter(User.id == 1).first()
+    # print(user)
+    # db_sess.delete(user)
+    # # user.set_username('John')
+    # db_sess.commit()
+    # user.name = 'User2'
+    # user.about = 'Данные про User2'
+    # user.email = 'b@c.ru'
+    # db_sess = db_session.create_session()
+    # db_sess.add(user)
+    # db_sess.commit()
+
+
     #user = User()
     # db_sess = db_session.create_session()
     # user = db_sess.query(User).filter(User.id == 1).first()
