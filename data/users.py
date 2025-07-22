@@ -23,11 +23,9 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
                               nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String,
                                         nullable=True)
-    level = sqlalchemy.Column(sqlalchemy.Integer, default=1)  # уровни пользователей
-
+    level = sqlalchemy.Column(sqlalchemy.Integer, default=1)
     create_data = sqlalchemy.Column(sqlalchemy.DateTime,
                                     default=datetime.datetime.now())
-
 
     news = orm.relationship("News", back_populates='user')
 
@@ -38,12 +36,10 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
         return f'<User: {self.name}>'
 
     def set_password(self, password):
-        self.hashed_password = generate_password_hash(password)  # пароль будет захеширован и добавлен в БД
-
+        self.hashed_password = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.hashed_password, password)  # проверка пароля
+        return check_password_hash(self.hashed_password, password)
 
     def is_admin(self):
         return self.level > 1
-

@@ -8,21 +8,28 @@
 # JINJA - переменные, условия, циклы и т.д.
 # ORM - Object Relational Mapping
 # DBeaver - универсальный софт для работы с БД
+# SOA - Service Oriented Architecture
+# MSA - Micro Service Architecture
+# REST - REpresentation State Transfer
+# GET - /book/page/50
+# GET - /book
+# POST - /book
+# DELETE - /book/7
 import os.path
 import sqlite3
 from sqlite3 import Error
-
-from flask import Flask, url_for, request, render_template, redirect, abort
+import send_mail
+import requests
+from flask import Flask, url_for, request, render_template, redirect, abort, make_response, jsonify
 from werkzeug.utils import secure_filename
 
-from data import db_session
+from data import db_session, news_api
 from data.news import News
 from data.users import User
 from forms.loginform import LoginForm
 from forms.news import NewsForm
 from forms.user import Register
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
-
 
 app = Flask(__name__)
 
@@ -43,12 +50,20 @@ def allowed_file(filename):
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
-    return db_sess.query(User).get(user_id)
+    return db_sess.get(User, user_id)
+
+
+# @app.errorhandler(404)
+# def not_found(e):
+#     return render_template('404.html', title='Не найдено')
+@app.errorhandler(400)
+def bad_request(_):
+    return make_response(jsonify({'error': 'Bad request'}), 400)
 
 
 @app.errorhandler(404)
-def not_found(e):
-    return render_template('404.html', title='Не найдено')
+def not_found(_):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 @app.errorhandler(401)
@@ -348,6 +363,7 @@ def edit_news(id_num):
                            title='Редактирование новости',
                            form=form)
 
+
 @app.route('/newsdel/<int:news_id>')
 @login_required
 def news_delete(news_id):
@@ -363,6 +379,7 @@ def news_delete(news_id):
         abort(404)
     return redirect('/news')
 
+
 @app.route('/adminpage', methods=['GET', 'POST'])
 @login_required
 def adminpanel():
@@ -375,16 +392,32 @@ def adminpanel():
     else:
         abort(404)
 
+
 @app.route('/testapi')
-
 def testapi():
+    res = requests.get('http://localhost:5000/api/news').json()
+    return render_template('testapi.html',
+                           title='Тест API',
+                           news=res)
 
-    return request.get('http://localhost:5000/api/news').json()
-
+@app.route('/sendmail', methods=['GET', 'POST'])
+def mail_send():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    message = request.form.get('message')
+    temp = (f'Письмо с обратной связью от '
+            f'{name} c текстом {message}. '
+            f'Отправитель: {email}. Вот его сообщение: ')
+    mess = temp + message
+    send_mail('Ваш email', 'обратная связь с сайта', mess)
+    send_mail(email, 'Получено', f'{name},  спасибо за обратную связь.')
+    return render_template('contacts.html',
+                           title='Почта отправлена', mess='Форма отправлена')  #отправка на емейл
 
 
 if __name__ == '__main__':
     db_session.global_init('db/news.sqlite')
+    app.register_blueprint(news_api.blueprint)
     app.run(host='127.0.0.1', port=5000, debug=debug)
 
     # db_sess = db_session.create_session()
@@ -410,52 +443,3 @@ if __name__ == '__main__':
     # db_sess = db_session.create_session()
     # db_sess.add(user)
     # db_sess.commit()
-
-
-    #user = User()
-    # db_sess = db_session.create_session()
-    # user = db_sess.query(User).filter(User.id == 1).first()
-    # news = News(title='First News', content='News Content', user_id=user.id, is_private=False)  # добавление данных в таблицу News
-    # db_sess.add(news)
-
-    # db_sess = db_session.create_session()  # другой способ добавления новости
-    # user = db_sess.query(User).filter(User.id == 1).first()
-    # news = News(title='First News', content='Third Content',
-    #             is_private=False)  # добавление данных в таблицу News
-    # user.news.append(news)
-
-
-    # user = db_sess.query(User).filter(User.id == 2).first()
-    # news2 = News(title='Second News', content='News Content', user_id=user.id,
-    #             is_private=False)  # добавление данных в таблицу News
-    # db_sess.add(news2)
-
-
-
-    # db_sess = db_session.create_session()
-    # user = db_sess.query(User).filter(User.id == 1).first()
-    # for news in user.news:
-    #     print(news)
-
-   # db_sess = db_session.create_session()  #
-
-    # user = db_sess.query(User).filter(User.id == 2).first()
-    # user.set_username('John')  # изменили имя через сеттер
-    # user = db_sess.query(User).filter(User.id == 2).delete()  # удаление записи с id=2
-    # user = db_sess.query(User).filter(User.id == 2).first()  # удаление записи с id=2 второй способ
-    # db_sess.delete(user)  # удаление записи с id=2 второй способ
-
-    # first = db_sess.query(User).first()  # вывод первой записи в таблице
-    # alls = db_sess.query(User).all()  # вывод всех записи в таблице
-    # first1 = db_sess.query(User).filter(User.name.not_ilike('%1%')).all()  # фильтр для выбора значений
-    # first2 = db_sess.query(User).filter(User.id !=1 , User.email.not_ilike('%a%')).all()
-    # first3 = db_sess.query(User).filter((User.id != 1) | (User.email.not_ilike('%a%'))).all()
-    # print(first3)
-    # user.name = 'User2'
-    # user.about = 'Данные о User2'
-    # user.email = 'ggg@.ru'
-    # db_sess = db_session.create_session()
-    # db_sess.add(user)
-
-    # db_sess.commit()
-    # print(user)
