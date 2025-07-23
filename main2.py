@@ -18,12 +18,16 @@
 import os.path
 import sqlite3
 from sqlite3 import Error
+
+from pyexpat.errors import messages
+
 import send_mail
 import requests
 from flask import Flask, url_for, request, render_template, redirect, abort, make_response, jsonify
 from werkzeug.utils import secure_filename
 
-from data import db_session, news_api
+from data import db_session, news_api, api_resources
+from flask_restful import Api
 from data.news import News
 from data.users import User
 from forms.loginform import LoginForm
@@ -32,6 +36,7 @@ from forms.user import Register
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
 app = Flask(__name__)
+api = Api(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -45,6 +50,12 @@ debug = False
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def send_to_telebot():
+    bot_token = 'Ваш токен'  # занести инфо о токене
+    chat_id = 'Ваш Chat_ID'  # узнать через поиск в TG:  @getmyid_bot
+    message = 'Ваше сообщение'
+    requests.get(f'https://api.telegram.org/bot{bot_token}/sendMessage?chat_id={chat_id}&text={message}')
 
 
 @login_manager.user_loader
@@ -418,6 +429,8 @@ def mail_send():
 if __name__ == '__main__':
     db_session.global_init('db/news.sqlite')
     app.register_blueprint(news_api.blueprint)
+    api.add_resource(api_resources.NewsResource, '/api/v2/news/<int:news_id')  # доступ к отдельной нововсти
+    api.add_resource(api_resources.NewsResourceList, '/api/v2/news')  # доступ ко всем новостям
     app.run(host='127.0.0.1', port=5000, debug=debug)
 
     # db_sess = db_session.create_session()
